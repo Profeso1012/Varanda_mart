@@ -2,39 +2,53 @@
 .hero-section {
   position: relative;
   width: 100%;
-  min-height: 600px;
+  min-height: calc(100vh - 95px);
   display: flex;
   align-items: center;
-  justify-content: center;
   overflow: hidden;
   background: var(--white);
 }
 
-.hero-gradient-bg {
+/* ─── Left-side green radial glow blob ─────────────────── */
+.hero-blob {
   position: absolute;
-  top: -40%;
-  right: -20%;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(34, 146, 91, 0.08) 0%, transparent 70%);
+  width: 680px;
+  height: 680px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(34, 146, 91, 0.22) 0%,
+    rgba(34, 146, 91, 0.12) 35%,
+    rgba(34, 146, 91, 0.04) 60%,
+    transparent 75%
+  );
+  top: -10%;
+  left: -180px;
   pointer-events: none;
   z-index: 0;
+  animation: blob-breathe 7s ease-in-out infinite;
 }
 
+@keyframes blob-breathe {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.06); }
+}
+
+/* ─── Content Grid ─────────────────────────────────────── */
 .hero-container {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  grid-template-columns: 45fr 55fr;
   align-items: center;
+  gap: 48px;
   max-width: 1310px;
   width: 100%;
-  padding: 80px 40px;
+  padding: 72px 40px;
   margin: 0 auto;
 }
 
-/* ─── Left Content ─────────────────────────────────────── */
+/* ─── Left: Text ───────────────────────────────────────── */
 .hero-content {
   display: flex;
   flex-direction: column;
@@ -42,360 +56,313 @@
 }
 
 .hero-title {
-  font-size: 56px;
+  font-size: clamp(36px, 4.2vw, 54px);
   font-weight: 800;
-  line-height: 1.25;
+  line-height: 1.2;
   color: var(--text-heading);
   letter-spacing: -1.5px;
-  animation: fadeInUp 0.7s ease-out;
+  animation: fade-up 0.65s ease-out both;
 }
 
 .hero-description {
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 15px;
+  line-height: 1.65;
   color: var(--text-body);
-  max-width: 440px;
-  animation: fadeInUp 0.7s ease-out 0.1s both;
+  max-width: 420px;
+  animation: fade-up 0.65s ease-out 0.1s both;
 }
 
-.hero-cta-group {
+/* ─── CTA Buttons ──────────────────────────────────────── */
+.hero-cta-row {
   display: flex;
   align-items: center;
   gap: 12px;
-  animation: fadeInUp 0.7s ease-out 0.2s both;
+  flex-wrap: wrap;
+  animation: fade-up 0.65s ease-out 0.2s both;
 }
 
-/* ─── Primary CTA Button ────────────────────────────── */
 .hero-btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 14px 28px;
-  border-radius: 8px;
-  border: none;
+  padding: 13px 26px;
+  border-radius: 50px;
+  border: 1px solid var(--primary-dark);
   background: var(--gradient-primary);
   color: var(--white);
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 500;
   cursor: pointer;
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
-              box-shadow 0.3s ease,
-              background 0.3s ease;
-  box-shadow: 0 4px 15px rgba(34, 146, 91, 0.25);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-btn-primary::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width 0.6s ease, height 0.6s ease;
-}
-
-.hero-btn-primary:hover::before {
-  width: 300px;
-  height: 300px;
+  white-space: nowrap;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.25s ease;
+  box-shadow: 0 4px 14px rgba(34, 146, 91, 0.3);
 }
 
 .hero-btn-primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 28px rgba(34, 146, 91, 0.38);
+  box-shadow: 0 10px 28px rgba(34, 146, 91, 0.42);
 }
 
 .hero-btn-primary:active {
   transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(34, 146, 91, 0.2);
 }
 
-.hero-btn-primary span {
-  position: relative;
-  z-index: 1;
-}
-
-/* ─── Secondary CTA Button ──────────────────────────── */
 .hero-btn-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 14px 28px;
-  border-radius: 8px;
+  padding: 12px 26px;
+  border-radius: 50px;
   border: 1.5px solid var(--border-light);
   background: transparent;
-  color: var(--primary);
-  font-size: 16px;
-  font-weight: 600;
+  color: var(--text-heading);
+  font-size: 15px;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-btn-secondary::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: var(--primary-light);
-  transition: left 0.4s ease;
-  z-index: 0;
-}
-
-.hero-btn-secondary:hover::before {
-  left: 0;
+  white-space: nowrap;
+  transition: border-color 0.2s, color 0.2s,
+              transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.25s ease;
 }
 
 .hero-btn-secondary:hover {
-  transform: translateY(-3px);
   border-color: var(--primary);
-  box-shadow: 0 6px 20px rgba(34, 146, 91, 0.15);
+  color: var(--primary);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
 }
 
-.hero-btn-secondary span {
-  position: relative;
-  z-index: 1;
+.hero-btn-secondary:active {
+  transform: translateY(-1px);
 }
 
-/* ─── Right Visual Section ──────────────────────────── */
+/* ─── Right: Visual Area ───────────────────────────────── */
 .hero-visual {
   position: relative;
-  height: 450px;
-  perspective: 1000px;
+  width: 100%;
+  height: 460px;
 }
 
-.hero-images-wrapper {
+.hero-images {
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 0.1s ease-out;
+  transition: transform 0.15s ease-out;
+  will-change: transform;
 }
 
-/* ─── Hero Image Cards ──────────────────────────────── */
-.hero-image-card {
+/* ─── Image Cards ──────────────────────────────────────── */
+.hero-img-card {
   position: absolute;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-  animation: scaleIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.13);
+  transition: box-shadow 0.35s ease, transform 0.35s ease;
 }
 
-.hero-image-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 28px 52px rgba(0, 0, 0, 0.16);
+.hero-img-card:hover {
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
+  transform: translateY(-6px);
 }
 
-.hero-image-card--left {
-  width: 260px;
-  height: 280px;
-  top: 20px;
-  left: 0;
-  animation-delay: 0.2s;
-}
-
-.hero-image-card--right {
-  width: 200px;
-  height: 240px;
-  bottom: 0;
-  right: 40px;
-  animation-delay: 0.4s;
-}
-
-.hero-image {
+.hero-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-/* ─── Floating Accents ──────────────────────────────── */
-.hero-accent-arrow {
+/* Main image (man) — upper-left of visual */
+.hero-img-card--main {
+  width: 55%;
+  height: 80%;
+  top: 0;
+  left: 4%;
+  animation: scale-in 0.75s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s both;
+}
+
+/* Secondary image (woman) — lower-right, overlapping */
+.hero-img-card--secondary {
+  width: 47%;
+  height: 66%;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  animation: scale-in 0.75s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
+}
+
+/* ─── Decorative Accents ───────────────────────────────── */
+.hero-deco {
   position: absolute;
-  top: 40px;
-  right: 20px;
-  animation: float 3s ease-in-out infinite;
-  opacity: 0.8;
+  pointer-events: none;
+  z-index: 3;
 }
 
-.hero-accent-quote {
-  position: absolute;
-  bottom: 60px;
-  right: -40px;
-  animation: float 4s ease-in-out infinite;
-  opacity: 0.6;
-  animation-delay: 0.5s;
+/* Golden triangles — top-right corner of image cluster */
+.hero-deco--triangles {
+  top: -12px;
+  right: -8px;
+  animation: float-y 3.5s ease-in-out infinite;
 }
 
-/* ─── Animations ────────────────────────────────────── */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Green D-shapes — bottom-left between the images */
+.hero-deco--dshapes {
+  bottom: 50px;
+  left: 48%;
+  transform: translateX(-50%);
+  animation: float-y 4.2s ease-in-out infinite;
+  animation-delay: 0.6s;
 }
 
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+/* ─── Keyframes ────────────────────────────────────────── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0);    }
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-20px) rotate(5deg);
-  }
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.88); }
+  to   { opacity: 1; transform: scale(1);    }
 }
 
-/* ─── Tablet Responsive ─────────────────────────────── */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0);     }
+  50%       { transform: translateY(-14px); }
+}
+
+/* ─── Tablet (768–1024px) ──────────────────────────────── */
 @media (max-width: 1024px) {
-  .hero-container {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    padding: 60px 28px;
-  }
-
-  .hero-title {
-    font-size: 42px;
-  }
-
-  .hero-description {
-    font-size: 16px;
-  }
-
-  .hero-visual {
-    height: 350px;
-  }
-
-  .hero-image-card--left {
-    width: 220px;
-    height: 240px;
-  }
-
-  .hero-image-card--right {
-    width: 170px;
-    height: 200px;
-    right: 20px;
-  }
-
-  .hero-accent-arrow,
-  .hero-accent-quote {
-    opacity: 0.5;
-  }
-}
-
-/* ─── Mobile Responsive ─────────────────────────────── */
-@media (max-width: 768px) {
   .hero-section {
     min-height: auto;
   }
 
   .hero-container {
-    gap: 32px;
-    padding: 48px 20px;
-  }
-
-  .hero-title {
-    font-size: 32px;
-    line-height: 1.3;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 56px 28px;
   }
 
   .hero-description {
-    font-size: 15px;
-    line-height: 1.55;
+    max-width: 560px;
+  }
+
+  .hero-blob {
+    width: 500px;
+    height: 500px;
+    left: -140px;
+    top: -5%;
+  }
+
+  .hero-visual {
+    height: 380px;
+  }
+
+  .hero-img-card--main {
+    width: 52%;
+    height: 78%;
+  }
+
+  .hero-img-card--secondary {
+    width: 44%;
+    height: 62%;
+  }
+
+  .hero-deco--triangles {
+    right: 4%;
+  }
+}
+
+/* ─── Mobile (max 768px) ───────────────────────────────── */
+@media (max-width: 768px) {
+  .hero-container {
+    padding: 44px 20px;
+    gap: 32px;
+  }
+
+  .hero-title {
+    font-size: clamp(28px, 7vw, 36px);
+    letter-spacing: -0.8px;
+  }
+
+  .hero-description {
+    font-size: 14px;
     max-width: 100%;
   }
 
-  .hero-cta-group {
+  .hero-cta-row {
     flex-direction: column;
-    width: 100%;
+    align-items: flex-start;
   }
 
   .hero-btn-primary,
   .hero-btn-secondary {
     width: 100%;
     padding: 12px 20px;
-    font-size: 15px;
+    justify-content: center;
   }
 
   .hero-visual {
-    height: 300px;
-    width: 100%;
+    height: 320px;
   }
 
-  .hero-image-card--left {
-    width: 180px;
-    height: 200px;
-    top: 10px;
-    left: 20px;
+  .hero-blob {
+    width: 380px;
+    height: 380px;
+    left: -100px;
   }
 
-  .hero-image-card--right {
-    width: 140px;
-    height: 160px;
-    bottom: 20px;
+  .hero-img-card--main {
+    width: 56%;
+    height: 76%;
+    top: 0;
+    left: 2%;
+  }
+
+  .hero-img-card--secondary {
+    width: 48%;
+    height: 60%;
+    bottom: 0;
     right: 0;
   }
 
-  .hero-accent-arrow,
-  .hero-accent-quote {
-    width: 40px;
-    height: 40px;
-    opacity: 0.3;
+  .hero-deco--triangles svg {
+    width: 50px;
+    height: 44px;
   }
 
-  .hero-gradient-bg {
-    width: 400px;
-    height: 400px;
-    top: -50%;
-    right: -30%;
+  .hero-deco--dshapes svg {
+    width: 56px;
+    height: 38px;
+  }
+
+  .hero-deco--dshapes {
+    bottom: 36px;
   }
 }
 
-/* ─── Extra Small Mobile ────────────────────────────── */
+/* ─── Small Mobile (max 480px) ────────────────────────── */
 @media (max-width: 480px) {
   .hero-container {
-    padding: 40px 16px;
-  }
-
-  .hero-title {
-    font-size: 28px;
-  }
-
-  .hero-description {
-    font-size: 14px;
+    padding: 36px 16px;
   }
 
   .hero-visual {
-    height: 250px;
+    height: 270px;
   }
 
-  .hero-image-card--left {
-    width: 150px;
-    height: 170px;
+  .hero-img-card--main {
+    width: 58%;
+    height: 74%;
   }
 
-  .hero-image-card--right {
-    width: 120px;
-    height: 140px;
+  .hero-img-card--secondary {
+    width: 46%;
+    height: 58%;
+  }
+
+  .hero-deco--triangles,
+  .hero-deco--dshapes {
+    display: none;
   }
 }
