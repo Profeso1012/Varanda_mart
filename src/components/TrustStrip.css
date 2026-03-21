@@ -9,15 +9,15 @@
   background: rgba(245, 158, 11, 0.8);
 }
 
-/* Single solid green parallelogram (skewed rectangle) */
+/* Single solid green parallelogram with triangular orange corners */
 .trust-strip__green-bg {
   position: absolute;
   top: 0;
-  left: 5%;
-  right: 5%;
+  left: 0;
+  width: 100%;
   height: 100%;
   background: #22925B;
-  transform: skewX(-6deg);
+  clip-path: polygon(0 100%, 12% 10%, 100% 0%, 88% 90%);
   z-index: 0;
 }
 
@@ -31,7 +31,6 @@
   gap: 38px;
   width: 100%;
   padding: 0 40px;
-  transform: skewX(6deg);
 }
 
 /* ─── Individual Pills ────────────────────────────────── */
