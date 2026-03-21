@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
-import triangle from '../assets/polygon-4.png';
-import ellipse from '../assets/ellipse-12.png';
+import bgImage from '../assets/frame-219.png';
+import HeroImageGroup from './HeroImageGroup';
 import './Hero.css';
 
 const Hero = () => {
@@ -29,16 +29,11 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="hero-section" ref={sectionRef}>
-
-      {/* ── Background glow image (Frame 219.png) ──────── */}
-      <img
-        src="https://cdn.builder.io/api/v1/image/assets%2F934f466d54e44638814059cefea847fc%2F5e32cf1bd31f42c4a7968576a1ce9f33?format=webp&width=1000"
-        alt=""
-        className="hero-bg-image"
-        aria-hidden="true"
-      />
-
+    <section
+      className="hero-section"
+      ref={sectionRef}
+      style={{ backgroundImage: `url(${bgImage})` }}
+    >
       <div className="hero-container">
 
         {/* ── Left: Text Content ───────────────────────── */}
@@ -58,25 +53,8 @@ const Hero = () => {
         </div>
 
         {/* ── Right: Images + Decoratives ─────────────── */}
-        <div className="hero-visual">
-          <div className="hero-images" ref={imagesRef}>
-
-
-            {/* Triangles cluster — top-right gap between man card & edge */}
-            <div className="hero-deco hero-deco--triangles">
-              <img src={triangle} alt="" className="hero-triangle" />
-              <img src={triangle} alt="" className="hero-triangle" />
-              <img src={triangle} alt="" className="hero-triangle" />
-              <img src={triangle} alt="" className="hero-triangle" />
-            </div>
-
-            {/* Ellipses — bottom, below man card / left of woman card */}
-            <div className="hero-deco hero-deco--ellipses">
-              <img src={ellipse} alt="" className="hero-ellipse" />
-              <img src={ellipse} alt="" className="hero-ellipse" />
-            </div>
-
-          </div>
+        <div className="hero-visual" ref={imagesRef}>
+          <HeroImageGroup />
         </div>
 
       </div>
