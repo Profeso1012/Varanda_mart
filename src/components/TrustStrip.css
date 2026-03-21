@@ -6,58 +6,19 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-}
-
-/* Background container with slanted design */
-.trust-strip__bg-container {
-  position: absolute;
-  inset: 0;
-}
-
-/* Amber accent layer (base) */
-.trust-strip__amber-bg {
-  position: absolute;
-  inset: 0;
   background: rgba(245, 158, 11, 0.8);
 }
 
-/* Green layer with slanted cut on both sides */
+/* Single solid green parallelogram (skewed rectangle) */
 .trust-strip__green-bg {
   position: absolute;
+  top: 0;
   left: 0;
-  right: 0;
+  width: 100%;
+  height: 100%;
   background: #22925B;
-  /* Left side: starts ~2-3px from bottom */
-  clip-path: polygon(
-    0 3px,
-    0 100%,
-    100% 0,
-    100% calc(100% - 3px)
-  );
-  top: 0;
-  height: 100%;
-}
-
-/* Orange lacing - single diagonal stripe */
-.trust-strip__orange-lace {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  background: linear-gradient(
-    135deg,
-    transparent 0%,
-    #F59E0B 2%,
-    #F59E0B 12%,
-    transparent 20%
-  );
-  clip-path: polygon(
-    0 1%,
-    100% 0,
-    100% 100%,
-    0 99%
-  );
+  transform: skewY(-2deg);
+  z-index: 0;
 }
 
 /* ─── Pills Row ───────────────────────────────────────── */
@@ -70,6 +31,7 @@
   gap: 38px;
   width: 100%;
   padding: 0 40px;
+  transform: skewY(2deg);
 }
 
 /* ─── Individual Pills ────────────────────────────────── */

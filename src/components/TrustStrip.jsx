@@ -3,12 +3,7 @@ import './TrustStrip.css';
 const TrustStrip = () => {
   return (
     <section className="trust-strip">
-      <div className="trust-strip__bg-container">
-        <div className="trust-strip__amber-bg" />
-        <div className="trust-strip__green-bg" />
-        <div className="trust-strip__orange-lace" />
-      </div>
-
+      <div className="trust-strip__green-bg" />
       <div className="trust-strip__content">
 
         {/* Pill 1: No coding required — green border */}
