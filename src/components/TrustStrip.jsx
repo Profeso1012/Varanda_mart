@@ -6,8 +6,8 @@ const TrustStrip = () => {
       <div className="trust-strip__green-bg">
         <div className="trust-strip__content">
 
-        {/* Pill 1: No coding required — green border */}
-        <div className="trust-pill trust-pill--green-border">
+        {/* Pill 1: No coding required — white border (animated) */}
+        <div className="trust-pill trust-pill--white-border">
           <svg className="trust-pill__dot" width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g filter="url(#dot-f-1)">
               <circle cx="3" cy="3" r="3" fill="#F59E0B" fillOpacity="0.8"/>
@@ -51,8 +51,8 @@ const TrustStrip = () => {
           <span className="trust-pill__label">Free storefront URL included</span>
         </div>
 
-        {/* Pill 3: Secure online payment — green border */}
-        <div className="trust-pill trust-pill--green-border">
+        {/* Pill 3: Secure online payment — white border (animated) */}
+        <div className="trust-pill trust-pill--white-border">
           <svg className="trust-pill__dot" width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g filter="url(#dot-f-3)">
               <circle cx="3" cy="3" r="3" fill="#F59E0B"/>
