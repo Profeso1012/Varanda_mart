@@ -76,7 +76,7 @@
 .hero-group-ellipses-container {
   position: absolute;
   bottom: 10px;
-  left: 0;
+  left: 220px;
   display: flex;
   gap: 12px;
   /* Adjust gap property to control horizontal spacing */
