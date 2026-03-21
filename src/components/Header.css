@@ -4,11 +4,10 @@
   top: 0;
   z-index: 100;
   background: transparent;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease;
 }
 
 .site-header--scrolled {
-  background: var(--white);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
 }
 
