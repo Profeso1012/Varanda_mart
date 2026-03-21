@@ -3,8 +3,8 @@ import './TrustStrip.css';
 const TrustStrip = () => {
   return (
     <section className="trust-strip">
-      <div className="trust-strip__green-bg" />
-      <div className="trust-strip__content">
+      <div className="trust-strip__green-bg">
+        <div className="trust-strip__content">
 
         {/* Pill 1: No coding required — green border */}
         <div className="trust-pill trust-pill--green-border">
@@ -98,6 +98,7 @@ const TrustStrip = () => {
           <span className="trust-pill__label">Built for African Businesses</span>
         </div>
 
+        </div>
       </div>
     </section>
   );
