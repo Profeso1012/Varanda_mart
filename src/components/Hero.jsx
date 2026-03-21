@@ -61,23 +61,6 @@ const Hero = () => {
         <div className="hero-visual">
           <div className="hero-images" ref={imagesRef}>
 
-            {/* Man image — large card, top-left of visual */}
-            <div className="hero-img-card hero-img-card--main">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets%2F934f466d54e44638814059cefea847fc%2F7f9843c544bc48dcab47a9e81ffd1d94?format=webp&width=600"
-                alt="Seller managing their store"
-                className="hero-img"
-              />
-            </div>
-
-            {/* Woman image — smaller card, bottom-right, overlapping */}
-            <div className="hero-img-card hero-img-card--secondary">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets%2F934f466d54e44638814059cefea847fc%2F3c3eced81ba243628af4fccb5d4cb186?format=webp&width=500"
-                alt="Seller using inventory tools"
-                className="hero-img"
-              />
-            </div>
 
             {/* Triangles cluster — top-right gap between man card & edge */}
             <div className="hero-deco hero-deco--triangles">
