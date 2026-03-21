@@ -207,24 +207,73 @@
 }
 
 /*
-  Golden triangles — sit in the TOP-RIGHT gap:
-  above the woman card, to the right of the man card's right edge
+  Triangles — sit in the TOP-RIGHT gap:
+  arranged in a plus/cross pattern
 */
 .hero-deco--triangles {
+  position: relative;
+  width: 80px;
+  height: 110px;
   top: 8px;
   right: 4px;
   animation: float-y 3.6s ease-in-out infinite;
 }
 
+.hero-triangle {
+  position: absolute;
+  width: 44px;
+  height: 36px;
+  display: block;
+}
+
+.hero-triangle:nth-child(1) {
+  top: 0;
+  left: 18px;
+}
+
+.hero-triangle:nth-child(2) {
+  top: 40px;
+  left: 0;
+}
+
+.hero-triangle:nth-child(3) {
+  top: 40px;
+  left: 44px;
+}
+
+.hero-triangle:nth-child(4) {
+  top: 80px;
+  left: 18px;
+}
+
 /*
-  Green D-shapes — sit at the BOTTOM, between the two cards:
-  below the man card's bottom edge, left of the woman card's left edge
+  Ellipses — sit at the BOTTOM, between the two cards:
+  arranged side by side
 */
-.hero-deco--dshapes {
+.hero-deco--ellipses {
+  position: relative;
+  width: 100px;
+  height: 64px;
   bottom: 48px;
   left: 44%;
   transform: translateX(-50%);
-  animation: float-y 4.2s ease-in-out infinite 0.6s;
+  animation: float-y-offset 4.2s ease-in-out infinite 0.6s;
+}
+
+.hero-ellipse {
+  position: absolute;
+  width: 36px;
+  height: 64px;
+  display: block;
+  bottom: 10px;
+}
+
+.hero-ellipse:nth-child(1) {
+  left: 0;
+}
+
+.hero-ellipse:nth-child(2) {
+  left: 42px;
 }
 
 /* ─── Keyframes ────────────────────────────────────────── */
@@ -243,11 +292,7 @@
   50%       { transform: translateY(-12px); }
 }
 
-/* dshapes have a translateX baked in — combine carefully */
-.hero-deco--dshapes {
-  animation-name: float-y-offset;
-}
-
+/* ellipses have a translateX baked in — combine carefully */
 @keyframes float-y-offset {
   0%, 100% { transform: translateX(-50%) translateY(0);      }
   50%       { transform: translateX(-50%) translateY(-12px);  }
@@ -294,7 +339,7 @@
     top: 4px;
   }
 
-  .hero-deco--dshapes {
+  .hero-deco--ellipses {
     bottom: 36px;
     left: 43%;
   }
@@ -349,15 +394,6 @@
     height: 60%;
   }
 
-  .hero-deco--triangles svg {
-    width: 52px;
-    height: 46px;
-  }
-
-  .hero-deco--dshapes svg {
-    width: 60px;
-    height: 40px;
-  }
 }
 
 /* ─── Small Mobile (≤ 480px) ──────────────────────────── */
@@ -381,7 +417,7 @@
   }
 
   .hero-deco--triangles,
-  .hero-deco--dshapes {
+  .hero-deco--ellipses {
     display: none;
   }
 
