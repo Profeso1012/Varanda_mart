@@ -1,0 +1,89 @@
+/* ─── Hero Image Group Container ─────────────────────────── */
+.hero-group-wrapper {
+  position: relative;
+  width: 520px;
+  height: 420px;
+}
+
+/* ─── Image Cards with Rounded Corners ──────────────────── */
+.hero-group-card {
+  position: absolute;
+  overflow: hidden;
+}
+
+/* Person 1 - top left, sharp bottom-right corner */
+.hero-group-person-primary {
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 270px;
+  border-radius: 48px 48px 48px 0px;
+}
+
+/* Person 2 - starts halfway down person 1, sharp top-right corner */
+.hero-group-person-secondary {
+  top: 135px;
+  right: 0;
+  width: 240px;
+  height: 290px;
+  border-radius: 48px 0px 48px 48px;
+}
+
+.hero-group-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ─── Triangles Container ───────────────────────────────── */
+.hero-group-triangles-container {
+  position: absolute;
+  top: 0px;
+  left: 274px;
+  width: 90px;
+  height: 108px;
+  transform: rotate(45deg);
+}
+
+.hero-group-triangle {
+  position: absolute;
+  width: 44px;
+  height: 36px;
+}
+
+/* Triangle positions - plus/cross pattern (relative to container) */
+.hero-group-triangle:nth-child(1) {
+  top: 0px;
+  left: 22px;
+}
+
+.hero-group-triangle:nth-child(2) {
+  top: 36px;
+  left: 0px;
+}
+
+.hero-group-triangle:nth-child(3) {
+  top: 36px;
+  left: 44px;
+}
+
+.hero-group-triangle:nth-child(4) {
+  top: 72px;
+  left: 22px;
+}
+
+/* ─── Ellipses Container ────────────────────────────────── */
+.hero-group-ellipses-container {
+  position: absolute;
+  bottom: 10px;
+  left: 130px;
+  display: flex;
+  gap: 12px;
+  /* Adjust gap property to control horizontal spacing */
+}
+
+.hero-group-ellipse {
+  width: 36px;
+  height: 64px;
+  flex-shrink: 0;
+}
