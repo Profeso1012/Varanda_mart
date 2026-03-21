@@ -1,20 +1,62 @@
 import { useRef, useEffect } from 'react';
 import './Hero.css';
 
-/* Golden triangles — 3 right-pointing shapes matching the Figma design */
+/*
+  3 solid amber triangles — exactly as in the Figma close-up:
+  Top-left ▶   Top-right ▶
+               Bottom-right ▶   (stagger: top two side-by-side, third below-right)
+*/
 const GoldenTriangles = () => (
-  <svg width="74" height="64" viewBox="0 0 74 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <polygon points="0,0 34,16 0,32" fill="#D4A017"/>
-    <polygon points="40,0 74,16 40,32" fill="#D4A017"/>
-    <polygon points="20,34 54,50 20,64" fill="#D4A017"/>
+  <svg
+    width="74"
+    height="66"
+    viewBox="0 0 74 66"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    {/* top-left  */}
+    <polygon points="0,2 30,16 0,30" fill="#D4A017" />
+    {/* top-right */}
+    <polygon points="40,0 70,14 40,28" fill="#D4A017" />
+    {/* bottom — below the top-right */}
+    <polygon points="40,36 70,50 40,64" fill="#D4A017" />
   </svg>
 );
 
-/* Green D-shapes — the double quotation-like green forms in the Figma design */
+/*
+  Two D-shaped semi-ovals matching the Figma design.
+  Each "D" = flat-left, rounded-right, with a radial green gradient.
+*/
 const GreenDShapes = () => (
-  <svg width="80" height="54" viewBox="0 0 80 54" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <path d="M0 0 H10 Q36 0 36 27 Q36 54 10 54 H0 Z" fill="#22925B"/>
-    <path d="M44 0 H54 Q80 0 80 27 Q80 54 54 54 H44 Z" fill="#22925B"/>
+  <svg
+    width="84"
+    height="56"
+    viewBox="0 0 84 56"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    <defs>
+      <radialGradient id="dg-left" cx="60%" cy="50%" r="70%">
+        <stop offset="0%" stopColor="#4ECA80" />
+        <stop offset="100%" stopColor="#196940" />
+      </radialGradient>
+      <radialGradient id="dg-right" cx="60%" cy="50%" r="70%">
+        <stop offset="0%" stopColor="#4ECA80" />
+        <stop offset="100%" stopColor="#196940" />
+      </radialGradient>
+    </defs>
+    {/* Left D */}
+    <path
+      d="M0 4 Q0 0 4 0 H12 Q40 0 40 28 Q40 56 12 56 H4 Q0 56 0 52 Z"
+      fill="url(#dg-left)"
+    />
+    {/* Right D */}
+    <path
+      d="M44 4 Q44 0 48 0 H56 Q84 0 84 28 Q84 56 56 56 H48 Q44 56 44 52 Z"
+      fill="url(#dg-right)"
+    />
   </svg>
 );
 
@@ -22,29 +64,37 @@ const Hero = () => {
   const sectionRef = useRef(null);
   const imagesRef = useRef(null);
 
+  /* Subtle parallax on mouse-move */
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      if (!sectionRef.current || !imagesRef.current) return;
-      const rect = sectionRef.current.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      imagesRef.current.style.transform = `translate(${x * 16}px, ${y * 12}px)`;
-    };
-
     const section = sectionRef.current;
-    section.addEventListener('mousemove', handleMouseMove);
-    section.addEventListener('mouseleave', () => {
+    const handleMove = (e) => {
+      if (!imagesRef.current) return;
+      const r = section.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top)  / r.height - 0.5;
+      imagesRef.current.style.transform = `translate(${x * 14}px, ${y * 10}px)`;
+    };
+    const handleLeave = () => {
       if (imagesRef.current) imagesRef.current.style.transform = 'translate(0,0)';
-    });
+    };
+    section.addEventListener('mousemove', handleMove);
+    section.addEventListener('mouseleave', handleLeave);
     return () => {
-      section.removeEventListener('mousemove', handleMouseMove);
+      section.removeEventListener('mousemove', handleMove);
+      section.removeEventListener('mouseleave', handleLeave);
     };
   }, []);
 
   return (
     <section className="hero-section" ref={sectionRef}>
-      {/* Left-side green radial glow */}
-      <div className="hero-blob" aria-hidden="true" />
+
+      {/* ── Background glow image (Frame 219.png) ──────── */}
+      <img
+        src="https://cdn.builder.io/api/v1/image/assets%2F934f466d54e44638814059cefea847fc%2F5e32cf1bd31f42c4a7968576a1ce9f33?format=webp&width=1000"
+        alt=""
+        className="hero-bg-image"
+        aria-hidden="true"
+      />
 
       <div className="hero-container">
 
@@ -68,7 +118,7 @@ const Hero = () => {
         <div className="hero-visual">
           <div className="hero-images" ref={imagesRef}>
 
-            {/* Main image — man in store */}
+            {/* Man image — large card, top-left of visual */}
             <div className="hero-img-card hero-img-card--main">
               <img
                 src="https://cdn.builder.io/api/v1/image/assets%2F934f466d54e44638814059cefea847fc%2F7f9843c544bc48dcab47a9e81ffd1d94?format=webp&width=600"
@@ -77,7 +127,7 @@ const Hero = () => {
               />
             </div>
 
-            {/* Secondary image — woman with tablet */}
+            {/* Woman image — smaller card, bottom-right, overlapping */}
             <div className="hero-img-card hero-img-card--secondary">
               <img
                 src="https://cdn.builder.io/api/v1/image/assets%2F934f466d54e44638814059cefea847fc%2F3c3eced81ba243628af4fccb5d4cb186?format=webp&width=500"
@@ -86,12 +136,12 @@ const Hero = () => {
               />
             </div>
 
-            {/* Decorative: golden triangles — top-right */}
+            {/* Golden triangles — top-right gap between man card & edge */}
             <div className="hero-deco hero-deco--triangles">
               <GoldenTriangles />
             </div>
 
-            {/* Decorative: green D-shapes — bottom-center */}
+            {/* Green D-shapes — bottom, below man card / left of woman card */}
             <div className="hero-deco hero-deco--dshapes">
               <GreenDShapes />
             </div>

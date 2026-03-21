@@ -19,7 +19,7 @@ const Header = () => {
 
         <a href="/" className="site-header__logo" onClick={closeMobile}>
           <img
-            src="https://cdn.builder.io/api/v1/image/assets%2F934f466d54e44638814059cefea847fc%2F96cc8fbc2f80492c9f70fdbc995bb339?format=webp&width=268&height=100"
+            src="https://cdn.builder.io/api/v1/image/assets%2F934f466d54e44638814059cefea847fc%2F4a5008d5bbe1481ba5490e229fffb701?format=webp&width=268&height=100"
             alt="Varanda Mart"
             className="logo-img"
             width="134"
