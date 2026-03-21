@@ -42,7 +42,7 @@
   left: 274px;
   width: 90px;
   height: 108px;
-  /* Uncomment to rotate: transform: rotate(45deg); */
+  transform: rotate(45deg);
 }
 
 .hero-group-triangle {
@@ -76,7 +76,7 @@
 .hero-group-ellipses-container {
   position: absolute;
   bottom: 10px;
-  left: 170px;
+  left: 0;
   display: flex;
   gap: 12px;
   /* Adjust gap property to control horizontal spacing */
