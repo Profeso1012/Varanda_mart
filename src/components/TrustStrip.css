@@ -38,45 +38,25 @@
   height: 100%;
 }
 
-/* Orange lacing/border - left side (fades upward like triangle) */
-.trust-strip__orange-lace--left {
+/* Orange lacing - single diagonal stripe */
+.trust-strip__orange-lace {
   position: absolute;
-  left: 0;
   top: 0;
-  width: 40%;
+  left: 0;
+  right: 0;
   height: 100%;
   background: linear-gradient(
     135deg,
-    #F59E0B 0%,
-    #F59E0B 15%,
-    transparent 50%
+    transparent 0%,
+    #F59E0B 2%,
+    #F59E0B 12%,
+    transparent 20%
   );
   clip-path: polygon(
-    0 0,
-    0 calc(100% - 4px),
-    15% calc(100% - 4px),
-    100% 0
-  );
-}
-
-/* Orange lacing/border - right side (goes downward) */
-.trust-strip__orange-lace--right {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 40%;
-  height: 100%;
-  background: linear-gradient(
-    225deg,
-    #F59E0B 0%,
-    #F59E0B 15%,
-    transparent 50%
-  );
-  clip-path: polygon(
+    0 1%,
     100% 0,
     100% 100%,
-    85% 100%,
-    0 4px
+    0 99%
   );
 }
 

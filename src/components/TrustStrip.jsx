@@ -6,8 +6,7 @@ const TrustStrip = () => {
       <div className="trust-strip__bg-container">
         <div className="trust-strip__amber-bg" />
         <div className="trust-strip__green-bg" />
-        <div className="trust-strip__orange-lace trust-strip__orange-lace--left" />
-        <div className="trust-strip__orange-lace trust-strip__orange-lace--right" />
+        <div className="trust-strip__orange-lace" />
       </div>
 
       <div className="trust-strip__content">

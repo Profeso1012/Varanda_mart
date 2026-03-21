@@ -17,7 +17,7 @@
   left: 0;
   width: 220px;
   height: 270px;
-  border-radius: 48px 48px 48px 0px;
+  border-radius: 48px 48px 0px 48px;
 }
 
 /* Person 2 - starts halfway down person 1, sharp top-right corner */
