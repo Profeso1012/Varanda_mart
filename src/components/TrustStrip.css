@@ -8,22 +8,76 @@
   overflow: hidden;
 }
 
-/* Amber accent layer (peeks at edges due to green rotation) */
+/* Background container with slanted design */
+.trust-strip__bg-container {
+  position: absolute;
+  inset: 0;
+}
+
+/* Amber accent layer (base) */
 .trust-strip__amber-bg {
   position: absolute;
   inset: 0;
   background: rgba(245, 158, 11, 0.8);
 }
 
-/* Green layer slightly rotated, extended to fill with overflow hidden */
+/* Green layer with slanted cut on both sides */
 .trust-strip__green-bg {
   position: absolute;
-  top: -12px;
-  left: -24px;
-  right: -24px;
-  bottom: -12px;
+  left: 0;
+  right: 0;
   background: #22925B;
-  transform: rotate(-1deg);
+  /* Left side: starts ~2-3px from bottom */
+  clip-path: polygon(
+    0 3px,
+    0 100%,
+    100% 0,
+    100% calc(100% - 3px)
+  );
+  top: 0;
+  height: 100%;
+}
+
+/* Orange lacing/border - left side (fades upward like triangle) */
+.trust-strip__orange-lace--left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    #F59E0B 0%,
+    #F59E0B 15%,
+    transparent 50%
+  );
+  clip-path: polygon(
+    0 0,
+    0 calc(100% - 4px),
+    15% calc(100% - 4px),
+    100% 0
+  );
+}
+
+/* Orange lacing/border - right side (goes downward) */
+.trust-strip__orange-lace--right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    225deg,
+    #F59E0B 0%,
+    #F59E0B 15%,
+    transparent 50%
+  );
+  clip-path: polygon(
+    100% 0,
+    100% 100%,
+    85% 100%,
+    0 4px
+  );
 }
 
 /* ─── Pills Row ───────────────────────────────────────── */
@@ -93,6 +147,40 @@
   white-space: nowrap;
 }
 
+/* ─── Animated Shine Stroke on all pills ─────────────── */
+.trust-pill::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 40%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 100%
+  );
+  animation: pill-shine-sweep 3.5s ease-in-out infinite;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Shine from left side (odd pills) */
+.trust-pill:nth-child(odd)::before {
+  left: -50%;
+}
+
+/* Shine from right side (even pills) */
+.trust-pill:nth-child(even)::before {
+  right: -50%;
+  animation-name: pill-shine-sweep-right;
+}
+
+.trust-pill:nth-child(3)::before,
+.trust-pill:nth-child(4)::before {
+  animation-delay: 0.5s;
+}
+
 /* ─── Shine Sweep (pseudo-element on white-border pills) ─ */
 .trust-pill--white-border::after {
   content: '';
@@ -141,6 +229,12 @@
   0%   { left: -100%; }
   28%  { left: 150%;  }
   100% { left: 150%;  }
+}
+
+@keyframes pill-shine-sweep-right {
+  0%   { right: -100%; }
+  28%  { right: 150%;  }
+  100% { right: 150%;  }
 }
 
 @keyframes pill-border-glow {
