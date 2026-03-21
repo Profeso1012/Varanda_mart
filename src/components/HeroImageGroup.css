@@ -35,46 +35,55 @@
   object-fit: cover;
 }
 
-/* ─── Triangle Decorations ───────────────────────────────── */
+/* ─── Triangles Container ───────────────────────────────── */
+.hero-group-triangles-container {
+  position: absolute;
+  top: 0px;
+  left: 274px;
+  width: 90px;
+  height: 108px;
+  /* Uncomment to rotate: transform: rotate(45deg); */
+}
+
 .hero-group-triangle {
   position: absolute;
   width: 44px;
   height: 36px;
 }
 
-/* Triangle positions - plus/cross pattern */
-.hero-group-triangle:nth-child(2) {
+/* Triangle positions - plus/cross pattern (relative to container) */
+.hero-group-triangle:nth-child(1) {
   top: 0px;
-  left: 296px;
+  left: 22px;
+}
+
+.hero-group-triangle:nth-child(2) {
+  top: 36px;
+  left: 0px;
 }
 
 .hero-group-triangle:nth-child(3) {
   top: 36px;
-  left: 274px;
+  left: 44px;
 }
 
 .hero-group-triangle:nth-child(4) {
-  top: 36px;
-  left: 318px;
-}
-
-.hero-group-triangle:nth-child(5) {
   top: 72px;
-  left: 296px;
+  left: 22px;
 }
 
-/* ─── Ellipse Decorations ────────────────────────────────── */
-.hero-group-ellipse {
+/* ─── Ellipses Container ────────────────────────────────── */
+.hero-group-ellipses-container {
   position: absolute;
+  bottom: 10px;
+  left: 170px;
+  display: flex;
+  gap: 12px;
+  /* Adjust gap property to control horizontal spacing */
+}
+
+.hero-group-ellipse {
   width: 36px;
   height: 64px;
-  bottom: 10px;
-}
-
-.hero-group-ellipse:nth-child(6) {
-  left: 170px;
-}
-
-.hero-group-ellipse:nth-child(7) {
-  left: 212px;
+  flex-shrink: 0;
 }

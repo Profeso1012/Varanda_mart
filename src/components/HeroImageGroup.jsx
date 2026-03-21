@@ -16,15 +16,13 @@ const HeroImageGroup = () => {
         />
       </div>
 
-      {/* Triangles cluster - plus/cross shape */}
-      {/* Top center */}
-      <img src={triangle} alt="" className="hero-group-triangle" />
-      {/* Middle left */}
-      <img src={triangle} alt="" className="hero-group-triangle" />
-      {/* Middle right */}
-      <img src={triangle} alt="" className="hero-group-triangle" />
-      {/* Bottom center */}
-      <img src={triangle} alt="" className="hero-group-triangle" />
+      {/* Triangles cluster - plus/cross shape - wrapped in div for rotation */}
+      <div className="hero-group-triangles-container">
+        <img src={triangle} alt="" className="hero-group-triangle" />
+        <img src={triangle} alt="" className="hero-group-triangle" />
+        <img src={triangle} alt="" className="hero-group-triangle" />
+        <img src={triangle} alt="" className="hero-group-triangle" />
+      </div>
 
       {/* Person 2 - starts halfway down person 1, sharp top-right corner */}
       <div className="hero-group-card hero-group-person-secondary">
@@ -35,17 +33,19 @@ const HeroImageGroup = () => {
         />
       </div>
 
-      {/* Ellipses - closer to second image */}
-      <img
-        src={ellipse}
-        alt=""
-        className="hero-group-ellipse"
-      />
-      <img
-        src={ellipse}
-        alt=""
-        className="hero-group-ellipse"
-      />
+      {/* Ellipses - closer to second image - wrapped in div for spacing adjustment */}
+      <div className="hero-group-ellipses-container">
+        <img
+          src={ellipse}
+          alt=""
+          className="hero-group-ellipse"
+        />
+        <img
+          src={ellipse}
+          alt=""
+          className="hero-group-ellipse"
+        />
+      </div>
     </div>
   );
 };
