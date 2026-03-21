@@ -2,7 +2,7 @@
 .hero-section {
   position: relative;
   width: 100%;
-  min-height: calc(100vh - 95px);
+  min-height: 100vh;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -20,7 +20,7 @@
   gap: 48px;
   max-width: 1310px;
   width: 100%;
-  padding: 72px 40px;
+  padding: calc(95px + 48px) 40px 72px;
   margin: 0 auto;
 }
 
@@ -138,7 +138,7 @@
   .hero-container {
     grid-template-columns: 1fr;
     gap: 40px;
-    padding: 56px 28px;
+    padding: calc(80px + 36px) 28px 56px;
   }
 
   .hero-description {
@@ -149,7 +149,7 @@
 /* ─── Mobile (≤ 768px) ─────────────────────────────────── */
 @media (max-width: 768px) {
   .hero-container {
-    padding: 44px 20px;
+    padding: calc(68px + 28px) 20px 44px;
     gap: 32px;
   }
 

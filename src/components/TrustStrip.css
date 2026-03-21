@@ -1,0 +1,218 @@
+/* ─── Trust Strip Section ─────────────────────────────── */
+.trust-strip {
+  position: relative;
+  width: 100%;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Amber accent layer (peeks at edges due to green rotation) */
+.trust-strip__amber-bg {
+  position: absolute;
+  inset: 0;
+  background: rgba(245, 158, 11, 0.8);
+}
+
+/* Green layer slightly rotated, extended to fill with overflow hidden */
+.trust-strip__green-bg {
+  position: absolute;
+  top: -12px;
+  left: -24px;
+  right: -24px;
+  bottom: -12px;
+  background: #22925B;
+  transform: rotate(-1deg);
+}
+
+/* ─── Pills Row ───────────────────────────────────────── */
+.trust-strip__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 38px;
+  width: 100%;
+  padding: 0 40px;
+}
+
+/* ─── Individual Pills ────────────────────────────────── */
+.trust-pill {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 50px;
+  padding: 8px 16px;
+  border-radius: 100px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.trust-pill--green-border {
+  border: 1px solid #22925B;
+}
+
+.trust-pill--white-border {
+  border: 1px solid #F2FFF8;
+  animation: pill-border-glow 3s ease-in-out infinite;
+}
+
+.trust-pill--shine-delay {
+  animation-delay: 0.4s;
+}
+
+/* ─── Blurred Amber Dot ───────────────────────────────── */
+.trust-pill__dot {
+  flex-shrink: 0;
+  filter: blur(2px);
+}
+
+/* ─── Icon Circle ─────────────────────────────────────── */
+.trust-pill__icon-wrap {
+  display: flex;
+  width: 35px;
+  height: 35px;
+  padding: 6px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 17.5px;
+  background: #E9FDF3;
+  flex-shrink: 0;
+}
+
+/* ─── Label Text ──────────────────────────────────────── */
+.trust-pill__label {
+  color: #022D18;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+/* ─── Shine Sweep (pseudo-element on white-border pills) ─ */
+.trust-pill--white-border::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.38) 50%,
+    transparent 100%
+  );
+  animation: pill-shine-sweep 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.trust-pill--shine-delay::after {
+  animation-delay: 0.4s;
+}
+
+/* ─── Text Shimmer on white-border pills ──────────────── */
+.trust-pill--white-border .trust-pill__label {
+  background: linear-gradient(
+    90deg,
+    #022D18 0%,
+    #022D18 35%,
+    rgba(255, 255, 255, 0.9) 50%,
+    #022D18 65%,
+    #022D18 100%
+  );
+  background-size: 250% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-shine 3s ease-in-out infinite;
+}
+
+.trust-pill--shine-delay .trust-pill__label {
+  animation-delay: 0.4s;
+}
+
+/* ─── Keyframes ───────────────────────────────────────── */
+@keyframes pill-shine-sweep {
+  0%   { left: -100%; }
+  28%  { left: 150%;  }
+  100% { left: 150%;  }
+}
+
+@keyframes pill-border-glow {
+  0%, 55%, 100% {
+    border-color: rgba(242, 255, 248, 0.55);
+    box-shadow: none;
+  }
+  20% {
+    border-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 10px rgba(242, 255, 248, 0.65), inset 0 0 6px rgba(255, 255, 255, 0.08);
+  }
+}
+
+@keyframes text-shine {
+  0%   { background-position: 150% center; }
+  28%  { background-position: -50% center; }
+  100% { background-position: -50% center; }
+}
+
+/* ─── Tablet (≤ 1200px) ───────────────────────────────── */
+@media (max-width: 1200px) {
+  .trust-strip__content {
+    gap: 20px;
+    padding: 0 28px;
+  }
+
+  .trust-pill__label {
+    font-size: 14px;
+  }
+}
+
+/* ─── Small Tablet (≤ 900px) ──────────────────────────── */
+@media (max-width: 900px) {
+  .trust-strip {
+    height: auto;
+  }
+
+  .trust-strip__content {
+    flex-wrap: wrap;
+    padding: 18px 24px;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .trust-strip__green-bg {
+    top: -16px;
+    bottom: -16px;
+  }
+
+  .trust-pill__label {
+    font-size: 13px;
+  }
+
+  .trust-pill {
+    height: 44px;
+  }
+}
+
+/* ─── Mobile (≤ 600px) ────────────────────────────────── */
+@media (max-width: 600px) {
+  .trust-strip__content {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 20px;
+    gap: 10px;
+  }
+
+  .trust-pill {
+    height: 42px;
+  }
+
+  .trust-pill__label {
+    font-size: 13px;
+  }
+}
