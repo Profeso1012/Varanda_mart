@@ -1,0 +1,123 @@
+/* ─── Auth Page Wrapper ─────────────────────────────── */
+.auth-page {
+  min-height: 100vh;
+  width: 100%;
+  background: url('https://api.builder.io/api/v1/image/assets/TEMP/879e4b4280f8aef23f8ff63aea96ea6a88748657?width=2880')
+    lightgray 50% / cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* ─── Frosted Glass Overlay ─────────────────────────── */
+.auth-bg-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(206, 207, 214, 0.20);
+  backdrop-filter: blur(125px);
+  -webkit-backdrop-filter: blur(125px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Top Bar (back link + logo) ─────────────────────── */
+.auth-top-bar {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 48px;
+}
+
+.auth-back-link {
+  position: absolute;
+  left: 48px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #000;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.auth-back-link:hover {
+  opacity: 0.7;
+}
+
+.auth-logo-link {
+  display: flex;
+  align-items: center;
+  margin-top: 3%;
+}
+
+.auth-logo-img {
+  width: 134px;
+  height: 50px;
+  object-fit: contain;
+}
+
+/* ─── Content Area ──────────────────────────────────── */
+.auth-content {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 24px 60px;
+}
+
+/* ─── White Auth Card ────────────────────────────────── */
+.auth-card {
+  background: #fff;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 480px;
+  padding: 40px 40px;
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* ─── Responsive ─────────────────────────────────────── */
+@media (max-width: 768px) {
+  .auth-top-bar {
+    padding: 20px 24px;
+    justify-content: center;
+  }
+
+  .auth-back-link {
+    left: 24px;
+    font-size: 14px;
+  }
+
+  .auth-logo-img {
+    width: 110px;
+    height: 41px;
+  }
+
+  .auth-card {
+    padding: 36px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-top-bar {
+    padding: 16px 20px;
+  }
+
+  .auth-back-link {
+    left: 20px;
+    font-size: 13px;
+  }
+
+  .auth-content {
+    padding: 24px 16px 48px;
+  }
+
+  .auth-card {
+    padding: 28px 20px;
+  }
+}
