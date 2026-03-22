@@ -3,6 +3,8 @@ import Hero from './components/Hero';
 import TrustStrip from './components/TrustStrip';
 import HowItWorks from './components/HowItWorks';
 import Features from './components/Features';
+import WhoItsFor from './components/WhoItsFor';
+import CtaBanner from './components/CtaBanner';
 import './App.css';
 
 function App() {
@@ -13,6 +15,8 @@ function App() {
       <TrustStrip />
       <HowItWorks />
       <Features />
+      <WhoItsFor />
+      <CtaBanner />
       <main className="app-main">
         {/* Additional sections will be added here */}
       </main>
