@@ -9,6 +9,7 @@ import CtaBanner from './components/CtaBanner';
 import Footer from './components/Footer';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
+import VerificationPage from './pages/VerificationPage';
 import './App.css';
 
 function HomePage() {
@@ -35,6 +36,7 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
+      <Route path="/verify" element={<VerificationPage />} />
     </Routes>
   );
 }
