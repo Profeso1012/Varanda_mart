@@ -55,7 +55,7 @@
   flex: 1;
   border-radius: 16px;
   overflow: hidden;
-  height: 60%;
+  height: 100px;
   min-height: 240px;
   cursor: pointer;
 }
