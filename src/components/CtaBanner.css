@@ -67,7 +67,7 @@
 /* ─── CTA Button ──────────────────────────────────────── */
 .cta-card__btn {
   margin-top: 8px;
-  padding: 30px 36px;
+  padding: 16px 36px;
   background: var(--primary-dark);
   color: var(--white);
   font-family: 'Inter', -apple-system, sans-serif;
