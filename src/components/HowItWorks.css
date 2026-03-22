@@ -1,0 +1,245 @@
+/* ─── How It Works Section ────────────────────────────── */
+.how-it-works {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 100px;
+  padding: 62px 68px;
+  background: rgba(148, 233, 184, 0.30);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ─── Header ──────────────────────────────────────────── */
+.how-it-works__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  max-width: 644px;
+  width: 100%;
+}
+
+.how-it-works__title {
+  color: #1F2A30;
+  font-family: 'Poppins', -apple-system, sans-serif;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 60px;
+  text-align: center;
+  margin: 0;
+}
+
+.how-it-works__subtitle {
+  color: #4F507F;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: normal;
+  text-align: center;
+  margin: 0;
+}
+
+/* ─── Steps Row ───────────────────────────────────────── */
+.how-it-works__steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Step group = step card + connector */
+.how-it-works__step-group {
+  display: flex;
+  align-items: center;
+}
+
+/* ─── Individual Step Card ────────────────────────────── */
+.how-it-works__step {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 30px;
+  width: 300px;
+  flex-shrink: 0;
+}
+
+/* ─── Step Top (badge + icon circle) ─────────────────── */
+.how-it-works__step-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* ─── Number Badge ────────────────────────────────────── */
+.how-it-works__step-badge {
+  display: flex;
+  width: 36px;
+  height: 36px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  border: 1px solid #F1F5F9;
+  background: #F6FFF9;
+  color: rgba(245, 158, 11, 0.80);
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ─── Icon Circle ─────────────────────────────────────── */
+.how-it-works__icon-circle {
+  display: flex;
+  width: 200px;
+  height: 200px;
+  padding: 45px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+  border: 1px solid #F1F5F9;
+  background: #FFF;
+  box-shadow: 0 4px 20px 0 rgba(72, 77, 78, 0.06);
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.how-it-works__icon-img {
+  border-radius: 50%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ─── Step Text Body ──────────────────────────────────── */
+.how-it-works__step-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.how-it-works__step-title {
+  color: #1F2A30;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: normal;
+  text-align: center;
+  margin: 0;
+  width: 100%;
+}
+
+.how-it-works__step-desc {
+  color: #4F507F;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: center;
+  margin: 0;
+  width: 100%;
+}
+
+/* ─── Wavy Connector ──────────────────────────────────── */
+.how-it-works__connector {
+  flex-shrink: 0;
+  margin-top: -80px;
+}
+
+/* ─── Tablet (≤ 1100px) ───────────────────────────────── */
+@media (max-width: 1100px) {
+  .how-it-works {
+    padding: 50px 40px;
+    gap: 60px;
+  }
+
+  .how-it-works__step {
+    width: 240px;
+  }
+
+  .how-it-works__icon-circle {
+    width: 160px;
+    height: 160px;
+    padding: 36px;
+    border-radius: 80px;
+  }
+
+  .how-it-works__connector {
+    width: 120px;
+  }
+}
+
+/* ─── Small Tablet (≤ 860px) ─────────────────────────── */
+@media (max-width: 860px) {
+  .how-it-works {
+    gap: 50px;
+    padding: 48px 24px;
+  }
+
+  .how-it-works__steps {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .how-it-works__step-group {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .how-it-works__connector {
+    transform: rotate(90deg);
+    margin-top: 0;
+    margin: 16px 0;
+  }
+
+  .how-it-works__step {
+    width: 100%;
+    max-width: 340px;
+    align-items: center;
+  }
+
+  .how-it-works__step-top {
+    justify-content: center;
+  }
+
+  .how-it-works__title {
+    font-size: 32px;
+    line-height: 48px;
+  }
+
+  .how-it-works__subtitle {
+    font-size: 16px;
+  }
+}
+
+/* ─── Mobile (≤ 540px) ────────────────────────────────── */
+@media (max-width: 540px) {
+  .how-it-works {
+    padding: 40px 20px;
+    gap: 40px;
+  }
+
+  .how-it-works__title {
+    font-size: 28px;
+    line-height: 40px;
+  }
+
+  .how-it-works__subtitle {
+    font-size: 14px;
+  }
+
+  .how-it-works__icon-circle {
+    width: 140px;
+    height: 140px;
+    padding: 30px;
+    border-radius: 70px;
+  }
+
+  .how-it-works__step-badge {
+    width: 30px;
+    height: 30px;
+    font-size: 13px;
+  }
+}
