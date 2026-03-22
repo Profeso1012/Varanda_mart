@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -17,7 +19,7 @@ const Header = () => {
     <header className={`site-header${scrolled ? ' site-header--scrolled' : ''}`}>
       <div className="site-header__inner">
 
-        <a href="/" className="site-header__logo" onClick={closeMobile}>
+        <Link to="/" className="site-header__logo" onClick={closeMobile}>
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F934f466d54e44638814059cefea847fc%2F4a5008d5bbe1481ba5490e229fffb701?format=webp&width=268&height=100"
             alt="Varanda Mart"
@@ -25,18 +27,18 @@ const Header = () => {
             width="134"
             height="50"
           />
-        </a>
+        </Link>
 
         <nav className={`site-header__nav${mobileOpen ? ' site-header__nav--open' : ''}`}>
-          <a href="/" className="nav-link nav-link--active" onClick={closeMobile}>Home</a>
+          <Link to="/" className={`nav-link${location.pathname === '/' ? ' nav-link--active' : ''}`} onClick={closeMobile}>Home</Link>
           <a href="#about" className="nav-link" onClick={closeMobile}>About us</a>
           <a href="#features" className="nav-link" onClick={closeMobile}>Features</a>
           <a href="#contact" className="nav-link" onClick={closeMobile}>Contact</a>
         </nav>
 
         <div className="site-header__actions">
-          <button className="header-btn-login">Login</button>
-          <button className="header-btn-cta">Get Started</button>
+          <Link to="/login" className="header-btn-login">Login</Link>
+          <Link to="/signup" className="header-btn-cta">Get Started</Link>
         </div>
 
         <button
