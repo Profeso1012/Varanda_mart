@@ -1,0 +1,199 @@
+/* ─── Footer Section (outer white wrapper, mirrors cta-section) ──── */
+.footer-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 80px;
+  background: var(--white);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ─── Footer Card (inner container) ─────────────────────────────── */
+.footer-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 80px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* ─── Brand Column ────────────────────────────────────────────────── */
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 0 0 240px;
+  min-width: 0;
+}
+
+.footer-logo {
+  display: block;
+  width: 134px;
+  height: auto;
+}
+
+.footer-tagline {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
+  line-height: 1.5;
+  margin: 0;
+  margin-bottom: 8%;
+}
+
+/* ─── Store Buttons ──────────────────────────────────────────────── */
+.footer-store-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+.footer-store-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid #22925B;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #000;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.footer-store-btn:hover {
+  background: rgba(34, 146, 91, 0.06);
+}
+
+.footer-store-btn svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.footer-store-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+}
+
+.footer-store-subtext {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 9px;
+  font-weight: 400;
+  color: #000;
+  line-height: 1;
+}
+
+.footer-store-name {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: #000;
+  line-height: 1;
+}
+
+/* ─── Links Columns ──────────────────────────────────────────────── */
+.footer-links-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1;
+  min-width: 0;
+}
+
+.footer-col-heading {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1F2A30;
+  margin: 0;
+}
+
+.footer-link-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-link-list li a {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #000;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-link-list li a:hover {
+  color: #22925B;
+}
+
+/* ─── Large Desktop (≤ 1200px) ───────────────────────────────────── */
+@media (max-width: 1200px) {
+  .footer-section {
+    padding: 48px 48px;
+  }
+
+  .footer-card {
+    gap: 48px;
+  }
+}
+
+/* ─── Tablet (≤ 900px) ───────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .footer-section {
+    padding: 40px 32px;
+  }
+
+  .footer-card {
+    gap: 36px;
+    flex-wrap: wrap;
+  }
+
+  .footer-brand {
+    flex: 0 0 100%;
+  }
+
+  .footer-links-col {
+    flex: 1 1 120px;
+  }
+}
+
+/* ─── Small Tablet (≤ 640px) ─────────────────────────────────────── */
+@media (max-width: 640px) {
+  .footer-section {
+    padding: 32px 20px;
+  }
+
+  .footer-card {
+    gap: 28px;
+  }
+
+  .footer-store-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ─── Mobile (≤ 420px) ───────────────────────────────────────────── */
+@media (max-width: 420px) {
+  .footer-section {
+    padding: 24px 16px;
+  }
+
+  .footer-links-col {
+    flex: 1 1 100%;
+  }
+}
