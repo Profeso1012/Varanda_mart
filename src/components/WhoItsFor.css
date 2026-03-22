@@ -5,7 +5,7 @@
   align-items: center;
   gap: 48px;
   padding: 72px 80px;
-  background: var(--primary);
+  background: linear-gradient(to bottom, #22925B 0%, #1a7a4a 50%, #0f5e35 100%);
   width: 100%;
   box-sizing: border-box;
 }
