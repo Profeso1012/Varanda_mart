@@ -89,7 +89,7 @@
 .cta-card__watermark {
   display: block;
   font-family: 'Poppins', -apple-system, sans-serif;
-  font-size: clamp(100px, 14vw, 180px);
+  font-size: clamp(120px, 14vw, 180px);
   font-weight: 600;
   letter-spacing: 0.04em;
   color: rgba(34, 146, 91, 0.12);
