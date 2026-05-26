@@ -218,3 +218,72 @@
   height: 64px;
   flex-shrink: 0;
 }
+
+
+/* ─── Mobile (≤ 768px) ────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero-group-wrapper {
+    width: 100%;
+    max-width: 10em;
+    height: 8.13em;
+    margin: 0 auto;
+  }
+
+  .hero-group-person-primary {
+    width: 4.22em;
+    height: 5.31em;
+    border-radius: 0.875em 0.875em 0px 0.875em;
+  }
+
+  .hero-group-person-secondary {
+    top: 2.66em;
+    right: auto;
+    left: 4.38em;
+    width: 4.63em;
+    height: 5.63em;
+    border-radius: 0.875em 0px 0.875em 0.875em;
+  }
+
+  .hero-group-triangles-container {
+    top: -0.16em;
+    left: 5.31em;
+    width: 1.72em;
+    height: 2.09em;
+  }
+
+  .hero-group-triangle {
+    width: 0.84em;
+    height: 0.69em;
+  }
+
+  .hero-group-triangle:nth-child(1) {
+    top: 0;
+    left: 0.41em;
+  }
+
+  .hero-group-triangle:nth-child(2) {
+    top: 0.69em;
+    left: 0;
+  }
+
+  .hero-group-triangle:nth-child(3) {
+    top: 0.69em;
+    left: 0.84em;
+  }
+
+  .hero-group-triangle:nth-child(4) {
+    top: 1.38em;
+    left: 0.41em;
+  }
+
+  .hero-group-ellipses-container {
+    bottom: 0.16em;
+    left: 2.5em;
+    gap: 0.19em;
+  }
+
+  .hero-group-ellipse {
+    width: 0.69em;
+    height: 1.25em;
+  }
+}
