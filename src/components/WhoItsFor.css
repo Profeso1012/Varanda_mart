@@ -262,8 +262,15 @@
     display: flex;
   }
 
+  .who-carousel__viewport {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
   .who-card {
-    min-height: 240px;
+    width: 280px;
+    height: 280px;
+    min-height: unset;
     border-radius: 16px;
   }
 

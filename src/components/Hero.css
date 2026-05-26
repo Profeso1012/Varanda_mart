@@ -169,8 +169,9 @@
   }
 
   .hero-title {
-    font-size: clamp(24px, 6vw, 32px);
-    letter-spacing: -0.6px;
+    font-size: clamp(28px, 7vw, 36px);
+    letter-spacing: -0.8px;
+    line-height: 1.25;
   }
 
   .hero-description {
