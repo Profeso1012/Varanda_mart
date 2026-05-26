@@ -268,15 +268,18 @@
   }
 
   .who-carousel__viewport {
-    max-width: 280px;
+    width: 100%;
+    max-width: 320px;
     margin: 0 auto;
+    border-radius: 20px 20px 16px 16px;
+    overflow: hidden;
   }
 
   .who-card {
-    width: 280px;
-    height: 280px;
+    width: 100%;
+    aspect-ratio: 1;
     min-height: unset;
-    border-radius: 16px;
+    border-radius: 0;
   }
 
   .who-card__label-icon {
