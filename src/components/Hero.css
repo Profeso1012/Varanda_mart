@@ -32,6 +32,7 @@
 }
 
 .hero-title {
+  font-family: 'Poppins', -apple-system, sans-serif;
   font-size: clamp(36px, 4.2vw, 54px);
   font-weight: 800;
   line-height: 1.2;
@@ -97,6 +98,7 @@
   font-weight: 500;
   cursor: pointer;
   white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   transition: border-color 0.2s, color 0.2s, background 0.2s,
               transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
               box-shadow 0.25s ease;

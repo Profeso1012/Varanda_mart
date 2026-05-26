@@ -55,6 +55,15 @@ const Header = () => {
           <span className="hamburger-line" />
           <span className="hamburger-line" />
         </button>
+        {mobileOpen && (
+          <button
+            className="close-nav-btn"
+            onClick={() => setMobileOpen(false)}
+            aria-label="Close navigation menu"
+          >
+            ×
+          </button>
+        )}
 
       </div>
     </header>

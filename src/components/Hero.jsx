@@ -39,7 +39,7 @@ const Hero = () => {
         {/* ── Left: Text Content ───────────────────────── */}
         <div className="hero-content">
           <h1 className="hero-title">
-            Launch your online store in a minute for free
+            Launch your online<br />store in a minute for free
           </h1>
           <p className="hero-description">
             Varanda Business gives you a free storefront, secure payments,

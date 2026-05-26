@@ -66,19 +66,21 @@
 .who-carousel__viewport {
   width: 100%;
   overflow: hidden;
+  padding: 0 12px;
 }
 
 .who-carousel__track {
   display: flex;
-  gap: 12px;
+  gap: 24px;
   transition: transform 0.5s ease;
 }
 
 .who-carousel__slide {
-  flex: 0 0 calc(100% - 24px);
-  width: calc(100% - 24px);
+  flex: 0 0 100%;
+  width: 100%;
   min-width: 0;
-  padding: 0 12px;
+  display: flex;
+  justify-content: center;
 }
 
 .who-carousel__indicators {
@@ -108,7 +110,6 @@
   flex: 1;
   border-radius: 16px;
   overflow: hidden;
-  height: 100px;
   min-height: 240px;
   cursor: pointer;
 }
@@ -261,6 +262,11 @@
 
   .who-carousel {
     display: flex;
+  }
+
+  .who-carousel__slide {
+    max-width: 300px;
+    margin: 0 auto;
   }
 
   .who-card {
