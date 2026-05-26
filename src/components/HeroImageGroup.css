@@ -224,66 +224,66 @@
 @media (max-width: 768px) {
   .hero-group-wrapper {
     width: 100%;
-    max-width: 10em;
-    height: 8.13em;
+    max-width: 20em;
+    height: 16.26em;
     margin: 0 auto;
   }
 
   .hero-group-person-primary {
-    width: 4.22em;
-    height: 5.31em;
-    border-radius: 0.875em 0.875em 0px 0.875em;
+    width: 8.44em;
+    height: 10.62em;
+    border-radius: 1.75em 1.75em 0px 1.75em;
   }
 
   .hero-group-person-secondary {
-    top: 2.66em;
+    top: 5.32em;
     right: auto;
-    left: 4.38em;
-    width: 4.63em;
-    height: 5.63em;
-    border-radius: 0.875em 0px 0.875em 0.875em;
+    left: 8.76em;
+    width: 9.26em;
+    height: 11.26em;
+    border-radius: 1.75em 0px 1.75em 1.75em;
   }
 
   .hero-group-triangles-container {
-    top: -0.16em;
-    left: 5.31em;
-    width: 1.72em;
-    height: 2.09em;
+    top: -0.32em;
+    left: 10.62em;
+    width: 3.44em;
+    height: 4.18em;
   }
 
   .hero-group-triangle {
-    width: 0.84em;
-    height: 0.69em;
+    width: 1.68em;
+    height: 1.38em;
   }
 
   .hero-group-triangle:nth-child(1) {
     top: 0;
-    left: 0.41em;
+    left: 0.82em;
   }
 
   .hero-group-triangle:nth-child(2) {
-    top: 0.69em;
+    top: 1.38em;
     left: 0;
   }
 
   .hero-group-triangle:nth-child(3) {
-    top: 0.69em;
-    left: 0.84em;
+    top: 1.38em;
+    left: 1.68em;
   }
 
   .hero-group-triangle:nth-child(4) {
-    top: 1.38em;
-    left: 0.41em;
+    top: 2.76em;
+    left: 0.82em;
   }
 
   .hero-group-ellipses-container {
-    bottom: 0.16em;
-    left: 2.5em;
-    gap: 0.19em;
+    bottom: 0.32em;
+    left: 5em;
+    gap: 0.38em;
   }
 
   .hero-group-ellipse {
-    width: 0.69em;
-    height: 1.25em;
+    width: 1.38em;
+    height: 2.5em;
   }
 }
