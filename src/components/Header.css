@@ -206,6 +206,12 @@
   }
 }
 
+/* ─── Mobile nav extras (hidden on desktop) ─────────────── */
+.mobile-nav-divider,
+.mobile-nav-actions {
+  display: none;
+}
+
 /* ─── Mobile ────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .site-header__inner {
@@ -216,17 +222,19 @@
   .site-header__nav {
     display: none;
     position: fixed;
-    top: 68px;
+    top: 0;
     left: 0;
-    right: 0;
+    width: 100%;
+    height: 100vh;
     background: var(--white);
     flex-direction: column;
     align-items: center;
-    padding: 24px 20px;
-    gap: 20px;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    padding: 80px 24px 40px;
+    gap: 28px;
     z-index: 99;
-    border-top: 1px solid var(--border-mid);
+    border-top: none;
+    box-shadow: none;
   }
 
   .site-header__nav--open {
@@ -234,8 +242,8 @@
   }
 
   .nav-link {
-    font-size: 16px;
-    padding: 4px 0;
+    font-size: 18px;
+    padding: 6px 0;
   }
 
   .site-header__actions {
@@ -252,5 +260,29 @@
 
   .logo-sub {
     font-size: 9px;
+  }
+
+  .mobile-nav-divider {
+    display: block;
+    width: 60%;
+    height: 1px;
+    background: var(--border-mid);
+  }
+
+  .mobile-nav-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .mobile-nav-actions .header-btn-login,
+  .mobile-nav-actions .header-btn-cta {
+    width: 100%;
+    max-width: 280px;
+    height: 48px;
+    font-size: 16px;
   }
 }
