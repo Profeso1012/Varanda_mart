@@ -40,13 +40,66 @@
   margin: 0;
 }
 
+/* ─── Container ───────────────────────────────────────── */
+.who-section__container {
+  width: 100%;
+  max-width: 1280px;
+}
+
 /* ─── Cards Grid ──────────────────────────────────────── */
 .who-section__grid {
   display: flex;
   align-items: stretch;
   gap: 20px;
   width: 100%;
-  max-width: 1280px;
+}
+
+/* ─── Carousel (mobile) ────────────────────────────────── */
+.who-carousel {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+}
+
+.who-carousel__viewport {
+  width: 100%;
+  overflow: hidden;
+}
+
+.who-carousel__track {
+  display: flex;
+  gap: 12px;
+  transition: transform 0.5s ease;
+}
+
+.who-carousel__slide {
+  flex: 0 0 calc(100% - 24px);
+  width: calc(100% - 24px);
+  min-width: 0;
+  padding: 0 12px;
+}
+
+.who-carousel__indicators {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.who-carousel__indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: background 0.3s ease;
+  padding: 0;
+}
+
+.who-carousel__indicator.active {
+  background: var(--white);
 }
 
 /* ─── Individual Card ─────────────────────────────────── */
@@ -203,15 +256,23 @@
   }
 
   .who-section__grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    display: none;
+  }
+
+  .who-carousel {
+    display: flex;
   }
 
   .who-card {
-    min-height: 180px;
+    min-height: 240px;
+    border-radius: 16px;
   }
 
   .who-card__label-icon {
     display: none;
+  }
+
+  .who-card__label-text {
+    font-size: 11px;
   }
 }

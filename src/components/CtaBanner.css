@@ -89,7 +89,7 @@
 .cta-card__watermark {
   display: block;
   font-family: 'Poppins', -apple-system, sans-serif;
-  font-size: clamp(120px, 20vw, 200px);
+  font-size: clamp(32px, 16vw, 200px);
   font-weight: 600;
   font-stretch: condensed;
   letter-spacing: 0.06em;
@@ -100,7 +100,9 @@
   position: relative;
   z-index: 1;
   margin-top: 20px;
-  white-space: nowrap;
+  white-space: normal;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 /* ─── Large Desktop (≤ 1200px) ───────────────────────── */

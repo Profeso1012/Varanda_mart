@@ -1,7 +1,8 @@
 import './Footer.css';
 
-const Footer = () => (
-  <footer className="footer-section">
+const Footer = () => {
+  return (
+    <footer className="footer-section">
     <div className="footer-card">
 
       {/* Column 1 – Brand */}
@@ -90,6 +91,7 @@ const Footer = () => (
 
     </div>
   </footer>
-);
+  );
+};
 
 export default Footer;
