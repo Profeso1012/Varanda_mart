@@ -102,7 +102,7 @@ const WhoItsFor = () => {
         </div>
         <div className="who-carousel">
           <div className="who-carousel__viewport">
-            <div className="who-carousel__track" style={{ transform: `translateX(calc(-${currentIndex} * 100% - ${currentIndex} * 12px))` }}>
+            <div className="who-carousel__track" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
               {categories.map((cat) => (
                 <div key={cat.id} className="who-carousel__slide">
                   <CategoryCard category={cat} />
