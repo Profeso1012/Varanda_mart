@@ -227,6 +227,7 @@
     max-width: 20em;
     height: 16.26em;
     margin: 0 auto;
+    margin-inline: auto;
   }
 
   .hero-group-person-primary {
@@ -238,7 +239,7 @@
   .hero-group-person-secondary {
     top: 5.32em;
     right: auto;
-    left: 8.76em;
+    left: 9.5em;
     width: 9.26em;
     height: 11.26em;
     border-radius: 1.75em 0px 1.75em 1.75em;
