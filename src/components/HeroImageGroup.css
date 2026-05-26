@@ -5,6 +5,137 @@
   height: 420px;
 }
 
+/* ─── Tablet (≤ 1024px) ────────────────────────────────── */
+@media (max-width: 1024px) {
+  .hero-group-wrapper {
+    width: 400px;
+    height: 320px;
+  }
+
+  .hero-group-person-primary {
+    width: 170px;
+    height: 210px;
+    border-radius: 36px 36px 0px 36px;
+  }
+
+  .hero-group-person-secondary {
+    top: 105px;
+    width: 185px;
+    height: 225px;
+    border-radius: 36px 0px 36px 36px;
+  }
+
+  .hero-group-triangles-container {
+    top: -5px;
+    left: 215px;
+    width: 70px;
+    height: 85px;
+  }
+
+  .hero-group-triangle {
+    width: 34px;
+    height: 28px;
+  }
+
+  .hero-group-triangle:nth-child(1) {
+    left: 17px;
+  }
+
+  .hero-group-triangle:nth-child(2) {
+    top: 28px;
+    left: 0px;
+  }
+
+  .hero-group-triangle:nth-child(3) {
+    top: 28px;
+    left: 34px;
+  }
+
+  .hero-group-triangle:nth-child(4) {
+    top: 56px;
+    left: 17px;
+  }
+
+  .hero-group-ellipses-container {
+    bottom: 5px;
+    left: 100px;
+    gap: 8px;
+  }
+
+  .hero-group-ellipse {
+    width: 28px;
+    height: 50px;
+  }
+}
+
+/* ─── Mobile (≤ 768px) ────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero-group-wrapper {
+    width: 100%;
+    max-width: 320px;
+    height: 260px;
+    margin: 0 auto;
+  }
+
+  .hero-group-person-primary {
+    width: 135px;
+    height: 170px;
+    border-radius: 28px 28px 0px 28px;
+  }
+
+  .hero-group-person-secondary {
+    top: 85px;
+    right: auto;
+    left: 140px;
+    width: 148px;
+    height: 180px;
+    border-radius: 28px 0px 28px 28px;
+  }
+
+  .hero-group-triangles-container {
+    top: -5px;
+    left: 170px;
+    width: 55px;
+    height: 67px;
+  }
+
+  .hero-group-triangle {
+    width: 27px;
+    height: 22px;
+  }
+
+  .hero-group-triangle:nth-child(1) {
+    top: 0px;
+    left: 13px;
+  }
+
+  .hero-group-triangle:nth-child(2) {
+    top: 22px;
+    left: 0px;
+  }
+
+  .hero-group-triangle:nth-child(3) {
+    top: 22px;
+    left: 27px;
+  }
+
+  .hero-group-triangle:nth-child(4) {
+    top: 44px;
+    left: 13px;
+  }
+
+  .hero-group-ellipses-container {
+    bottom: 5px;
+    left: 80px;
+    gap: 6px;
+  }
+
+  .hero-group-ellipse {
+    width: 22px;
+    height: 40px;
+  }
+}
+
 /* ─── Image Cards with Rounded Corners ──────────────────── */
 .hero-group-card {
   position: absolute;
