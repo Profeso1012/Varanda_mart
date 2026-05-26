@@ -181,7 +181,7 @@
 
   .how-it-works__steps {
     flex-direction: column;
-    gap: 50px;
+    gap: 80px;
   }
 
   .how-it-works__step-group {
