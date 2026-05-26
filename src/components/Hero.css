@@ -157,8 +157,13 @@
 
   .hero-container {
     grid-template-columns: 1fr;
-    padding: calc(60px + 20px) 20px 40px;
-    gap: 28px;
+    padding: calc(68px + 48px) 24px 48px;
+    gap: 32px;
+    text-align: center;
+  }
+
+  .hero-content {
+    align-items: center;
   }
 
   .hero-title {
@@ -170,20 +175,23 @@
     font-size: 14px;
     max-width: 100%;
     line-height: 1.6;
+    padding: 0 8px;
   }
 
   .hero-cta-row {
     flex-direction: row;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    gap: 10px;
     width: 100%;
+    padding: 0 8px;
   }
 
   .hero-btn-primary,
   .hero-btn-secondary {
     flex: 1;
     min-width: 0;
-    padding: 11px 14px;
+    padding: 12px 16px;
     font-size: 13px;
   }
 
@@ -196,6 +204,6 @@
 /* ─── Small Mobile (≤ 480px) ──────────────────────────── */
 @media (max-width: 480px) {
   .hero-container {
-    padding: 36px 16px;
+    padding: calc(68px + 36px) 20px 40px;
   }
 }

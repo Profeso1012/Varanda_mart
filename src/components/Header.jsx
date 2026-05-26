@@ -34,6 +34,11 @@ const Header = () => {
           <a href="#about" className="nav-link" onClick={closeMobile}>About us</a>
           <a href="#features" className="nav-link" onClick={closeMobile}>Features</a>
           <a href="#contact" className="nav-link" onClick={closeMobile}>Contact</a>
+          <div className="mobile-nav-divider" />
+          <div className="mobile-nav-actions">
+            <Link to="/login" className="header-btn-login" onClick={closeMobile}>Login</Link>
+            <Link to="/signup" className="header-btn-cta" onClick={closeMobile}>Get Started</Link>
+          </div>
         </nav>
 
         <div className="site-header__actions">
