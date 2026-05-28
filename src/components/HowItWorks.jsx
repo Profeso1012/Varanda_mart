@@ -3,13 +3,13 @@ import './HowItWorks.css';
 const WavyConnector1 = () => (
   <svg className="how-it-works__connector" width="178" height="41" viewBox="0 0 178 41" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g filter="url(#filter0_f_76_484)">
-      <path d="M0 15.2199C69.5144 -44.4103 160 96.0333 178 15.2199" stroke="#F59E0B" strokeWidth="2" strokeDasharray="7 7"/>
+      <path d="M0 15.2199C69.5144 -44.4103 160 96.0333 178 15.2199" stroke="#F59E0B" strokeWidth="2" strokeDasharray="7 7" />
     </g>
     <defs>
       <filter id="filter0_f_76_484" x="-4.65137" y="-5" width="187.628" height="51.0046" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-        <feFlood floodOpacity="0" result="BackgroundImageFix"/>
-        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-        <feGaussianBlur stdDeviation="2" result="effect1_foregroundBlur_76_484"/>
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+        <feGaussianBlur stdDeviation="2" result="effect1_foregroundBlur_76_484" />
       </filter>
     </defs>
   </svg>
@@ -18,13 +18,13 @@ const WavyConnector1 = () => (
 const WavyConnector2 = () => (
   <svg className="how-it-works__connector" width="178" height="53" viewBox="0 0 178 53" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g filter="url(#filter0_f_76_497)">
-      <path d="M0 22.8888C42 -60.9414 117.143 119.79 178 22.8888" stroke="#F59E0B" strokeWidth="2" strokeDasharray="7 7"/>
+      <path d="M0 22.8888C42 -60.9414 117.143 119.79 178 22.8888" stroke="#F59E0B" strokeWidth="2" strokeDasharray="7 7" />
     </g>
     <defs>
       <filter id="filter0_f_76_497" x="-4.89453" y="-4.9967" width="187.741" height="62.3058" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-        <feFlood floodOpacity="0" result="BackgroundImageFix"/>
-        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-        <feGaussianBlur stdDeviation="2" result="effect1_foregroundBlur_76_497"/>
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+        <feGaussianBlur stdDeviation="2" result="effect1_foregroundBlur_76_497" />
       </filter>
     </defs>
   </svg>
