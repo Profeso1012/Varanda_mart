@@ -22,6 +22,7 @@ import EditProductPage            from './pages/products/EditProductPage'
 import CategoriesPage             from './pages/categories/CategoriesPage'
 import MarketplacePage            from './pages/marketplace/MarketplacePage'
 import SupplierActivationPage     from './pages/supplier/SupplierActivationPage'
+import TemplatesPage              from './pages/builder/TemplatesPage'
 import { useAuth }                from './context/AuthContext'
 import { hasSupplierProfile }     from './lib/authRoutes'
 
@@ -61,6 +62,11 @@ createRoot(document.getElementById('root')).render(
 
           {/* Seller dashboard */}
           <Route path="/dashboard" element={<SellerRoute><SellerDashboardPage /></SellerRoute>} />
+
+          {/* Templates */}
+          <Route path="/templates" element={
+            <SellerRoute><TemplatesPage /></SellerRoute>
+          } />
 
           {/* Seller products */}
           <Route path="/products" element={
