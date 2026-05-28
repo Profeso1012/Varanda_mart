@@ -25,6 +25,16 @@ export default function CategoriesPage() {
   const { upload } = useCloudinaryUpload();
   const [categories, setCategories] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
+  const [expandedIds, setExpandedIds] = useState(new Set());
+
+  const toggleExpand = (id) => {
+    setExpandedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
   const [form, setForm] = useState({ name: '', parentId: '', description: '', sortOrder: 1, isActive: true });
   const [imageFile, setImageFile] = useState(null);
   const [bundleFile, setBundleFile] = useState(null);
@@ -143,31 +153,57 @@ export default function CategoriesPage() {
           </div>
 
           <div className="max-h-[calc(100vh-220px)] space-y-3 overflow-y-auto pr-2">
-            {filteredTree.map((category) => (
-              <div key={category.id} className={`rounded-lg p-3 ${selectedId === category.id ? 'bg-gray-200' : 'hover:bg-gray-50'}`}>
-                <div className="flex items-center justify-between gap-2">
-                  <button onClick={() => setSelectedId(category.id)} className="flex items-center gap-2 text-left text-sm font-bold text-[#1F2A30]">
-                    <ChevronDown size={15} />
-                    {category.name}
-                  </button>
-                  <div className="flex items-center gap-2">
-                    <button onClick={() => setSelectedId(category.id)} className="text-[#F97316]" aria-label={`Edit ${category.name}`}>
-                      <Edit3 size={15} />
-                    </button>
-                    <button onClick={() => { setSelectedId(category.id); setTimeout(deleteCategory, 0); }} className="text-[#1F2A30]" aria-label={`Delete ${category.name}`}>
-                      <Trash2 size={15} />
-                    </button>
+            {filteredTree.map((category) => {
+              const isExpanded = expandedIds.has(category.id);
+              const isSelected = selectedId === category.id;
+              const hasChildren = (category.children || []).length > 0;
+              return (
+                <div key={category.id} className={`rounded-lg p-3 transition-colors ${isSelected ? 'bg-green-50' : 'hover:bg-gray-50'}`}>
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <button
+                        onClick={() => toggleExpand(category.id)}
+                        className="shrink-0 text-[#5C5D86] hover:text-[#22925B] transition-colors"
+                        aria-label={isExpanded ? 'Collapse' : 'Expand'}
+                      >
+                        <ChevronDown
+                          size={15}
+                          className={`transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
+                        />
+                      </button>
+                      <button onClick={() => setSelectedId(category.id)} className="text-left text-sm font-bold text-[#1F2A30] truncate">
+                        {category.name}
+                      </button>
+                    </div>
+                    <div className="flex items-center gap-2 shrink-0">
+                      <button onClick={() => setSelectedId(category.id)} className="text-[#F97316]" aria-label={`Edit ${category.name}`}>
+                        <Edit3 size={15} />
+                      </button>
+                      <button onClick={() => { setSelectedId(category.id); setTimeout(deleteCategory, 0); }} className="text-[#1F2A30]" aria-label={`Delete ${category.name}`}>
+                        <Trash2 size={15} />
+                      </button>
+                    </div>
                   </div>
+                  {hasChildren && isExpanded && (
+                    <div className="ml-7 mt-2 space-y-1">
+                      {(category.children || []).map((child) => (
+                        <button
+                          key={child.id}
+                          onClick={() => setSelectedId(child.id)}
+                          className={`block w-full text-left text-sm px-2 py-1 rounded-md transition-colors ${
+                            selectedId === child.id
+                              ? 'text-[#22925B] font-medium bg-green-50'
+                              : 'text-[#5C5D86] hover:text-[#22925B] hover:bg-green-50'
+                          }`}
+                        >
+                          {child.name}
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
-                <div className="ml-8 mt-2 space-y-1">
-                  {(category.children || []).map((child) => (
-                    <button key={child.id} onClick={() => setSelectedId(child.id)} className="block text-left text-sm text-[#5C5D86] hover:text-[#22925B]">
-                      {child.name}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
 

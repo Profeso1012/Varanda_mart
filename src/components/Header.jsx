@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { LogOut } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import './Header.css';
 
@@ -46,16 +47,17 @@ const Header = () => {
               </>
             ) : (
               <>
-                <Link to="/dashboard" className="header-btn-login" onClick={closeMobile}>Dashboard</Link>
+                <Link to="/dashboard" className="header-btn-cta" onClick={closeMobile}>Dashboard</Link>
                 <button
-                  className="header-btn-cta"
+                  className="header-btn-logout"
+                  aria-label="Logout"
                   onClick={() => {
                     closeMobile();
                     logout();
                     navigate('/');
                   }}
                 >
-                  Logout
+                  <LogOut size={18} />
                 </button>
               </>
             )}
@@ -70,15 +72,16 @@ const Header = () => {
             </>
           ) : (
             <>
-              <Link to="/dashboard" className="header-btn-login">Dashboard</Link>
+              <Link to="/dashboard" className="header-btn-cta">Dashboard</Link>
               <button
-                className="header-btn-cta"
+                className="header-btn-logout"
+                aria-label="Logout"
                 onClick={() => {
                   logout();
                   navigate('/');
                 }}
               >
-                Logout
+                <LogOut size={18} />
               </button>
             </>
           )}
