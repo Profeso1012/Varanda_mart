@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import './WhoItsFor.css';
 
 const ScissorsIcon = () => (
@@ -75,20 +76,54 @@ const CategoryCard = ({ category }) => (
   </div>
 );
 
-const WhoItsFor = () => (
-  <section className="who-section">
-    <div className="who-section__header">
-      <h2 className="who-section__title">Who it&apos;s for</h2>
-      <p className="who-section__subtitle">
-        Set up your store, manage inventory, and accept payments all in one place.
-      </p>
-    </div>
-    <div className="who-section__grid">
-      {categories.map((cat) => (
-        <CategoryCard key={cat.id} category={cat} />
-      ))}
-    </div>
-  </section>
-);
+const WhoItsFor = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % categories.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <section className="who-section">
+      <div className="who-section__header">
+        <h2 className="who-section__title">Who it&apos;s for</h2>
+        <p className="who-section__subtitle">
+          Set up your store, manage inventory, and accept payments all in one place.
+        </p>
+      </div>
+      <div className="who-section__container">
+        <div className="who-section__grid">
+          {categories.map((cat) => (
+            <CategoryCard key={cat.id} category={cat} />
+          ))}
+        </div>
+        <div className="who-carousel">
+          <div className="who-carousel__viewport">
+            <div className="who-carousel__track" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+              {categories.map((cat) => (
+                <div key={cat.id} className="who-carousel__slide">
+                  <CategoryCard category={cat} />
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="who-carousel__indicators">
+            {categories.map((_, index) => (
+              <button
+                key={index}
+                className={`who-carousel__indicator ${index === currentIndex ? 'active' : ''}`}
+                onClick={() => setCurrentIndex(index)}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 export default WhoItsFor;

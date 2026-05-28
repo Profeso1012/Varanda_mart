@@ -34,11 +34,16 @@ const Header = () => {
           <a href="#about" className="nav-link" onClick={closeMobile}>About us</a>
           <a href="#features" className="nav-link" onClick={closeMobile}>Features</a>
           <a href="#contact" className="nav-link" onClick={closeMobile}>Contact</a>
+          <div className="mobile-nav-divider" />
+          <div className="mobile-nav-actions">
+            <Link to="/login" className="header-btn-login" onClick={closeMobile}>Login</Link>
+            <Link to="/register" className="header-btn-cta" onClick={closeMobile}>Get Started</Link>
+          </div>
         </nav>
 
         <div className="site-header__actions">
           <Link to="/login" className="header-btn-login">Login</Link>
-          <Link to="/signup" className="header-btn-cta">Get Started</Link>
+          <Link to="/register" className="header-btn-cta">Get Started</Link>
         </div>
 
         <button
@@ -50,6 +55,15 @@ const Header = () => {
           <span className="hamburger-line" />
           <span className="hamburger-line" />
         </button>
+        {mobileOpen && (
+          <button
+            className="close-nav-btn"
+            onClick={() => setMobileOpen(false)}
+            aria-label="Close navigation menu"
+          >
+            ×
+          </button>
+        )}
 
       </div>
     </header>

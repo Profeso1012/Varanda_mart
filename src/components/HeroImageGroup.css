@@ -5,6 +5,137 @@
   height: 420px;
 }
 
+/* ─── Tablet (≤ 1024px) ────────────────────────────────── */
+@media (max-width: 1024px) {
+  .hero-group-wrapper {
+    width: 400px;
+    height: 320px;
+  }
+
+  .hero-group-person-primary {
+    width: 170px;
+    height: 210px;
+    border-radius: 36px 36px 0px 36px;
+  }
+
+  .hero-group-person-secondary {
+    top: 105px;
+    width: 185px;
+    height: 225px;
+    border-radius: 36px 0px 36px 36px;
+  }
+
+  .hero-group-triangles-container {
+    top: -5px;
+    left: 215px;
+    width: 70px;
+    height: 85px;
+  }
+
+  .hero-group-triangle {
+    width: 34px;
+    height: 28px;
+  }
+
+  .hero-group-triangle:nth-child(1) {
+    left: 17px;
+  }
+
+  .hero-group-triangle:nth-child(2) {
+    top: 28px;
+    left: 0px;
+  }
+
+  .hero-group-triangle:nth-child(3) {
+    top: 28px;
+    left: 34px;
+  }
+
+  .hero-group-triangle:nth-child(4) {
+    top: 56px;
+    left: 17px;
+  }
+
+  .hero-group-ellipses-container {
+    bottom: 5px;
+    left: 100px;
+    gap: 8px;
+  }
+
+  .hero-group-ellipse {
+    width: 28px;
+    height: 50px;
+  }
+}
+
+/* ─── Mobile (≤ 768px) ────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero-group-wrapper {
+    width: 100%;
+    max-width: 160px;
+    height: 130px;
+    margin: 0 auto;
+  }
+
+  .hero-group-person-primary {
+    width: 67.5px;
+    height: 85px;
+    border-radius: 14px 14px 0px 14px;
+  }
+
+  .hero-group-person-secondary {
+    top: 42.5px;
+    right: auto;
+    left: 70px;
+    width: 74px;
+    height: 90px;
+    border-radius: 14px 0px 14px 14px;
+  }
+
+  .hero-group-triangles-container {
+    top: -2.5px;
+    left: 85px;
+    width: 27.5px;
+    height: 33.5px;
+  }
+
+  .hero-group-triangle {
+    width: 13.5px;
+    height: 11px;
+  }
+
+  .hero-group-triangle:nth-child(1) {
+    top: 0px;
+    left: 6.5px;
+  }
+
+  .hero-group-triangle:nth-child(2) {
+    top: 11px;
+    left: 0px;
+  }
+
+  .hero-group-triangle:nth-child(3) {
+    top: 11px;
+    left: 13.5px;
+  }
+
+  .hero-group-triangle:nth-child(4) {
+    top: 22px;
+    left: 6.5px;
+  }
+
+  .hero-group-ellipses-container {
+    bottom: 2.5px;
+    left: 40px;
+    gap: 3px;
+  }
+
+  .hero-group-ellipse {
+    width: 11px;
+    height: 20px;
+  }
+}
+
 /* ─── Image Cards with Rounded Corners ──────────────────── */
 .hero-group-card {
   position: absolute;
@@ -86,4 +217,74 @@
   width: 36px;
   height: 64px;
   flex-shrink: 0;
+}
+
+
+/* ─── Mobile (≤ 768px) ────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero-group-wrapper {
+    width: 100%;
+    max-width: 20em;
+    height: 16.26em;
+    margin: 0 auto;
+    margin-inline: auto;
+  }
+
+  .hero-group-person-primary {
+    width: 8.44em;
+    height: 10.62em;
+    border-radius: 1.75em 1.75em 0px 1.75em;
+  }
+
+  .hero-group-person-secondary {
+    top: 5.32em;
+    right: auto;
+    left: 9.5em;
+    width: 9.26em;
+    height: 11.26em;
+    border-radius: 1.75em 0px 1.75em 1.75em;
+  }
+
+  .hero-group-triangles-container {
+    top: -0.32em;
+    left: 10.62em;
+    width: 3.44em;
+    height: 4.18em;
+  }
+
+  .hero-group-triangle {
+    width: 1.68em;
+    height: 1.38em;
+  }
+
+  .hero-group-triangle:nth-child(1) {
+    top: 0;
+    left: 0.82em;
+  }
+
+  .hero-group-triangle:nth-child(2) {
+    top: 1.38em;
+    left: 0;
+  }
+
+  .hero-group-triangle:nth-child(3) {
+    top: 1.38em;
+    left: 1.68em;
+  }
+
+  .hero-group-triangle:nth-child(4) {
+    top: 2.76em;
+    left: 0.82em;
+  }
+
+  .hero-group-ellipses-container {
+    bottom: 0.32em;
+    left: 5em;
+    gap: 0.38em;
+  }
+
+  .hero-group-ellipse {
+    width: 1.38em;
+    height: 2.5em;
+  }
 }

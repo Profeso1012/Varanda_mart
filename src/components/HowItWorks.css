@@ -15,7 +15,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
   max-width: 644px;
   width: 100%;
 }
@@ -118,6 +118,7 @@
   align-items: center;
   gap: 12px;
   width: 100%;
+  padding-top: 12px;
 }
 
 .how-it-works__step-title {
@@ -180,18 +181,22 @@
 
   .how-it-works__steps {
     flex-direction: column;
-    gap: 40px;
+    gap: 50px;
   }
 
   .how-it-works__step-group {
     flex-direction: column;
     align-items: center;
+    gap: 20px;
+  }
+
+  .how-it-works__step-body {
+    padding-top: 16px;
   }
 
   .how-it-works__connector {
     transform: rotate(90deg);
-    margin-top: 0;
-    margin: 16px 0;
+    margin: 0;
   }
 
   .how-it-works__step {
@@ -228,6 +233,26 @@
 
   .how-it-works__subtitle {
     font-size: 14px;
+  }
+
+  .how-it-works__steps {
+    gap: 68px;
+  }
+
+  .how-it-works__step-group {
+    gap: 58px;
+  }
+
+  .how-it-works__step {
+    max-width: 280px;
+  }
+
+  .how-it-works__step-body {
+    padding-top: 20px;
+  }
+
+  .how-it-works__step-desc {
+    max-width: 240px;
   }
 
   .how-it-works__icon-circle {
