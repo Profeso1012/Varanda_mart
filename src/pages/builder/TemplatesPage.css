@@ -347,6 +347,7 @@
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.70);
+  backdrop-filter: blur(4px);
   z-index: 100;
   display: flex;
   align-items: center;
@@ -363,6 +364,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  position: relative;
 }
 
 .preview-modal__topbar {
@@ -460,20 +462,27 @@
   transition: width 0.3s ease;
 }
 
-.preview-modal-overlay {
-  position: relative;
-}
-
 .preview-modal__close {
-  position: fixed;
-  top: 24px;
-  right: 24px;
-  background: transparent;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(0, 0, 0, 0.5);
   border: none;
   cursor: pointer;
   padding: 0;
   line-height: 0;
-  z-index: 101;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  z-index: 10;
+}
+
+.preview-modal__close:hover {
+  background: rgba(0, 0, 0, 0.7);
 }
 
 /* ── Confirm Replace Modal ───────────────────────────────── */
@@ -620,10 +629,5 @@
 
   .templates-intro__title {
     font-size: 22px;
-  }
-
-  .preview-modal__close {
-    top: 16px;
-    right: 16px;
   }
 }
