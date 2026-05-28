@@ -145,6 +145,26 @@
   box-shadow: none;
 }
 
+.header-btn-logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-light);
+  background: transparent;
+  color: var(--text-body);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.header-btn-logout:hover {
+  color: #E32323;
+  border-color: #E32323;
+  background: #FEF2F2;
+}
+
 /* ─── Hamburger ─────────────────────────────────────────── */
 .hamburger-btn {
   display: none;

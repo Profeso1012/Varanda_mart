@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { X } from 'lucide-react';
+import { LogOut, X } from 'lucide-react';
 import { sellerApi } from '../../lib/axios';
 import { useRoleAdd } from '../../hooks/useRoleAdd';
 import { useAuth } from '../../context/AuthContext';
@@ -247,9 +247,12 @@ export default function Sidebar({
           )}
           <button
             onClick={handleLogout}
-            className="w-full mt-2 py-2 text-xs text-[#5C5D86] hover:text-[#E32323] transition-colors"
+            title="Log out"
+            aria-label="Log out"
+            className="flex items-center justify-center gap-1.5 w-full mt-2 py-2 text-xs text-[#5C5D86] hover:text-[#E32323] transition-colors"
           >
-            Log out
+            <LogOut size={14} />
+            <span>Log out</span>
           </button>
         </div>
       </aside>

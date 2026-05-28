@@ -1,4 +1,5 @@
 import { useCallback, useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import {
   Box,
@@ -140,33 +141,63 @@ function AddProductModal({ onClose, onChoose }) {
 
 function ActionMenu({ product, onEdit, onDelete, onDuplicate }) {
   const [open, setOpen] = useState(false);
-  const ref = useRef(null);
+  const [menuPos, setMenuPos] = useState({ top: 0, left: 0 });
+  const btnRef = useRef(null);
+  const menuRef = useRef(null);
 
   useEffect(() => {
-    const handler = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
+    const handler = (e) => {
+      if (
+        open &&
+        menuRef.current && !menuRef.current.contains(e.target) &&
+        btnRef.current && !btnRef.current.contains(e.target)
+      ) setOpen(false);
+    };
     document.addEventListener('mousedown', handler);
     return () => document.removeEventListener('mousedown', handler);
-  }, []);
+  }, [open]);
+
+  const handleToggle = () => {
+    if (!open && btnRef.current) {
+      const rect = btnRef.current.getBoundingClientRect();
+      setMenuPos({ top: rect.bottom + 8, left: rect.left - 115 });
+    }
+    setOpen((v) => !v);
+  };
+
+  const popup = open ? (
+    <div ref={menuRef} className="action-menu-popup" style={{ top: menuPos.top, left: menuPos.left }}>
+      <button onClick={() => { onEdit(product); setOpen(false); }} title="Edit">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12.6 4.2C12.7591 4.2 12.9117 4.13679 13.0243 4.02426C13.1368 3.91174 13.2 3.75913 13.2 3.6C13.2 3.44087 13.1368 3.28826 13.0243 3.17574C12.9117 3.06321 12.7591 3 12.6 3V4.2ZM21 11.0736C21 10.9145 20.9368 10.7619 20.8243 10.6493C20.7117 10.5368 20.5591 10.4736 20.4 10.4736C20.2409 10.4736 20.0883 10.5368 19.9757 10.6493C19.8632 10.7619 19.8 10.9145 19.8 11.0736H21ZM3 12.6C3 12.7591 3.06321 12.9117 3.17574 13.0243C3.28826 13.1368 3.44087 13.2 3.6 13.2C3.75913 13.2 3.91174 13.1368 4.02426 13.0243C4.13679 12.9117 4.2 12.7591 4.2 12.6H3ZM11.0736 19.8C10.9145 19.8 10.7619 19.8632 10.6493 19.9757C10.5368 20.0883 10.4736 20.2409 10.4736 20.4C10.4736 20.5591 10.5368 20.7117 10.6493 20.8243C10.7619 20.9368 10.9145 21 11.0736 21V19.8ZM4.8 4.2H12.6V3H4.8V4.2ZM19.8 11.0736V19.2H21V11.0736H19.8ZM4.2 12.6V4.8H3V12.6H4.2ZM19.2 19.8H11.0736V21H19.2V19.8ZM19.8 19.2C19.8 19.3591 19.7368 19.5117 19.6243 19.6243C19.5117 19.7368 19.3591 19.8 19.2 19.8V21C19.6774 21 20.1352 20.8104 20.4728 20.4728C20.8104 20.1352 21 19.6774 21 19.2H19.8ZM4.8 3C4.32261 3 3.86477 3.18964 3.52721 3.52721C3.18964 3.86477 3 4.32261 3 4.8H4.2C4.2 4.64087 4.26321 4.48826 4.37574 4.37574C4.48826 4.26321 4.64087 4.2 4.8 4.2V3Z" fill="#6B390C"/>
+          <path fillRule="evenodd" clipRule="evenodd" d="M20.5201 6.94156C20.7448 6.71676 20.8711 6.41192 20.8711 6.09406C20.8711 5.77621 20.7448 5.47137 20.5201 5.24656L18.8233 3.54916C18.7118 3.4376 18.5794 3.3491 18.4336 3.28872C18.2879 3.22834 18.1316 3.19727 17.9739 3.19727C17.8161 3.19727 17.6599 3.22834 17.5142 3.28872C17.3684 3.3491 17.236 3.4376 17.1244 3.54916L5.41693 15.257C5.03157 15.6424 4.78886 16.1475 4.72873 16.6892L4.48213 18.9071L4.43983 19.289C4.43479 19.3347 4.44011 19.3811 4.45537 19.4245C4.47064 19.468 4.49548 19.5075 4.52805 19.54C4.56062 19.5726 4.6001 19.5975 4.64356 19.6127C4.68701 19.628 4.73335 19.6333 4.77913 19.6283L5.16103 19.586L7.37893 19.3394C7.92052 19.2792 8.4255 19.0365 8.81083 18.6512L20.5201 6.94156Z" fill="#EB5757"/>
+          <path d="M14.5811 6.0957L17.9729 9.4875" stroke="#F8C014" strokeLinejoin="round"/>
+        </svg>
+      </button>
+      <button onClick={() => { onDuplicate(product); setOpen(false); }} title="Duplicate">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 7V15C8 15.5304 8.21071 16.0391 8.58579 16.4142C8.96086 16.7893 9.46957 17 10 17H16M8 7V5C8 4.46957 8.21071 3.96086 8.58579 3.58579C8.96086 3.21071 9.46957 3 10 3H14.586C14.8512 3.00006 15.1055 3.10545 15.293 3.293L19.707 7.707C19.8946 7.89449 19.9999 8.1488 20 8.414V15C20 15.5304 19.7893 16.0391 19.4142 16.4142C19.0391 16.7893 18.5304 17 18 17H16M8 7H6C5.46957 7 4.96086 7.21071 4.58579 7.58579C4.21071 7.96086 4 8.46957 4 9V19C4 19.5304 4.21071 20.0391 4.58579 20.4142C4.96086 20.7893 5.46957 21 6 21H14C14.5304 21 15.0391 20.7893 15.4142 20.4142C15.7893 20.0391 16 19.5304 16 19V17" stroke="#4304FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </button>
+      <button onClick={() => { onDelete(product); setOpen(false); }} title="Delete">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4.5 5V22H19.5V5H4.5Z" fill="#2F88FF" stroke="black" strokeWidth="2" strokeLinejoin="round"/>
+          <path d="M10 10V16.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M14 10V16.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M2 5H22" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M8 5L9.6445 2H14.3885L16 5H8Z" fill="#2F88FF" stroke="black" strokeWidth="2" strokeLinejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  ) : null;
 
   return (
-    <div ref={ref} className="relative">
-      <button onClick={() => setOpen((v) => !v)} className="p-1 rounded hover:bg-gray-100 text-[#5C5D86]">
+    <>
+      <button ref={btnRef} onClick={handleToggle} className="p-1 rounded hover:bg-gray-100 text-[#5C5D86]">
         <MoreHorizontal size={18} />
       </button>
-      {open && (
-        <div className="absolute right-0 top-8 bg-white rounded-xl shadow-lg border border-gray-100 w-40 z-20 overflow-hidden">
-          <button onClick={() => { onEdit(product); setOpen(false); }} className="w-full text-left px-4 py-3 text-sm text-[#1F2A30] hover:bg-gray-50">
-            Edit
-          </button>
-          <button onClick={() => { onDuplicate(product); setOpen(false); }} className="w-full text-left px-4 py-3 text-sm text-[#1F2A30] hover:bg-gray-50">
-            Duplicate
-          </button>
-          <button onClick={() => { onDelete(product); setOpen(false); }} className="w-full text-left px-4 py-3 text-sm text-[#E32323] hover:bg-red-50">
-            Delete
-          </button>
-        </div>
-      )}
-    </div>
+      {typeof document !== 'undefined' && createPortal(popup, document.body)}
+    </>
   );
 }
 
