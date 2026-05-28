@@ -14,9 +14,9 @@ export default function LandingPage() {
       <Header />
       <Hero />
       <TrustStrip />
+      <HowItWorks />
       <Features />
       <WhoItsFor />
-      <HowItWorks />
       <CtaBanner />
       <Footer />
     </div>

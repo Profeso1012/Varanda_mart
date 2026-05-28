@@ -5,7 +5,7 @@
   align-items: center;
   gap: 100px;
   padding: 62px 68px;
-  background: rgba(148, 233, 184, 1);
+  background: rgba(221, 251, 235, 1);
   width: 100%;
   box-sizing: border-box;
 }
@@ -80,8 +80,8 @@
   justify-content: center;
   align-items: center;
   border-radius: 20px;
-  border: 1px solid rgba(34, 146, 91, 0.25);
-  background: #FFFFFF;
+  border: 1px solid #F1F5F9;
+  background: #F6FFF9;
   color: rgba(245, 158, 11, 0.80);
   font-family: 'Inter', -apple-system, sans-serif;
   font-size: 15px;
