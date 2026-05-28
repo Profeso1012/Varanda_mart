@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import bgImage from '../assets/frame-219.png';
 import HeroImageGroup from './HeroImageGroup';
 import './Hero.css';
@@ -6,6 +7,7 @@ import './Hero.css';
 const Hero = () => {
   const sectionRef = useRef(null);
   const imagesRef = useRef(null);
+  const navigate = useNavigate();
 
   /* Subtle parallax on mouse-move */
   useEffect(() => {
@@ -47,7 +49,7 @@ const Hero = () => {
             run your business online from one simple platform.
           </p>
           <div className="hero-cta-row">
-            <button className="hero-btn-primary">Start My Free Store</button>
+            <button className="hero-btn-primary" onClick={() => navigate('/register')}>Start My Free Store</button>
             <button className="hero-btn-secondary">See Example Store</button>
           </div>
         </div>

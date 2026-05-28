@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import './Header.css';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -36,14 +39,49 @@ const Header = () => {
           <a href="#contact" className="nav-link" onClick={closeMobile}>Contact</a>
           <div className="mobile-nav-divider" />
           <div className="mobile-nav-actions">
-            <Link to="/login" className="header-btn-login" onClick={closeMobile}>Login</Link>
-            <Link to="/register" className="header-btn-cta" onClick={closeMobile}>Get Started</Link>
+            {!user ? (
+              <>
+                <Link to="/login" className="header-btn-login" onClick={closeMobile}>Login</Link>
+                <Link to="/register" className="header-btn-cta" onClick={closeMobile}>Get Started</Link>
+              </>
+            ) : (
+              <>
+                <Link to="/dashboard" className="header-btn-login" onClick={closeMobile}>Dashboard</Link>
+                <button
+                  className="header-btn-cta"
+                  onClick={() => {
+                    closeMobile();
+                    logout();
+                    navigate('/');
+                  }}
+                >
+                  Logout
+                </button>
+              </>
+            )}
           </div>
         </nav>
 
         <div className="site-header__actions">
-          <Link to="/login" className="header-btn-login">Login</Link>
-          <Link to="/register" className="header-btn-cta">Get Started</Link>
+          {!user ? (
+            <>
+              <Link to="/login" className="header-btn-login">Login</Link>
+              <Link to="/register" className="header-btn-cta">Get Started</Link>
+            </>
+          ) : (
+            <>
+              <Link to="/dashboard" className="header-btn-login">Dashboard</Link>
+              <button
+                className="header-btn-cta"
+                onClick={() => {
+                  logout();
+                  navigate('/');
+                }}
+              >
+                Logout
+              </button>
+            </>
+          )}
         </div>
 
         <button
