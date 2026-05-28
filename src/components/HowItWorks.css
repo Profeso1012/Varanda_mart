@@ -80,8 +80,8 @@
   justify-content: center;
   align-items: center;
   border-radius: 20px;
-  border: 1px solid #F1F5F9;
-  background: #F6FFF9;
+  border: 1px solid rgba(34, 146, 91, 0.25);
+  background: #FFFFFF;
   color: rgba(245, 158, 11, 0.80);
   font-family: 'Inter', -apple-system, sans-serif;
   font-size: 15px;
