@@ -47,13 +47,14 @@ const SELLER_NAV = [
   {
     group: 'Store Settings',
     items: [
-      { label: 'Business Profile', path: '/settings/business'     },
-      { label: 'Branding',         path: '/settings/branding'     },
-      { label: 'Domain',           path: '/settings/domain'       },
-      { label: 'Shipping',         path: '/settings/shipping'     },
-      { label: 'Policies',         path: '/settings/policies'     },
-      { label: 'Staff',            path: '/settings/staff'        },
-      { label: 'Integrations',     path: '/settings/integrations' },
+      { label: 'Store Settings',    path: '/settings/store'    },
+      { label: 'Payment Settings',  path: '/settings/payment'  },
+      { label: 'Branding',          path: '/settings/branding' },
+      { label: 'Domain',            path: '/settings/domain'   },
+      { label: 'Shipping',          path: '/settings/shipping' },
+      { label: 'Policies',          path: '/settings/policies' },
+      { label: 'Staff',             path: '/settings/staff'    },
+      { label: 'Integrations',      path: '/settings/integrations' },
     ],
   },
   {
@@ -94,9 +95,9 @@ const SUPPLIER_NAV = [
   {
     group: 'Settings',
     items: [
-      { label: 'Business Profile', path: '/supplier/settings/business' },
+      { label: 'Supplier Profile', path: '/settings/supplier-profile' },
+      { label: 'Payout Settings',  path: '/settings/payout'           },
       { label: 'Shipping Regions', path: '/supplier/settings/shipping' },
-      { label: 'Bank Account',     path: '/supplier/settings/bank'     },
     ],
   },
 ];

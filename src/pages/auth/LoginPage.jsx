@@ -20,7 +20,13 @@ const updateRememberedEmail = (rememberMe, email) => {
 export default function LoginPage() {
   const navigate  = useNavigate();
   const location  = useLocation();
-  const { loginWithToken } = useAuth();
+  const { loginWithToken, user } = useAuth();
+
+  // Redirect if already logged in
+  if (user) {
+    navigate('/dashboard', { replace: true });
+    return null;
+  }
 
   const successMessage = location.state?.successMessage || null;
 
@@ -83,9 +89,9 @@ export default function LoginPage() {
     }`;
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center bg-linear-to-br from-gray-300 via-gray-200 to-green-100">
+    <div className="min-h-screen w-full flex flex-col items-center bg-linear-to-br from-gray-300 via-gray-200 to-green-100 px-4 sm:px-8">
 
-      <div className="w-full px-8 pt-6">
+      <div className="w-full pt-6">
         <Link to="/" className="inline-flex items-center gap-1 text-[#1F2A30] text-sm hover:opacity-70 transition-opacity">
           <ChevronLeft size={16} /> Home Page
         </Link>
@@ -95,7 +101,7 @@ export default function LoginPage() {
         <img src="/varanda-logo.png" alt="Varanda Mart" className="h-12 object-contain" />
       </div>
 
-      <div className="w-full max-w-140 bg-white rounded-2xl shadow-sm px-10 py-10 mb-10">
+      <div className="w-full max-w-140 bg-white rounded-2xl shadow-sm px-4 sm:px-10 py-8 sm:py-10 mb-10">
         <h1 className="text-2xl font-bold text-[#1F2A30] text-center mb-1">Welcome Back</h1>
         <p className="text-sm text-[#5C5D86] text-center mb-6">Please enter your required details below</p>
 

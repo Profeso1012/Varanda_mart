@@ -23,6 +23,10 @@ import CategoriesPage             from './pages/categories/CategoriesPage'
 import MarketplacePage            from './pages/marketplace/MarketplacePage'
 import SupplierActivationPage     from './pages/supplier/SupplierActivationPage'
 import TemplatesPage              from './pages/builder/TemplatesPage'
+import StoreSettingsPage          from './pages/settings/StoreSettingsPage'
+import SupplierProfilePage        from './pages/settings/SupplierProfilePage'
+import PaymentSettingsPage        from './pages/settings/PaymentSettingsPage'
+import PayoutSettingsPage         from './pages/settings/PayoutSettingsPage'
 import { useAuth }                from './context/AuthContext'
 import { hasSupplierProfile }     from './lib/authRoutes'
 
@@ -66,6 +70,20 @@ createRoot(document.getElementById('root')).render(
           {/* Templates */}
           <Route path="/templates" element={
             <SellerRoute><TemplatesPage /></SellerRoute>
+          } />
+
+          {/* Settings */}
+          <Route path="/settings/store" element={
+            <SellerRoute><StoreSettingsPage /></SellerRoute>
+          } />
+          <Route path="/settings/payment" element={
+            <SellerRoute><PaymentSettingsPage /></SellerRoute>
+          } />
+          <Route path="/settings/supplier-profile" element={
+            <SellerRoute><SupplierProfilePage /></SellerRoute>
+          } />
+          <Route path="/settings/payout" element={
+            <SellerRoute><PayoutSettingsPage /></SellerRoute>
           } />
 
           {/* Seller products */}
