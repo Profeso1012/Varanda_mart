@@ -1,0 +1,125 @@
+.canvas-renderer {
+  width: 100%;
+  position: relative;
+}
+
+.canvas-renderer__content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+}
+
+.canvas-renderer__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  gap: 12px;
+  color: #9CA3AF;
+  font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+.canvas-renderer__add-btn {
+  padding: 6px 12px;
+  border: 1px dashed #D1D5DB;
+  border-radius: 4px;
+  background: transparent;
+  font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #22925B;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.canvas-renderer__add-btn:hover {
+  border-color: #22925B;
+  background: #EBFEF3;
+}
+
+.canvas-component {
+  position: relative;
+  transition: all 0.15s;
+}
+
+.canvas-component--selected {
+  outline: 2px solid #EC9A5E;
+  outline-offset: 2px;
+  background: rgba(236, 154, 94, 0.02);
+  border-radius: 4px;
+  padding: 2px;
+}
+
+.canvas-component__actions {
+  position: absolute;
+  top: -28px;
+  right: 0;
+  display: flex;
+  gap: 4px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 4px;
+  padding: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  z-index: 15;
+}
+
+.canvas-component__action-btn {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  color: #6B7280;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  transition: all 0.2s;
+}
+
+.canvas-component__action-btn:hover {
+  background: #F3F4F6;
+  color: #1F2A30;
+}
+
+.canvas-component__action-btn--delete:hover {
+  background: #FEE2E2;
+  color: #DC2626;
+}
+
+.canvas-component__text {
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+.canvas-component__button {
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
+  display: inline-block;
+}
+
+.canvas-component__button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.canvas-component__image {
+  display: block;
+  background: #F3F4F6;
+}
+
+.canvas-component__spacer {
+  background: transparent;
+}
+
+.canvas-component__divider {
+  border: none;
+  border-top: 1px solid #E5E7EB;
+  margin: 0;
+}

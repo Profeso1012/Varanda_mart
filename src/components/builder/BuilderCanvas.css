@@ -1,0 +1,113 @@
+.builder-canvas {
+  flex: 1;
+  background: #F8F9FA;
+  overflow-y: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 32px 24px;
+}
+
+.builder-canvas__viewport {
+  width: var(--canvas-width);
+  max-width: 100%;
+  background: #FFFFFF;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.builder-canvas__stage {
+  position: relative;
+  width: 100%;
+}
+
+.builder-canvas__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: 60px 32px;
+  text-align: center;
+  color: #9CA3AF;
+}
+
+.builder-canvas__empty svg {
+  margin-bottom: 16px;
+  color: #D1D5DB;
+}
+
+.builder-canvas__empty p {
+  margin: 0 0 24px;
+  font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #6B7280;
+}
+
+.builder-canvas__empty-btn {
+  padding: 10px 20px;
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  background: #FFFFFF;
+  font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #22925B;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.builder-canvas__empty-btn:hover {
+  border-color: #22925B;
+  background: #EBFEF3;
+}
+
+.section-insertion-point {
+  display: flex;
+  justify-content: center;
+  padding: 12px 0;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.builder-canvas__stage:hover .section-insertion-point {
+  opacity: 1;
+}
+
+.section-insertion-point__btn {
+  padding: 6px 12px;
+  border: 1px dashed #D1D5DB;
+  border-radius: 4px;
+  background: transparent;
+  font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #9CA3AF;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.section-insertion-point__btn:hover {
+  border-color: #22925B;
+  background: #EBFEF3;
+  color: #22925B;
+}
+
+.canvas-section {
+  position: relative;
+  width: 100%;
+  border: 2px solid transparent;
+  transition: all 0.15s;
+}
+
+.canvas-section--hovered {
+  border-color: #6DBBDE;
+  background: rgba(109, 187, 222, 0.02);
+}
+
+.canvas-section--selected {
+  border-color: #3B82F6;
+  background: rgba(59, 130, 246, 0.05);
+  box-shadow: inset 0 0 0 1px #3B82F6;
+}
