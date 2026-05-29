@@ -23,6 +23,7 @@ import CategoriesPage             from './pages/categories/CategoriesPage'
 import MarketplacePage            from './pages/marketplace/MarketplacePage'
 import SupplierActivationPage     from './pages/supplier/SupplierActivationPage'
 import TemplatesPage              from './pages/builder/TemplatesPage'
+import WebsiteBuilderPage         from './pages/builder/WebsiteBuilderPage'
 import StoreSettingsPage          from './pages/settings/StoreSettingsPage'
 import SupplierProfilePage        from './pages/settings/SupplierProfilePage'
 import PaymentSettingsPage        from './pages/settings/PaymentSettingsPage'
@@ -70,6 +71,11 @@ createRoot(document.getElementById('root')).render(
           {/* Templates */}
           <Route path="/templates" element={
             <SellerRoute><TemplatesPage /></SellerRoute>
+          } />
+
+          {/* Builder */}
+          <Route path="/builder" element={
+            <SellerRoute><WebsiteBuilderPage /></SellerRoute>
           } />
 
           {/* Settings */}

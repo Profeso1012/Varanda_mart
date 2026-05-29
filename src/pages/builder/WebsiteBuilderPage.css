@@ -1,0 +1,13 @@
+.builder-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #f8f9fa;
+  overflow: hidden;
+}
+
+.builder-main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
