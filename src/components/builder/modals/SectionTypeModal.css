@@ -1,0 +1,108 @@
+.section-type-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.section-type-modal {
+  background: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 32px;
+}
+
+.section-type-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.section-type-modal__title {
+  margin: 0;
+  font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1F2A30;
+}
+
+.section-type-modal__close {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #E2E8F0;
+  border-radius: 6px;
+  background: #FFFFFF;
+  color: #6B7280;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.section-type-modal__close:hover {
+  background: #F3F4F6;
+  border-color: #D1D5DB;
+  color: #1F2A30;
+}
+
+.section-type-modal__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.section-type-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  background: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.section-type-card:hover {
+  border-color: #22925B;
+  background: #EBFEF3;
+  transform: translateY(-2px);
+}
+
+.section-type-card__icon {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.section-type-card__name {
+  margin: 0;
+  font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1F2A30;
+  text-align: center;
+}
+
+.section-type-card__description {
+  margin: 0;
+  font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 11px;
+  color: #9CA3AF;
+  text-align: center;
+  line-height: 1.3;
+}

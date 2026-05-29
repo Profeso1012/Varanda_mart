@@ -7,6 +7,7 @@ import BuilderHeader from '../../components/builder/BuilderHeader';
 import BuilderLeftPanel from '../../components/builder/BuilderLeftPanel';
 import BuilderCanvas from '../../components/builder/BuilderCanvas';
 import BuilderRightPanel from '../../components/builder/BuilderRightPanel';
+import SectionTypeModal from '../../components/builder/modals/SectionTypeModal';
 import './WebsiteBuilderPage.css';
 
 const DEFAULT_PAGE_SCHEMA = {
@@ -42,6 +43,8 @@ export default function WebsiteBuilderPage() {
   const [isPublishing, setIsPublishing] = useState(false);
   const [publishStatus, setPublishStatus] = useState(null);
   const [pageExpanded, setPageExpanded] = useState({});
+  const [showSectionTypeModal, setShowSectionTypeModal] = useState(false);
+  const [pendingSectionPosition, setPendingSectionPosition] = useState(null);
 
   // Debounced save function
   const debouncedSave = useRef(
@@ -161,38 +164,35 @@ export default function WebsiteBuilderPage() {
     setSelectedComponentId(componentId);
   };
 
-  const handleAddSection = (position) => {
+  const handleAddSectionClick = (position) => {
+    setPendingSectionPosition(position);
+    setShowSectionTypeModal(true);
+  };
+
+  const handleSectionTypeSelect = (sectionType) => {
     const newSection = {
       id: `section-${Date.now()}`,
-      type: 'HERO',
+      type: sectionType,
       config: {
         minHeight: 600,
         backgroundColor: '#FFFFFF',
         padding: { top: 60, right: 0, bottom: 60, left: 0 },
       },
-      components: [
-        {
-          id: `component-${Date.now()}`,
-          type: 'TEXT',
-          config: {
-            content: 'New Section',
-            tag: 'h2',
-            style: { fontSize: 32, fontWeight: 'bold', color: '#1F2A30' },
-          },
-        },
-      ],
+      components: [],
     };
 
     const newSchema = { ...activePageData.schema };
-    if (position === 'top') {
+    if (pendingSectionPosition === 'top') {
       newSchema.sections.unshift(newSection);
-    } else if (position === 'bottom') {
+    } else if (pendingSectionPosition === 'bottom') {
       newSchema.sections.push(newSection);
     } else {
-      newSchema.sections.splice(position + 1, 0, newSection);
+      newSchema.sections.splice(pendingSectionPosition + 1, 0, newSection);
     }
 
     setActivePageData({ ...activePageData, schema: newSchema });
+    setShowSectionTypeModal(false);
+    setPendingSectionPosition(null);
   };
 
   const handleUpdateSectionConfig = (sectionId, configUpdate) => {
@@ -210,16 +210,62 @@ export default function WebsiteBuilderPage() {
     }
   };
 
-  const handleAddComponent = (sectionId) => {
-    const newComponent = {
+  const handleAddComponent = (sectionId, componentType = 'TEXT') => {
+    let newComponent = {
       id: `component-${Date.now()}`,
-      type: 'TEXT',
-      config: {
-        content: 'New component',
-        tag: 'p',
-        style: { fontSize: 16, fontWeight: 'normal', color: '#4F507F' },
-      },
+      type: componentType,
+      config: {},
     };
+
+    // Set default config based on component type
+    switch (componentType) {
+      case 'TEXT':
+        newComponent.config = {
+          content: 'New text',
+          tag: 'p',
+          style: { fontSize: 16, fontWeight: 'normal', color: '#4F507F' },
+        };
+        break;
+      case 'BUTTON':
+        newComponent.config = {
+          label: 'Click me',
+          style: {
+            backgroundColor: '#22925B',
+            color: '#FFFFFF',
+            padding: { top: 10, right: 20, bottom: 10, left: 20 },
+            borderRadius: 6,
+            fontSize: 14,
+            fontWeight: '500',
+          },
+        };
+        break;
+      case 'IMAGE':
+        newComponent.config = {
+          imageSrc: 'https://via.placeholder.com/400x300?text=Image',
+          altText: 'Image',
+          style: { borderRadius: 0 },
+        };
+        break;
+      case 'PRODUCT_CARD':
+        newComponent.config = {
+          productId: '',
+          imageSrc: 'https://via.placeholder.com/300x300?text=Product',
+          productName: 'Product Name',
+          price: '0.00',
+          showPrice: true,
+          showRating: true,
+          showButton: true,
+        };
+        break;
+      case 'SPACER':
+        newComponent.config = { height: 24 };
+        break;
+      case 'DIVIDER':
+        newComponent.config = { style: { color: '#E5E7EB' } };
+        break;
+      default:
+        newComponent.config = { content: 'New component' };
+    }
 
     const newSchema = { ...activePageData.schema };
     const sectionIndex = newSchema.sections.findIndex(s => s.id === sectionId);
@@ -316,7 +362,7 @@ export default function WebsiteBuilderPage() {
           device={device}
           onSectionSelect={handleSectionSelect}
           onComponentSelect={handleComponentSelect}
-          onAddSection={handleAddSection}
+          onAddSection={handleAddSectionClick}
           onDeleteSection={handleDeleteSection}
           onDeleteComponent={handleDeleteComponent}
           onAddComponent={handleAddComponent}
@@ -334,6 +380,16 @@ export default function WebsiteBuilderPage() {
           onSectionSelect={() => setSelectedSectionId(null)}
         />
       </div>
+
+      {showSectionTypeModal && (
+        <SectionTypeModal
+          onSelect={handleSectionTypeSelect}
+          onClose={() => {
+            setShowSectionTypeModal(false);
+            setPendingSectionPosition(null);
+          }}
+        />
+      )}
     </div>
   );
 }
