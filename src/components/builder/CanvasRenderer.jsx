@@ -142,6 +142,28 @@ function CanvasComponent({
           }}
         />
       )}
+
+      {component.type === 'PRODUCT_CARD' && (
+        <div className="canvas-component__product-card">
+          <img
+            src={config.imageSrc || 'https://via.placeholder.com/300x300?text=Product'}
+            alt={config.productName || 'Product'}
+            className="canvas-component__product-image"
+          />
+          <div className="canvas-component__product-info">
+            <h4 className="canvas-component__product-name">{config.productName || 'Product Name'}</h4>
+            {config.showPrice && (
+              <p className="canvas-component__product-price">${config.price || '0.00'}</p>
+            )}
+            {config.showRating && (
+              <p className="canvas-component__product-rating">⭐ 4.5 (120 reviews)</p>
+            )}
+            {config.showButton && (
+              <button className="canvas-component__product-button">Add to Cart</button>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

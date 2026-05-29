@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import CanvasRenderer from './CanvasRenderer';
 import SectionActionBar from './SectionActionBar';
+import ComponentTypeModal from './modals/ComponentTypeModal';
 import './BuilderCanvas.css';
 
 const DEVICE_WIDTHS = {
@@ -23,8 +24,23 @@ export default function BuilderCanvas({
 }) {
   const [hoveredSectionId, setHoveredSectionId] = useState(null);
   const [insertPosition, setInsertPosition] = useState(null);
+  const [showComponentTypeModal, setShowComponentTypeModal] = useState(false);
+  const [pendingComponentSectionId, setPendingComponentSectionId] = useState(null);
 
   const sections = schema?.sections || [];
+
+  const handleAddComponentClick = (sectionId) => {
+    setPendingComponentSectionId(sectionId);
+    setShowComponentTypeModal(true);
+  };
+
+  const handleComponentTypeSelect = (componentType) => {
+    if (pendingComponentSectionId) {
+      onAddComponent(pendingComponentSectionId, componentType);
+      setShowComponentTypeModal(false);
+      setPendingComponentSectionId(null);
+    }
+  };
 
   return (
     <div className="builder-canvas">
@@ -80,7 +96,7 @@ export default function BuilderCanvas({
                     section={section}
                     selectedComponentId={selectedComponentId}
                     onComponentSelect={onComponentSelect}
-                    onAddComponent={() => onAddComponent(section.id)}
+                    onAddComponent={() => handleAddComponentClick(section.id)}
                     onDeleteComponent={(componentId) =>
                       onDeleteComponent(section.id, componentId)
                     }
@@ -101,6 +117,16 @@ export default function BuilderCanvas({
           )}
         </div>
       </div>
+
+      {showComponentTypeModal && (
+        <ComponentTypeModal
+          onSelect={handleComponentTypeSelect}
+          onClose={() => {
+            setShowComponentTypeModal(false);
+            setPendingComponentSectionId(null);
+          }}
+        />
+      )}
     </div>
   );
 }
