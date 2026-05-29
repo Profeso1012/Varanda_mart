@@ -99,15 +99,16 @@
   width: 100%;
   border: 2px solid transparent;
   transition: all 0.15s ease;
+  scroll-margin-top: 100px;
 }
 
 .canvas-section--hovered {
-  border-color: #22925B;
-  background: rgba(34, 146, 91, 0.03);
+  border: 2px solid #22925B;
+  background: rgba(34, 146, 91, 0.02);
 }
 
 .canvas-section--selected {
-  border-color: #22925B;
+  border: 2px solid #22925B;
   background: rgba(34, 146, 91, 0.08);
-  box-shadow: inset 0 0 0 2px #22925B;
+  box-shadow: inset 0 0 0 0px #22925B;
 }

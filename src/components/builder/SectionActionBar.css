@@ -45,9 +45,14 @@
   flex-shrink: 0;
 }
 
-.section-action-bar__btn:hover {
+.section-action-bar__btn:hover:not(:disabled) {
   background: #F3F4F6;
   color: #1F2A30;
+}
+
+.section-action-bar__btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 .section-action-bar__btn--delete:hover {

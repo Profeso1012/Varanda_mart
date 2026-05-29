@@ -282,6 +282,42 @@ export default function WebsiteBuilderPage() {
     setSelectedSectionId(null);
   };
 
+  const handleDuplicateSection = (sectionId, position) => {
+    const newSchema = { ...activePageData.schema };
+    const sectionIndex = newSchema.sections.findIndex(s => s.id === sectionId);
+    if (sectionIndex >= 0) {
+      const originalSection = newSchema.sections[sectionIndex];
+      const duplicatedSection = {
+        ...originalSection,
+        id: `section-${Date.now()}`,
+        components: originalSection.components.map(c => ({
+          ...c,
+          id: `component-${Date.now()}-${Math.random()}`,
+        })),
+      };
+      newSchema.sections.splice(sectionIndex + 1, 0, duplicatedSection);
+      setActivePageData({ ...activePageData, schema: newSchema });
+    }
+  };
+
+  const handleMoveSectionUp = (sectionId, position) => {
+    if (position <= 0) return;
+    const newSchema = { ...activePageData.schema };
+    const section = newSchema.sections[position];
+    newSchema.sections.splice(position, 1);
+    newSchema.sections.splice(position - 1, 0, section);
+    setActivePageData({ ...activePageData, schema: newSchema });
+  };
+
+  const handleMoveSectionDown = (sectionId, position) => {
+    const newSchema = { ...activePageData.schema };
+    if (position >= newSchema.sections.length - 1) return;
+    const section = newSchema.sections[position];
+    newSchema.sections.splice(position, 1);
+    newSchema.sections.splice(position + 1, 0, section);
+    setActivePageData({ ...activePageData, schema: newSchema });
+  };
+
   const handleDeleteComponent = (sectionId, componentId) => {
     const newSchema = { ...activePageData.schema };
     const sectionIndex = newSchema.sections.findIndex(s => s.id === sectionId);
@@ -366,6 +402,9 @@ export default function WebsiteBuilderPage() {
           onDeleteSection={handleDeleteSection}
           onDeleteComponent={handleDeleteComponent}
           onAddComponent={handleAddComponent}
+          onDuplicateSection={handleDuplicateSection}
+          onMoveSectionUp={handleMoveSectionUp}
+          onMoveSectionDown={handleMoveSectionDown}
         />
 
         <BuilderRightPanel

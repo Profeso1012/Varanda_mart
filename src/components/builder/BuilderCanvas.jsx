@@ -21,6 +21,9 @@ export default function BuilderCanvas({
   onDeleteSection,
   onDeleteComponent,
   onAddComponent,
+  onDuplicateSection,
+  onMoveSectionUp,
+  onMoveSectionDown,
 }) {
   const [hoveredSectionId, setHoveredSectionId] = useState(null);
   const [insertPosition, setInsertPosition] = useState(null);
@@ -40,6 +43,10 @@ export default function BuilderCanvas({
       setShowComponentTypeModal(false);
       setPendingComponentSectionId(null);
     }
+  };
+
+  const getSelectedSectionIndex = () => {
+    return sections.findIndex(s => s.id === selectedSectionId);
   };
 
   return (
@@ -89,6 +96,11 @@ export default function BuilderCanvas({
                     <SectionActionBar
                       section={section}
                       onDelete={() => onDeleteSection(section.id)}
+                      onDuplicate={() => onDuplicateSection ? onDuplicateSection(section.id, idx) : null}
+                      onMoveUp={() => onMoveSectionUp ? onMoveSectionUp(section.id, idx) : null}
+                      onMoveDown={() => onMoveSectionDown ? onMoveSectionDown(section.id, idx) : null}
+                      canMoveUp={idx > 0}
+                      canMoveDown={idx < sections.length - 1}
                     />
                   )}
 

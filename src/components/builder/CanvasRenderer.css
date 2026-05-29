@@ -46,11 +46,10 @@
 }
 
 .canvas-component--selected {
-  outline: 2px solid #EC9A5E;
-  outline-offset: 2px;
-  background: rgba(236, 154, 94, 0.02);
+  outline: 3px solid #EC9A5E;
+  outline-offset: 1px;
+  background: rgba(236, 154, 94, 0.05);
   border-radius: 4px;
-  padding: 2px;
 }
 
 .canvas-component__actions {

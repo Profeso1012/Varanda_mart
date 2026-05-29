@@ -1,5 +1,38 @@
 import './BuilderLeftPanel.css';
 
+const SECTION_TYPE_ICONS = {
+  HERO: '🎨',
+  PRODUCT_GRID: '🎯',
+  FEATURES: '⭐',
+  CTA: '🚀',
+  TESTIMONIALS: '💬',
+  FAQ: '❓',
+  GALLERY: '🖼',
+  CONTACT: '📧',
+  NEWSLETTER: '📰',
+  STATS: '📊',
+  DEFAULT: '◆',
+};
+
+function getSectionDisplayName(section, index, typeCounts) {
+  const typeMap = {};
+  let currentTypeIndex = 0;
+
+  for (let s of (section._pageSchema?.sections || [])) {
+    if (!typeMap[s.type]) {
+      typeMap[s.type] = 0;
+    }
+    if (s.id === section.id) {
+      currentTypeIndex = typeMap[s.type] + 1;
+    }
+    typeMap[s.type]++;
+  }
+
+  const sectionType = section.type || 'DEFAULT';
+  const count = currentTypeIndex || index + 1;
+  return `${sectionType}-${count}`;
+}
+
 export default function BuilderLeftPanel({
   pages,
   activePage,
@@ -13,6 +46,25 @@ export default function BuilderLeftPanel({
       ...pageExpanded,
       [pageType]: !pageExpanded[pageType],
     });
+  };
+
+  const getSectionIcon = (sectionType) => {
+    return SECTION_TYPE_ICONS[sectionType] || SECTION_TYPE_ICONS.DEFAULT;
+  };
+
+  const getSectionName = (section, idx) => {
+    const type = section.type || 'DEFAULT';
+    const typeCount = schema?.sections?.filter(s => (s.type || 'DEFAULT') === type).length || 1;
+    const typeIndex = schema?.sections?.findIndex(s => s.id === section.id) || idx;
+
+    let count = 1;
+    if (schema?.sections) {
+      for (let i = 0; i <= typeIndex; i++) {
+        if (schema.sections[i].type === type) count++;
+      }
+    }
+
+    return `${type}-${count - 1}`;
   };
 
   return (
@@ -48,9 +100,11 @@ export default function BuilderLeftPanel({
                 {schema.sections && schema.sections.length > 0 ? (
                   schema.sections.map((section, idx) => (
                     <div key={section.id} className="section-list-item">
-                      <span className="section-list-item__icon">◆</span>
-                      <span className="section-list-item__name">
-                        Section {idx + 1}
+                      <span className="section-list-item__icon">
+                        {getSectionIcon(section.type)}
+                      </span>
+                      <span className="section-list-item__name" title={getSectionName(section, idx)}>
+                        {getSectionName(section, idx)}
                       </span>
                     </div>
                   ))
