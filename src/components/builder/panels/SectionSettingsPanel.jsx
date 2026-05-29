@@ -6,8 +6,9 @@ export default function SectionSettingsPanel({
   onConfigUpdate,
   onBack,
 }) {
-  const [showCardStyler, setShowCardStyler] = useState(false);
   const config = section.config || {};
+  const minHeight = config.minHeight || 400;
+  const borderRadius = config.borderRadius || 0;
 
   return (
     <div className="settings-panel">
@@ -20,32 +21,115 @@ export default function SectionSettingsPanel({
             <path d="M19 12H5M12 5l-7 7 7 7" />
           </svg>
         </button>
-        <h3 className="settings-panel__title">Section Config</h3>
+        <h3 className="settings-panel__title">Hero Section</h3>
       </div>
 
       <div className="settings-group">
-        <label className="settings-label">Section Title</label>
+        <label className="settings-label">Layout</label>
+        <div className="layout-options">
+          <button
+            className={`layout-option ${config.layout === 'text-image' ? 'layout-option--active' : ''}`}
+            onClick={() => onConfigUpdate({ layout: 'text-image' })}
+            title="Text with Image"
+          >
+            <div className="layout-preview">
+              <div className="layout-preview__text"></div>
+              <div className="layout-preview__image"></div>
+            </div>
+            <span>Text</span>
+          </button>
+
+          <button
+            className={`layout-option ${config.layout === 'text-only' ? 'layout-option--active' : ''}`}
+            onClick={() => onConfigUpdate({ layout: 'text-only' })}
+            title="Text Only"
+          >
+            <div className="layout-preview layout-preview--center">
+              <div className="layout-preview__text"></div>
+            </div>
+            <span>Text</span>
+          </button>
+
+          <button
+            className={`layout-option ${config.layout === 'image-only' ? 'layout-option--active' : ''}`}
+            onClick={() => onConfigUpdate({ layout: 'image-only' })}
+            title="Image Only"
+          >
+            <div className="layout-preview">
+              <div className="layout-preview__image" style={{ flex: 1 }}></div>
+            </div>
+            <span>Text Only</span>
+          </button>
+        </div>
+      </div>
+
+      <div className="settings-group">
+        <label className="settings-label">Section Height</label>
+        <div className="slider-group">
+          <input
+            type="range"
+            className="slider-input"
+            min="400"
+            max="800"
+            step="50"
+            value={minHeight}
+            onChange={(e) => onConfigUpdate({ minHeight: parseInt(e.target.value) })}
+          />
+          <div className="slider-labels">
+            <span>400px</span>
+            <span>800px</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="settings-group">
+        <label className="settings-label">Background</label>
+        <div className="color-picker">
+          <input
+            type="color"
+            className="color-picker__input"
+            value={config.backgroundColor || '#E2E8F0'}
+            onChange={(e) => onConfigUpdate({ backgroundColor: e.target.value })}
+          />
+          <span className="color-picker__label">Choose color</span>
+        </div>
+      </div>
+
+      <div className="settings-group">
+        <label className="settings-label">Alignment</label>
+        <div className="alignment-buttons">
+          {['L', 'C', 'R'].map((align) => (
+            <button
+              key={align}
+              className={`alignment-btn ${config.contentAlignment === align ? 'alignment-btn--active' : ''}`}
+              onClick={() => onConfigUpdate({ contentAlignment: align })}
+            >
+              {align}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="settings-group">
+        <label className="settings-label">Label</label>
         <input
           type="text"
           className="settings-input"
-          placeholder="Optional section name"
-          value={config.title || ''}
-          onChange={(e) => onConfigUpdate({ title: e.target.value })}
+          placeholder="Optional label"
+          value={config.label || ''}
+          onChange={(e) => onConfigUpdate({ label: e.target.value })}
         />
       </div>
 
       <div className="settings-group">
-        <label className="settings-label">Minimum Height</label>
-        <div className="settings-number-group">
-          <input
-            type="number"
-            className="settings-input"
-            value={config.minHeight || 400}
-            onChange={(e) => onConfigUpdate({ minHeight: parseInt(e.target.value) })}
-            min="100"
-          />
-          <span className="settings-unit">px</span>
-        </div>
+        <label className="settings-label">Link</label>
+        <input
+          type="text"
+          className="settings-input"
+          placeholder="Optional link"
+          value={config.link || ''}
+          onChange={(e) => onConfigUpdate({ link: e.target.value })}
+        />
       </div>
 
       <div className="settings-group">
@@ -54,131 +138,43 @@ export default function SectionSettingsPanel({
           <input
             type="color"
             className="color-picker__input"
-            value={config.backgroundColor || '#FFFFFF'}
+            value={config.backgroundColor || '#E2E8F0'}
             onChange={(e) => onConfigUpdate({ backgroundColor: e.target.value })}
           />
-          <span className="color-picker__value">
-            {config.backgroundColor || '#FFFFFF'}
-          </span>
+          <span className="color-picker__label">Choose color</span>
         </div>
       </div>
 
       <div className="settings-group">
-        <label className="settings-label">Content Alignment</label>
-        <div className="alignment-buttons">
-          {['LEFT', 'CENTER', 'RIGHT'].map((align) => (
-            <button
-              key={align}
-              className={`alignment-btn ${config.contentAlignment === align ? 'alignment-btn--active' : ''}`}
-              onClick={() => onConfigUpdate({ contentAlignment: align })}
-            >
-              {align[0]}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className="settings-divider" />
-
-      <label className="settings-checkbox">
-        <input
-          type="checkbox"
-          checked={config.showSectionTitle || false}
-          onChange={(e) => onConfigUpdate({ showSectionTitle: e.target.checked })}
-        />
-        <span>Show section title</span>
-      </label>
-
-      <button
-        className="settings-btn settings-btn--primary"
-        onClick={() => setShowCardStyler(!showCardStyler)}
-      >
-        Card Styler
-      </button>
-
-      {showCardStyler && (
-        <CardStylerPanel config={config} onConfigUpdate={onConfigUpdate} />
-      )}
-    </div>
-  );
-}
-
-function CardStylerPanel({ config, onConfigUpdate }) {
-  const cardConfig = config.cardConfig || {};
-
-  return (
-    <div className="card-styler-panel">
-      <h4 className="card-styler__title">Card Styling</h4>
-
-      <div className="settings-group">
-        <label className="settings-label">Image Shape</label>
-        <div className="shape-buttons">
-          {['Square', 'Portrait', 'Circle', 'Rounded'].map((shape) => (
-            <button
-              key={shape}
-              className={`shape-btn ${cardConfig.imageShape === shape ? 'shape-btn--active' : ''}`}
-              onClick={() => onConfigUpdate({ cardConfig: { ...cardConfig, imageShape: shape } })}
-            >
-              {shape}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className="settings-group">
-        <label className="settings-label">Card Background</label>
+        <label className="settings-label">Text Color</label>
         <div className="color-picker">
           <input
             type="color"
             className="color-picker__input"
-            value={cardConfig.backgroundColor || '#FFFFFF'}
-            onChange={(e) =>
-              onConfigUpdate({ cardConfig: { ...cardConfig, backgroundColor: e.target.value } })
-            }
+            value={config.textColor || '#1F2A30'}
+            onChange={(e) => onConfigUpdate({ textColor: e.target.value })}
           />
-          <span className="color-picker__value">
-            {cardConfig.backgroundColor || '#FFFFFF'}
-          </span>
+          <span className="color-picker__label">Choose color</span>
         </div>
       </div>
 
       <div className="settings-group">
-        <label className="settings-checkbox">
+        <label className="settings-label">Border Radius</label>
+        <div className="slider-group">
           <input
-            type="checkbox"
-            checked={cardConfig.showPrice || false}
-            onChange={(e) =>
-              onConfigUpdate({ cardConfig: { ...cardConfig, showPrice: e.target.checked } })
-            }
+            type="range"
+            className="slider-input"
+            min="0"
+            max="40"
+            step="5"
+            value={borderRadius}
+            onChange={(e) => onConfigUpdate({ borderRadius: parseInt(e.target.value) })}
           />
-          <span>Show price</span>
-        </label>
-      </div>
-
-      <div className="settings-group">
-        <label className="settings-checkbox">
-          <input
-            type="checkbox"
-            checked={cardConfig.showRating || false}
-            onChange={(e) =>
-              onConfigUpdate({ cardConfig: { ...cardConfig, showRating: e.target.checked } })
-            }
-          />
-          <span>Show rating</span>
-        </label>
-      </div>
-
-      <div className="settings-group">
-        <label className="settings-checkbox">
-          <input
-            type="checkbox"
-            checked={cardConfig.showAddToCart || false}
-            onChange={(e) =>
-              onConfigUpdate({ cardConfig: { ...cardConfig, showAddToCart: e.target.checked } })
-            }
-          />
-          <span>Show "Add to Cart" button</span>
-        </label>
+          <div className="slider-labels">
+            <span>0px</span>
+            <span>40px</span>
+          </div>
+        </div>
       </div>
     </div>
   );

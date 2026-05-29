@@ -12,8 +12,8 @@
   width: var(--canvas-width);
   max-width: 100%;
   background: #FFFFFF;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
   overflow: hidden;
 }
 
@@ -98,16 +98,16 @@
   position: relative;
   width: 100%;
   border: 2px solid transparent;
-  transition: all 0.15s;
+  transition: all 0.15s ease;
 }
 
 .canvas-section--hovered {
-  border-color: #6DBBDE;
-  background: rgba(109, 187, 222, 0.02);
+  border-color: #22925B;
+  background: rgba(34, 146, 91, 0.03);
 }
 
 .canvas-section--selected {
-  border-color: #3B82F6;
-  background: rgba(59, 130, 246, 0.05);
-  box-shadow: inset 0 0 0 1px #3B82F6;
+  border-color: #22925B;
+  background: rgba(34, 146, 91, 0.08);
+  box-shadow: inset 0 0 0 2px #22925B;
 }
