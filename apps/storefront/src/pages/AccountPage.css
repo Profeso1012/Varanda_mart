@@ -1,0 +1,200 @@
+/* apps/storefront/src/pages/AccountPage.css */
+.account-page { padding: 48px 0 80px; min-height: 70vh; }
+
+.account-page__layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* Sidebar */
+.account-sidebar {
+  background: #fff;
+  border: 1px solid var(--brand-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: sticky;
+  top: 80px;
+}
+
+.account-sidebar__profile {
+  display: flex; align-items: center; gap: 12px;
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--brand-border);
+  background: var(--brand-surface);
+}
+
+.account-sidebar__avatar {
+  width: 44px; height: 44px;
+  background: var(--brand-primary);
+  color: #fff;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; font-weight: 700; flex-shrink: 0;
+}
+
+.account-sidebar__name {
+  font-weight: 600; font-size: 0.9rem;
+  color: var(--brand-text);
+}
+.account-sidebar__email {
+  font-size: 0.78rem; color: var(--brand-muted);
+  word-break: break-all;
+}
+
+.account-sidebar__nav {
+  display: flex; flex-direction: column;
+  padding: 8px 0;
+}
+
+.account-sidebar__link {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 20px;
+  font-size: 0.875rem; font-weight: 500;
+  color: var(--brand-text);
+  transition: var(--transition);
+  border-left: 3px solid transparent;
+}
+.account-sidebar__link:hover {
+  background: var(--brand-surface);
+  color: var(--brand-primary);
+}
+.account-sidebar__link--active {
+  border-left-color: var(--brand-primary);
+  color: var(--brand-primary);
+  background: color-mix(in srgb, var(--brand-primary) 6%, transparent);
+}
+.account-sidebar__chevron { margin-left: auto; opacity: 0.4; }
+
+.account-sidebar__logout {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 20px;
+  margin: 8px 0 8px;
+  font-size: 0.875rem; font-weight: 500;
+  color: #ef4444;
+  background: transparent; border: none;
+  cursor: pointer; font-family: inherit;
+  transition: var(--transition);
+  width: 100%; text-align: left;
+}
+.account-sidebar__logout:hover { background: #fee2e2; }
+
+/* Content area */
+.account-content { min-width: 0; }
+.account-content__title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem; font-weight: 700;
+  margin-bottom: 24px; color: var(--brand-text);
+}
+.account-content__header {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-bottom: 24px;
+}
+.account-content__header .account-content__title { margin-bottom: 0; }
+
+/* Account form */
+.account-form {
+  display: flex; flex-direction: column; gap: 16px;
+  max-width: 560px;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+/* Empty state */
+.account-empty {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 16px;
+  padding: 60px 24px; text-align: center;
+  color: var(--brand-muted);
+}
+.account-empty p { font-size: 0.95rem; }
+
+/* Checkbox */
+.account-checkbox {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.875rem; cursor: pointer;
+}
+.account-checkbox input { accent-color: var(--brand-primary); width: 16px; height: 16px; }
+
+/* Addresses grid */
+.addresses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.address-card {
+  border: 1.5px solid var(--brand-border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  position: relative;
+  transition: var(--transition);
+}
+.address-card--default { border-color: var(--brand-primary); }
+.address-card:hover { box-shadow: var(--shadow-sm); }
+.address-card__default-badge { position: absolute; top: 10px; right: 10px; }
+.address-card__label { font-weight: 700; font-size: 0.875rem; margin-bottom: 6px; }
+.address-card__name { font-weight: 600; font-size: 0.875rem; }
+.address-card__line { font-size: 0.825rem; color: var(--brand-muted); margin-top: 2px; }
+.address-card__phone { font-size: 0.825rem; color: var(--brand-muted); margin-top: 6px; }
+.address-card__actions {
+  display: flex; gap: 6px;
+  margin-top: 14px; padding-top: 12px;
+  border-top: 1px solid var(--brand-border);
+}
+
+/* Orders list */
+.orders-list { display: flex; flex-direction: column; }
+
+.order-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 12px;
+  border-bottom: 1px solid var(--brand-border);
+  cursor: pointer; transition: var(--transition);
+  border-radius: var(--radius-sm);
+}
+.order-row:hover { background: var(--brand-surface); }
+.order-row:last-child { border-bottom: none; }
+.order-row__main { display: flex; flex-direction: column; gap: 2px; }
+.order-row__num { font-weight: 600; font-size: 0.9rem; }
+.order-row__date { font-size: 0.8rem; color: var(--brand-muted); }
+.order-row__right {
+  display: flex; align-items: center; gap: 12px;
+  flex-shrink: 0;
+}
+.order-row__total { font-weight: 700; font-size: 0.9rem; }
+.order-row__chevron { color: var(--brand-muted); }
+
+/* Order detail */
+.order-detail__header {
+  display: flex; justify-content: space-between;
+  align-items: flex-start; margin-bottom: 24px;
+}
+
+.order-detail__tracking {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 16px;
+  background: #dbeafe;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem; margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.order-detail__items {
+  border-top: 1px solid var(--brand-border);
+}
+
+/* Responsive */
+@media (max-width: 860px) {
+  .account-page__layout { grid-template-columns: 1fr; }
+  .account-sidebar { position: static; }
+  .account-sidebar__nav { flex-direction: row; overflow-x: auto; padding: 0; }
+  .account-sidebar__link { border-left: none; border-bottom: 3px solid transparent; white-space: nowrap; }
+  .account-sidebar__link--active { border-bottom-color: var(--brand-primary); border-left-color: transparent; }
+  .account-sidebar__logout { border-top: 1px solid var(--brand-border); margin: 0; }
+  .account-sidebar__profile { display: none; }
+}
+@media (max-width: 480px) {
+  .form-row { grid-template-columns: 1fr; }
+  .addresses-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,292 @@
+/* ─── Who It's For Section ─────────────────────────────── */
+.who-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  padding: 72px 80px;
+  background: linear-gradient(to bottom, #22925B 0%, #176840 50%, #153324 100%);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ─── Header ──────────────────────────────────────────── */
+.who-section__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.who-section__title {
+  color: var(--white);
+  font-family: 'Poppins', -apple-system, sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  margin: 0;
+}
+
+.who-section__subtitle {
+  color: rgba(255, 255, 255, 0.85);
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  text-align: center;
+  margin: 0;
+}
+
+/* ─── Container ───────────────────────────────────────── */
+.who-section__container {
+  width: 100%;
+  max-width: 1280px;
+}
+
+/* ─── Cards Grid ──────────────────────────────────────── */
+.who-section__grid {
+  display: flex;
+  align-items: stretch;
+  gap: 20px;
+  width: 100%;
+}
+
+/* ─── Carousel (mobile) ────────────────────────────────── */
+.who-carousel {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+}
+
+.who-carousel__viewport {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.who-carousel__track {
+  display: flex;
+  gap: 0;
+  transition: transform 0.5s ease;
+}
+
+.who-carousel__slide {
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.who-carousel__indicators {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.who-carousel__indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: background 0.3s ease;
+  padding: 0;
+}
+
+.who-carousel__indicator.active {
+  background: var(--white);
+}
+
+/* ─── Individual Card ─────────────────────────────────── */
+.who-card {
+  position: relative;
+  flex: 1;
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: 240px;
+  cursor: pointer;
+}
+
+.who-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.who-card:hover .who-card__image {
+  transform: scale(1.05);
+}
+
+/* ─── Card Label ──────────────────────────────────────── */
+.who-card__label {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(4px);
+  border-radius: 999px;
+  padding: 8px 14px 8px 10px;
+  white-space: nowrap;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.who-card__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #F5A623;
+  flex-shrink: 0;
+}
+
+.who-card__label-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+}
+
+.who-card__label-text {
+  color: #1F2A30;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* ─── Large Desktop (≤ 1200px) ───────────────────────── */
+@media (max-width: 1200px) {
+  .who-section {
+    padding: 64px 48px;
+  }
+
+  .who-section__grid {
+    gap: 16px;
+  }
+
+  .who-card__label-text {
+    font-size: 12px;
+  }
+}
+
+/* ─── Tablet (≤ 900px) ────────────────────────────────── */
+@media (max-width: 900px) {
+  .who-section {
+    padding: 56px 32px;
+    gap: 36px;
+  }
+
+  .who-section__title {
+    font-size: 32px;
+  }
+
+  .who-section__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .who-card {
+    min-height: 260px;
+  }
+}
+
+/* ─── Small Tablet (≤ 640px) ─────────────────────────── */
+@media (max-width: 640px) {
+  .who-section {
+    padding: 48px 20px;
+    gap: 28px;
+  }
+
+  .who-section__title {
+    font-size: 28px;
+  }
+
+  .who-section__subtitle {
+    font-size: 14px;
+  }
+
+  .who-section__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .who-card {
+    min-height: 200px;
+  }
+
+  .who-card__label {
+    padding: 6px 10px 6px 8px;
+    gap: 4px;
+    bottom: 10px;
+  }
+
+  .who-card__label-text {
+    font-size: 10px;
+  }
+
+  .who-card__dot {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+/* ─── Mobile (≤ 420px) ────────────────────────────────── */
+@media (max-width: 420px) {
+  .who-section {
+    padding: 40px 16px;
+    gap: 24px;
+  }
+
+  .who-section__title {
+    font-size: 24px;
+  }
+
+  .who-section__grid {
+    display: none;
+  }
+
+  .who-carousel {
+    display: flex;
+  }
+
+  .who-carousel__viewport {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    border-radius: 20px 20px 16px 16px;
+    overflow: hidden;
+  }
+
+  .who-card {
+    width: 100%;
+    aspect-ratio: 1;
+    min-height: unset;
+    border-radius: 0;
+  }
+
+  .who-card__label-icon {
+    display: none;
+  }
+
+  .who-card__label-text {
+    font-size: 11px;
+  }
+}

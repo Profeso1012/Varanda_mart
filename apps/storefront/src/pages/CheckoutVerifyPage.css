@@ -1,0 +1,73 @@
+/* apps/storefront/src/pages/CheckoutVerifyPage.css */
+.verify-page {
+  min-height: 100vh;
+  background: var(--brand-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+.verify-page__card {
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+  padding: 48px 40px;
+}
+
+.verify-page__brand {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 36px;
+}
+.verify-page__logo { height: 36px; object-fit: contain; }
+.verify-page__store-name {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--brand-primary);
+}
+
+.verify-page__state { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+
+.verify-page__pulse { margin-bottom: 8px; }
+
+.verify-page__icon {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 8px;
+}
+.verify-page__icon--success { background: #dcfce7; color: #16a34a; }
+.verify-page__icon--error   { background: #fee2e2; color: #ef4444; }
+.verify-page__icon--timeout { background: #fef9c3; color: #d97706; }
+
+.verify-page__title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.verify-page__sub {
+  color: var(--brand-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 340px;
+}
+
+.verify-page__order-num {
+  font-size: 0.85rem;
+  color: var(--brand-muted);
+  background: var(--brand-surface);
+  padding: 6px 16px;
+  border-radius: 99px;
+  font-weight: 500;
+}
+
+.verify-page__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 8px;
+}

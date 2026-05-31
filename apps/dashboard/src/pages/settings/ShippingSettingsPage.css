@@ -1,0 +1,185 @@
+/* apps/dashboard/src/pages/settings/ShippingSettingsPage.css */
+
+.shipping-settings {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.shipping-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .shipping-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.card-header-flex h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0;
+}
+
+/* Empty Zones */
+.shipping-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 64px 24px;
+  gap: 16px;
+}
+.shipping-empty h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Zone List */
+.zones-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.zone-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.zone-header {
+  padding: 20px;
+  background: var(--surface-muted);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.zone-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+.zone-regions {
+  font-size: 0.875rem;
+  color: var(--text-main);
+  line-height: 1.4;
+}
+
+.zone-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Zone Rates */
+.zone-rates {
+  padding: 20px;
+}
+.zone-rates-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.zone-rates-header h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.rates-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.rates-table td {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.875rem;
+  color: var(--text-main);
+}
+.rates-table tr:last-child td {
+  border-bottom: none;
+}
+.rate-desc {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Shipbubble Sidebar */
+.shipbubble-card {
+  padding: 24px;
+}
+.shipbubble-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.shipbubble-logo {
+  width: 32px;
+  height: 32px;
+  background: #3b82f6;
+  color: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.shipbubble-header h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.shipbubble-status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-muted);
+  border: 1px solid var(--border-color);
+}
+.shipbubble-status.connected {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+  color: #16a34a;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  flex-wrap: wrap;
+}
+
+/* Add Region Form */
+.add-region-form {
+  background: var(--surface-muted);
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+}
+
+.btn--danger {
+  color: #ef4444 !important;
+}
+.btn--danger:hover {
+  background: #fee2e2 !important;
+}

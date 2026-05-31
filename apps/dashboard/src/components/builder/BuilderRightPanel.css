@@ -1,0 +1,15 @@
+.builder-right-panel {
+  width: 300px;
+  background: #FFFFFF;
+  border-left: 1px solid #E2E8F0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.builder-right-panel__container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}

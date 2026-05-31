@@ -1,0 +1,63 @@
+.builder-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #f8f9fa;
+  overflow: hidden;
+}
+
+.builder-main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Mobile: Make builder scrollable horizontally */
+@media (max-width: 768px) {
+  .builder-main {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Ensure panels don't shrink on mobile */
+  .builder-main > * {
+    flex-shrink: 0;
+  }
+}
+
+/* Loading / error states */
+.builder-loading,
+.builder-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 16px;
+  color: #6B7280;
+  font-size: 14px;
+}
+
+.builder-loading__spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #E5E7EB;
+  border-top-color: #22925B;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.builder-error button {
+  padding: 8px 16px;
+  background: #22925B;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}

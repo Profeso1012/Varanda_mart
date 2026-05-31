@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Devtley — Brand. Code. Evolve.</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --accent: #4ecca3;
+      --accent-purple: #4b3a7a;
+      --accent-ash: #9090a8;
+      --sidebar-w: 22vw;
+      --indigo: #3d2080;
+    }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #111; }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+    * { scrollbar-width: thin; scrollbar-color: var(--accent) #111; }
+
+    body { font-family: 'Barlow', sans-serif; background: #1a1a1a; color: #fff; overflow-x: hidden; overflow-y: auto; }
+
+    .cursor {
+      display: inline-block; width: 3px; height: 0.85em;
+      background: var(--accent); margin-left: 3px;
+      vertical-align: middle; animation: blink 0.75s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .nav-link {
+      display: flex; align-items: center; gap: 12px;
+      padding: 11px 22px; text-decoration: none;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.68rem; letter-spacing: 2px; font-weight: 300;
+      text-transform: uppercase; transition: color 0.2s, background 0.2s;
+    }
+    .nav-link:hover { color: #fff; }
+    .rect {
+      width: 20px; height: 5px; border-radius: 1px;
+      background: rgba(255,255,255,0.15); flex-shrink: 0; transition: background 0.2s;
+    }
+    .nav-link.active .rect { background: var(--lc); }
+    .nav-link:hover .rect { background: var(--lc); opacity: 0.75; }
+    .sd { width: 20px; height: 5px; border-radius: 1px; background: rgba(255,255,255,0.18); }
+
+    .about-label {
+      font-size: 0.72rem; letter-spacing: 3px; color: var(--accent);
+      text-transform: uppercase; font-weight: 400;
+    }
+    .about-heading { font-family: 'Space Mono', monospace; }
+    .about-heading span { color: var(--accent); }
+    .capability-item { border-top: 1px solid rgba(78,204,163,0.25); }
+    .val-dot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--accent); flex-shrink: 0; margin-top: 3px; }
+    .dashed-box { border: 1px dashed rgba(78,204,163,0.25); }
+
+    .sidebar-socials-mobile { display: none; }
+    .header-socials { display: flex; }
+
+    @media (max-width: 768px) {
+      .sidebar-socials-mobile { display: flex; }
+      .header-socials { display: none; }
+      #sidebar { width: 100vw !important; max-width: 100vw !important; min-width: unset !important; }
+    }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── DEVTLEY LOGO HEADER ── */
+    .devtley-brand {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .devtley-brand img {
+      height: 36px; width: auto;
+    }
+    .devtley-brand-text {
+      font-family: 'Space Mono', monospace;
+      font-size: 1.25rem; font-weight: 700;
+      background: linear-gradient(135deg, #7b5ce0 0%, var(--accent) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; letter-spacing: -0.5px;
+    }
+
+    /* ── PORTFOLIO TICKER ── */
+    .portfolio-ticker-wrap {
+      width: 100%; overflow: hidden; padding: 40px 0;
+      position: relative;
+    }
+    .ticker-row {
+      display: flex; gap: 20px; width: max-content;
+      padding: 10px 0;
+    }
+    .ticker-row-up {
+      animation: tickerLeft 28s linear infinite;
+    }
+    .ticker-row-down {
+      animation: tickerLeft 35s linear infinite reverse;
+      margin-top: 20px;
+    }
+    @keyframes tickerLeft {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .ticker-card {
+      flex-shrink: 0;
+      background: rgba(15,15,15,0.9);
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      border: 1px solid rgba(255,255,255,0.07);
+      min-width: 160px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .ticker-card:hover {
+      transform: translateY(-6px) scale(1.04);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.6);
+    }
+    .ticker-card .tc-label {
+      font-size: 0.62rem; letter-spacing: 2px; text-transform: uppercase;
+      font-family: 'Space Mono', monospace;
+    }
+
+    /* ── TECH LOGOS STRIP ── */
+    .tech-strip {
+      display: flex; gap: 48px; align-items: center;
+      width: max-content;
+      animation: techScroll 30s linear infinite;
+    }
+    @keyframes techScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .tech-logo-item {
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      opacity: 0.55; transition: opacity 0.3s, transform 0.3s;
+      flex-shrink: 0;
+    }
+    .tech-logo-item:hover { opacity: 1; transform: translateY(-4px); }
+    .tech-logo-item img { height: 48px; width: auto; object-fit: contain; }
+    .tech-logo-item span {
+      font-size: 0.58rem; letter-spacing: 1.5px; text-transform: uppercase;
+      font-family: 'Space Mono', monospace; color: rgba(255,255,255,0.4);
+    }
+
+    /* Step rows */
+    .step-row {
+      display: flex; gap: 20px; padding: 18px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      align-items: flex-start;
+    }
+    .step-num {
+      font-family:'Space Mono',monospace; font-size:0.65rem;
+      color:var(--accent); letter-spacing:2px; min-width:28px; padding-top:3px; opacity:0.7;
+    }
+    .step-body { flex:1; }
+    .step-title { font-size:0.95rem; font-weight:600; margin-bottom:4px; color:#fff; }
+    .step-desc { font-size:0.82rem; font-weight:300; color:rgba(255,255,255,0.42); line-height:1.65; }
+
+    /* How We Work hub */
+    .hw-hub {
+      position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+      z-index:5; display:flex; flex-direction:column; align-items:center; gap:8px;
+    }
+    .hw-hub-label {
+      font-size:0.6rem; letter-spacing:2px; color:rgba(255,255,255,0.5); text-transform:uppercase;
+      font-family:'Space Mono',monospace;
+    }
+    .hw-bus-svg {
+      position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:2;
+    }
+    .hw-icon {
+      position:absolute; z-index:6;
+      display:flex; flex-direction:column; align-items:center; gap:6px;
+    }
+    .hw-icon-box {
+      width:58px; height:58px; border-radius:8px; background:#1a1a1a;
+      border:1px solid color-mix(in srgb, var(--ic) 30%, transparent);
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 4px 20px rgba(0,0,0,0.5), 0 0 12px color-mix(in srgb, var(--ic) 10%, transparent);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .hw-icon-box:hover {
+      transform:scale(1.12) translateY(-3px);
+      box-shadow:0 8px 28px rgba(0,0,0,0.6), 0 0 20px color-mix(in srgb, var(--ic) 25%, transparent);
+    }
+    .hw-icon-label {
+      font-size:0.58rem; letter-spacing:1.5px; text-transform:uppercase;
+      font-family:'Space Mono',monospace; color:rgba(255,255,255,0.45);
+    }
+
+    /* Hero */
+    .hero-bg {
+      position:absolute; inset:0; z-index:0;
+      filter:brightness(0.22);
+      transition: opacity 1s ease;
+    }
+    .hero-slide {
+      position:absolute; inset:0; z-index:2;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      text-align:center; padding:0 20px;
+      opacity:0; pointer-events:none;
+      transition: opacity 0.8s ease;
+    }
+    .hero-slide.active { opacity:1; pointer-events:all; }
+    .hero-h1 {
+      font-family:'Space Mono',monospace;
+      font-size:clamp(2.4rem,5.5vw,4.6rem);
+      font-weight:700; line-height:1.1; letter-spacing:-1px;
+      color:#fff; max-width:760px; margin-bottom:24px;
+    }
+    .hero-accent { color:var(--accent); }
+    .hero-eyebrow {
+      font-size:0.72rem; letter-spacing:3px; color:var(--accent);
+      text-transform:uppercase; margin-bottom:16px; font-weight:400;
+    }
+    .hero-sub {
+      font-size:clamp(1rem,2.1vw,1.15rem);
+      color:rgba(255,255,255,0.6); font-weight:300; line-height:1.7;
+      max-width:580px;
+    }
+    .hero-reveal-words span {
+      display:inline-block; opacity:0; transform:translateY(30px);
+      transition:opacity 0.5s ease, transform 0.5s ease;
+      margin-right:14px;
+    }
+    .hero-reveal-words.go span:nth-child(1) { opacity:1; transform:none; transition-delay:0s; }
+    .hero-reveal-words.go span:nth-child(2) { opacity:1; transform:none; transition-delay:0.15s; color:var(--accent); }
+    .hero-reveal-words.go span:nth-child(3) { opacity:1; transform:none; transition-delay:0.3s; }
+    .hero-reveal-words.go span:nth-child(4) { opacity:1; transform:none; transition-delay:0.45s; color:var(--accent); }
+    .hero-glitch { position:relative; }
+    .hero-glitch::before, .hero-glitch::after {
+      content: attr(data-text); position:absolute; top:0; left:0; right:0;
+      overflow:hidden; color:#fff;
+    }
+    .hero-glitch.go::before {
+      color:#4ecca3; clip:rect(0,900px,2px,0);
+      animation: glitch-top 2.5s infinite linear;
+    }
+    .hero-glitch.go::after {
+      color:#7b5ce0; clip:rect(40px,900px,80px,0);
+      animation: glitch-bot 3s infinite linear;
+    }
+    @keyframes glitch-top {
+      0%,90%,100%{ clip:rect(0,0,0,0); transform:translate(0); }
+      91%{ clip:rect(0,9999px,3px,0); transform:translate(-3px,0); }
+      93%{ clip:rect(0,9999px,3px,0); transform:translate(3px,0); }
+      95%{ clip:rect(0,0,0,0); }
+    }
+    @keyframes glitch-bot {
+      0%,85%,100%{ clip:rect(0,0,0,0); transform:translate(0); }
+      87%{ clip:rect(35px,9999px,55px,0); transform:translate(3px,0); }
+      90%{ clip:rect(35px,9999px,55px,0); transform:translate(-3px,0); }
+      92%{ clip:rect(0,0,0,0); }
+    }
+    .hero-dots {
+      position:absolute; bottom:28px; left:50%; transform:translateX(-50%);
+      z-index:10; display:flex; gap:10px;
+    }
+    .hdot {
+      width:28px; height:3px; border-radius:2px; border:none; cursor:pointer;
+      background:rgba(255,255,255,0.25); transition:background 0.3s, width 0.3s;
+    }
+    .hdot.active { background:var(--accent); width:44px; }
+
+    /* Contact inputs */
+    input::placeholder, textarea::placeholder { color:rgba(255,255,255,0.2); }
+    #contact input::placeholder, #contact textarea::placeholder { color:#000; opacity:1; }
+  </style>
+</head>
+<body class="relative">
+
+  <!-- ── TOPBAR ── -->
+  <header class="fixed top-0 left-0 right-0 h-14 flex items-center justify-center z-50"
+          style="background:rgba(12,12,12,0.92); backdrop-filter:blur(12px); border-bottom: 1px solid rgba(255,255,255,0.04);">
+    <button id="hamburger" class="absolute left-4 flex flex-col gap-[5px] cursor-pointer bg-transparent border-none p-1 z-50">
+      <span id="b1" class="block w-[22px] h-[2px] bg-white transition-all duration-300 origin-center"></span>
+      <span id="b2" class="block w-[22px] h-[2px] bg-white transition-all duration-300 origin-center"></span>
+      <span id="b3" class="block w-[22px] h-[2px] bg-white transition-all duration-300 origin-center"></span>
+    </button>
+
+    <!-- LOGO + BRAND NAME -->
+    <div class="devtley-brand">
+      <img src="data:image/png;base64,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" alt="Devtley Logo"/>
+      <span class="devtley-brand-text">Devtley</span>
+    </div>
+
+    <!-- Social icons — desktop only -->
+    <div class="header-socials absolute right-5 items-center gap-[18px]">
+      <a href="#" class="text-white/45 hover:text-white transition-colors">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a href="#" class="text-white/45 hover:text-white transition-colors">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="#" class="text-white/45 hover:text-white transition-colors">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- OVERLAY -->
+  <div id="overlay" class="fixed inset-0 bg-black/60 z-40 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+  <!-- SIDEBAR -->
+  <aside id="sidebar"
+    class="fixed top-0 left-0 h-full z-[60] flex flex-col -translate-x-full transition-transform duration-[350ms] ease-in-out"
+    style="background:#0a0a0a; width:var(--sidebar-w); min-width:210px; max-width:310px; padding-top:56px; border-right: 1px solid rgba(255,255,255,0.05);">
+
+    <button id="sidebarClose"
+      class="absolute top-[14px] left-[14px] bg-transparent border-none text-white/35 hover:text-white text-xl cursor-pointer leading-none transition-colors">
+      &#x2715;
+    </button>
+
+    <nav class="flex-1 pt-3 overflow-y-auto" id="sidebarNav">
+      <a href="#home"         class="nav-link active" data-page="home"         data-lc="#4ecca3"><span class="rect"></span>Home</a>
+      <a href="#about"        class="nav-link"        data-page="about"        data-lc="#7b5ce0"><span class="rect"></span>About Us</a>
+      <a href="#portfolio"    class="nav-link"        data-page="portfolio"    data-lc="#e07a5c"><span class="rect"></span>Portfolio</a>
+      <a href="#talks"        class="nav-link"        data-page="talks"        data-lc="#5c9ee0"><span class="rect"></span>How We Work</a>
+      <a href="#join"         class="nav-link"        data-page="join"         data-lc="#f5c518"><span class="rect"></span>Join Us</a>
+      <a href="#technologies" class="nav-link"        data-page="technologies" data-lc="#9090a8"><span class="rect"></span>Technologies</a>
+      <a href="#contact"      class="nav-link"        data-page="contact"      data-lc="#4ecca3"><span class="rect"></span>Contact</a>
+    </nav>
+
+    <div class="px-5 pb-2 text-[0.6rem] tracking-[3px] text-white/25">
+      <span class="text-white/65">EN</span> / ESP
+    </div>
+
+    <div class="sidebar-socials-mobile px-5 pb-6 gap-5 items-center">
+      <a href="#" class="text-white/45 hover:text-white transition-colors">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a href="#" class="text-white/45 hover:text-white transition-colors">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+    </div>
+  </aside>
+
+  <!-- COLLAPSED SIDEBAR STRIP -->
+  <div id="side-strip"
+    class="fixed top-0 left-0 h-full z-30 hidden md:flex flex-col items-center justify-center gap-[10px] py-4"
+    style="width:52px; background:#0a0a0a; border-right:1px solid rgba(255,255,255,0.04); transition:opacity 0.25s; padding-top:56px;">
+  </div>
+
+  <!-- ════════════ HERO ════════════ -->
+  <section id="home" class="relative w-screen h-screen overflow-hidden">
+    <div class="hero-bg" id="hbg0" style="background:url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1600&q=80') center/cover no-repeat;"></div>
+    <div class="hero-bg" id="hbg1" style="background:url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&q=80') center/cover no-repeat; opacity:0;"></div>
+    <div class="hero-bg" id="hbg2" style="background:url('https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=1600&q=80') center/cover no-repeat; opacity:0;"></div>
+
+    <!-- Gradient overlay with brand colors -->
+    <div class="absolute inset-0 z-[1]" style="background: linear-gradient(135deg, rgba(61,32,128,0.3) 0%, rgba(0,0,0,0) 50%, rgba(78,204,163,0.15) 100%); pointer-events:none;"></div>
+
+    <div class="hero-slide active" id="hsl0">
+      <h1 class="hero-h1">
+        We <span id="typedWord" class="hero-accent"><span class="cursor"></span></span>
+      </h1>
+      <p class="hero-sub">Devtley is a network of software professionals who take great pride in the projects they work on. Not a company — a collective of freelancers building and progressing together.</p>
+    </div>
+
+    <div class="hero-slide" id="hsl1">
+      <p class="hero-eyebrow">Built by developers, for everyone</p>
+      <h1 class="hero-h1 hero-reveal-words" id="hsl1-title">
+        <span>Ship</span><span>Faster.</span><span>Build</span><span>Better.</span>
+      </h1>
+      <p class="hero-sub">We bring the experience of many minds to every product. You hire one of us or many — you always get the wisdom of all.</p>
+    </div>
+
+    <div class="hero-slide" id="hsl2">
+      <p class="hero-eyebrow">Independent. Collaborative. Accountable.</p>
+      <h1 class="hero-h1 hero-glitch" id="hsl2-title" data-text="Your Team,&nbsp;&nbsp;On Demand.">Your Team,&nbsp;&nbsp;On Demand.</h1>
+      <p class="hero-sub">No offices. No overhead. Just skilled professionals who know how to work, communicate, and deliver — wherever you are.</p>
+    </div>
+
+    <div class="hero-dots">
+      <button class="hdot active" onclick="goSlide(0)"></button>
+      <button class="hdot" onclick="goSlide(1)"></button>
+      <button class="hdot" onclick="goSlide(2)"></button>
+    </div>
+
+  </section>
+
+  <!-- ════════════ ABOUT ════════════ -->
+  <section id="about" class="w-full min-h-screen py-24 px-6 md:px-16 lg:px-20" style="background:#171717;">
+    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 lg:gap-0">
+      <div class="lg:w-[28%] flex flex-col gap-10 reveal">
+        <div class="w-16 h-[3px]" style="background:linear-gradient(90deg,#7b5ce0,#4ecca3);"></div>
+        <div>
+          <p class="about-label mb-2">// Our story</p>
+          <h2 class="about-heading text-5xl font-bold leading-tight">ABOUT <span>US</span></h2>
+        </div>
+        <div>
+          <p class="text-white/55 text-sm font-light mb-8">A network of software professionals, working independently but with the support of the group. You may hire one or many of us — you always get the wisdom of many.</p>
+          <h3 class="text-xl font-light mb-6" style="font-family:'Space Mono',monospace;">How can we help you?</h3>
+          <div class="flex flex-col gap-0">
+            <div class="capability-item py-5">
+              <p class="text-base mb-2"><span style="color:var(--accent); font-weight:300;">we </span><span class="font-semibold">code</span></p>
+              <p class="text-white/45 text-sm font-light leading-relaxed">We build solid, yet flexible solutions to maximise product value.</p>
+            </div>
+            <div class="capability-item py-5">
+              <p class="text-base mb-2"><span style="color:var(--accent); font-weight:300;">we </span><span class="font-semibold">learn</span></p>
+              <p class="text-white/45 text-sm font-light leading-relaxed">Our hands-on approach to everyday challenges differentiates us in the industry.</p>
+            </div>
+            <div class="capability-item py-5">
+              <p class="text-base mb-2"><span style="color:var(--accent); font-weight:300;">we </span><span class="font-semibold">share</span></p>
+              <p class="text-white/45 text-sm font-light leading-relaxed">Through presentations and workshops, we draw on and add to the wisdom of the community.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:w-[72%] lg:pl-12 reveal" style="transition-delay:0.15s;">
+        <p class="text-white/80 font-light leading-relaxed mb-12" style="font-size:clamp(1.1rem,2vw,1.45rem); max-width:720px;">
+          A network of software professionals, working independently but with the support of the group. You may hire one or many of us — you always get the wisdom of many.
+        </p>
+
+        <div class="relative dashed-box rounded p-6 pt-8" style="min-height:400px;">
+          <div class="flex flex-col items-center mb-10">
+            <div class="mb-4 opacity-70">
+              <svg width="70" height="60" viewBox="0 0 70 60" fill="none">
+                <path d="M50 45H20C12.268 45 6 38.732 6 31c0-6.617 4.6-12.17 10.8-13.63A18 18 0 0152.3 26.5C57.2 27.5 62 31.8 62 37.5 62 41.9 57.5 45 50 45z" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+                <line x1="35" y1="22" x2="35" y2="44" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+                <polyline points="28,29 35,22 42,29" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <p class="text-white/80 font-semibold tracking-[3px] text-sm text-center uppercase">Everyone in the network<br/>shares our work values:</p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 mb-14 px-4">
+            <div class="flex items-start gap-3">
+              <div class="val-dot mt-1"></div>
+              <div><p style="color:var(--accent);" class="font-light">Trustworthy</p><p class="text-white/35 text-xs mt-1 font-light">We say what we do, we do what we say.</p></div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="val-dot mt-1" style="border-color:#f5c518;"></div>
+              <div><p style="color:#f5c518;" class="font-light">Good communicators</p><p class="text-white/35 text-xs mt-1 font-light">Clear, honest, and direct at all times.</p></div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="val-dot mt-1" style="border-color:#9090a8;"></div>
+              <div><p style="color:#9090a8;" class="font-light">Eternal apprentices</p><p class="text-white/35 text-xs mt-1 font-light">Always curious, always growing.</p></div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="val-dot mt-1" style="border-color:#5c9ee0;"></div>
+              <div><p style="color:#5c9ee0;" class="font-light">Independent and self-organised</p><p class="text-white/35 text-xs mt-1 font-light">We own our work from start to finish.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- ════════════ PORTFOLIO ════════════ -->
+<section id="portfolio" class="w-full overflow-hidden" style="background:#111; min-height:100vh; padding-top:80px; padding-bottom:40px;">
+
+  <div class="text-center mb-2 px-6">
+    <div class="w-20 h-[3px] mx-auto mb-6" style="background:linear-gradient(90deg,#7b5ce0,#4ecca3);"></div>
+    <p class="about-label mb-3">// What we made</p>
+    <h2 class="about-heading text-5xl font-bold">OUR <span>PORTFOLIO</span></h2>
+  </div>
+
+  <!-- ══ DESKTOP: Orbital stage — hidden on mobile ══ -->
+  <div id="pf-stage" class="relative w-full select-none hidden md:block" style="height:700px;">
+
+    <!-- LEFT SATELLITES -->
+    <div class="pf-sat" data-depth="0.6" style="position:absolute; top:18%; left:calc(50% - 360px); animation:pfbounce1 3.8s ease-in-out infinite; z-index:8;">
+      <div class="pf-card" style="--cc:#f5c518; width:100px; padding:11px;">
+        <svg width="40" height="40" viewBox="0 0 72 72" fill="none"><rect x="8" y="14" width="56" height="44" rx="6" fill="#1a1600" stroke="#f5c518" stroke-width="1.5"/><rect x="14" y="22" width="20" height="12" rx="2" fill="#f5c51822"/><rect x="16" y="25" width="6" height="2" rx="1" fill="#f5c518" opacity="0.9"/><rect x="38" y="24" width="22" height="2" rx="1" fill="white" opacity="0.1"/><rect x="14" y="40" width="44" height="2" rx="1" fill="#f5c518" opacity="0.2"/></svg>
+        <span>FINTECH</span>
+      </div>
+    </div>
+    <div class="pf-sat" data-depth="0.5" style="position:absolute; top:46%; left:calc(50% - 370px); animation:pfbounce2 4.5s ease-in-out infinite; z-index:8;">
+      <div class="pf-card" style="--cc:#5ce08a; width:80px; padding:10px;">
+        <svg width="34" height="34" viewBox="0 0 72 72" fill="none"><rect x="6" y="10" width="60" height="52" rx="6" fill="#00280e" stroke="#5ce08a" stroke-width="1.5"/><rect x="12" y="20" width="24" height="18" rx="3" fill="#5ce08a11" stroke="#5ce08a" stroke-width="1"/><circle cx="18" cy="48" r="5" fill="none" stroke="#5ce08a" stroke-width="1.5"/><circle cx="42" cy="48" r="5" fill="none" stroke="#5ce08a" stroke-width="1.5"/></svg>
+        <span>LOGISTICS</span>
+      </div>
+    </div>
+    <div class="pf-sat" data-depth="0.7" style="position:absolute; top:72%; left:calc(50% - 355px); animation:pfbounce3 5.1s ease-in-out infinite; z-index:8;">
+      <div class="pf-card" style="--cc:#e07a5c; width:86px; padding:10px;">
+        <svg width="36" height="36" viewBox="0 0 68 68" fill="none"><rect x="6" y="6" width="56" height="56" rx="8" fill="#281400" stroke="#e07a5c" stroke-width="1.5"/><rect x="22" y="12" width="24" height="44" rx="5" fill="#e07a5c11" stroke="#e07a5c" stroke-width="1.2"/><rect x="26" y="18" width="16" height="20" rx="2" fill="#e07a5c22"/><circle cx="34" cy="50" r="2.5" fill="none" stroke="#e07a5c" stroke-width="1.2"/></svg>
+        <span>MOBILE</span>
+      </div>
+    </div>
+    <div class="pf-sat" data-depth="0.5" style="position:absolute; top:3%; left:50%; transform:translateX(-50%); animation:pfbounce2 4.8s ease-in-out infinite; z-index:8;">
+      <div class="pf-card" style="--cc:#e05c5c; width:78px; padding:9px;">
+        <svg width="34" height="34" viewBox="0 0 68 68" fill="none"><rect x="6" y="6" width="56" height="56" rx="8" fill="#280014" stroke="#e05c5c" stroke-width="1.5"/><path d="M20 34 h8 v-8 h8 v8 h8 v8 h-8 v8 h-8 v-8 h-8 z" fill="#e05c5c" opacity="0.6"/></svg>
+        <span>HEALTH</span>
+      </div>
+    </div>
+
+    <!-- RIGHT SATELLITES -->
+    <div class="pf-sat" data-depth="0.55" style="position:absolute; top:18%; left:calc(50% + 265px); animation:pfbounce2 4.2s ease-in-out infinite; z-index:8;">
+      <div class="pf-card" style="--cc:#4ecca3; width:108px; padding:11px;">
+        <svg width="42" height="42" viewBox="0 0 68 68" fill="none"><rect x="6" y="6" width="56" height="56" rx="8" fill="#001a14" stroke="#4ecca3" stroke-width="1.5"/><circle cx="22" cy="18" r="6" fill="none" stroke="#4ecca3" stroke-width="1.5"/><circle cx="44" cy="18" r="6" fill="none" stroke="#4ecca3" stroke-width="1.5"/><rect x="10" y="28" width="48" height="26" rx="4" fill="#4ecca322"/><rect x="16" y="34" width="14" height="12" rx="2" fill="#4ecca333"/></svg>
+        <span>E-COMMERCE</span>
+      </div>
+    </div>
+    <div class="pf-sat" data-depth="0.65" style="position:absolute; top:46%; left:calc(50% + 275px); animation:pfbounce1 5.6s ease-in-out infinite; z-index:8;">
+      <div class="pf-card" style="--cc:#9090a8; width:82px; padding:10px;">
+        <svg width="36" height="36" viewBox="0 0 68 68" fill="none"><rect x="6" y="6" width="56" height="56" rx="8" fill="#1a0028" stroke="#9090a8" stroke-width="1.5"/><rect x="12" y="14" width="44" height="24" rx="3" fill="#9090a811"/><rect x="16" y="18" width="36" height="2" rx="1" fill="#9090a8" opacity="0.5"/><circle cx="20" cy="46" r="5" fill="none" stroke="#9090a8" stroke-width="1.5"/><circle cx="34" cy="46" r="5" fill="none" stroke="#9090a8" stroke-width="1.5"/></svg>
+        <span>SAAS</span>
+      </div>
+    </div>
+    <div class="pf-sat" data-depth="0.45" style="position:absolute; top:71%; left:calc(50% + 260px); animation:pfbounce3 3.9s ease-in-out infinite; z-index:8;">
+      <div class="pf-card" style="--cc:#5c9ee0; width:96px; padding:11px;">
+        <svg width="38" height="38" viewBox="0 0 72 72" fill="none"><rect x="6" y="10" width="60" height="52" rx="6" fill="#001428" stroke="#5c9ee0" stroke-width="1.5"/><rect x="12" y="18" width="48" height="28" rx="3" fill="#5c9ee011"/><polygon points="26,22 26,40 46,31" fill="#5c9ee0" opacity="0.7"/></svg>
+        <span>EDTECH</span>
+      </div>
+    </div>
+    <div class="pf-sat" data-depth="0.4" style="position:absolute; bottom:2%; left:50%; transform:translateX(-50%); animation:pfbounce1 6s ease-in-out infinite; z-index:8;">
+      <div class="pf-card" style="--cc:#e0b85c; width:76px; padding:9px;">
+        <svg width="32" height="32" viewBox="0 0 68 68" fill="none"><rect x="6" y="6" width="56" height="56" rx="8" fill="#281e00" stroke="#e0b85c" stroke-width="1.5"/><rect x="10" y="10" width="48" height="28" rx="4" fill="#e0b85c11"/><rect x="16" y="17" width="10" height="2" rx="1" fill="#e0b85c" opacity="0.8"/><rect x="29" y="17" width="18" height="2" rx="1" fill="#4ecca3" opacity="0.5"/></svg>
+        <span>WEB</span>
+      </div>
+    </div>
+
+    <!-- CENTRE: Main portfolio screen -->
+    <div id="pf-centre" class="absolute" style="top:50%; left:50%; transform:translate(-50%,-50%); z-index:10; transition:transform 0.12s ease-out;">
+      <div class="flex flex-col items-center">
+        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" style="margin-bottom:-4px; z-index:11; position:relative;">
+          <rect x="24" y="0" width="12" height="38" rx="6" fill="#2a2a2a" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+          <circle cx="30" cy="42" r="12" fill="#333" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+          <circle cx="30" cy="42" r="7" fill="#222"/>
+        </svg>
+        <div style="width:clamp(280px,36vw,480px); background:#1a1a1a; border-radius:10px; border:1.5px solid rgba(255,255,255,0.15); box-shadow:0 40px 100px rgba(0,0,0,0.8), 0 0 60px rgba(78,204,163,0.08); overflow:hidden;">
+          <div class="flex items-center gap-2 px-4 py-3" style="background:#111; border-bottom:1px solid rgba(255,255,255,0.07);">
+            <span class="w-3 h-3 rounded-full" style="background:#e05c5c; opacity:0.8;"></span>
+            <span class="w-3 h-3 rounded-full" style="background:#f5c518; opacity:0.8;"></span>
+            <span class="w-3 h-3 rounded-full" style="background:#4ecca3; opacity:0.8;"></span>
+            <span class="ml-4 text-[10px] text-white/20 font-mono">devtley.io/work</span>
+          </div>
+          <div class="flex" style="height:clamp(160px,20vw,260px);">
+            <div class="flex flex-col gap-2 p-3" style="width:36%; background:#131313; border-right:1px solid rgba(255,255,255,0.05);">
+              <div class="h-2 rounded w-3/4" style="background:#4ecca3; opacity:0.35;"></div>
+              <div class="h-px w-full bg-white/5 my-1"></div>
+              <div class="h-2 rounded w-full bg-white/08"></div>
+              <div class="h-2 rounded w-4/5 bg-white/05"></div>
+              <div class="h-6 rounded flex items-center px-2 gap-2" style="background:rgba(78,204,163,0.1);"><div class="w-2 h-2 rounded-full" style="background:#4ecca3; opacity:0.6;"></div><div class="h-1.5 rounded flex-1 bg-white/10"></div></div>
+              <div class="h-6 rounded flex items-center px-2 gap-2" style="background:rgba(123,92,224,0.08);"><div class="w-2 h-2 rounded-full" style="background:#7b5ce0; opacity:0.5;"></div><div class="h-1.5 rounded flex-1 bg-white/10"></div></div>
+            </div>
+            <div class="flex-1 p-3 flex flex-col gap-2" style="background:#0d0d0d;">
+              <div class="grid grid-cols-3 gap-2">
+                <div class="h-2 rounded col-span-2" style="background:#4ecca3; opacity:0.25;"></div>
+                <div class="h-2 rounded" style="background:#4ecca3; opacity:0.12;"></div>
+              </div>
+              <div class="relative flex-1 rounded overflow-hidden" style="background:#111; border:1px solid rgba(255,255,255,0.05);">
+                <div class="absolute inset-0 p-2 flex flex-col gap-1.5">
+                  <div class="flex gap-2 items-center"><div class="w-5 h-5 rounded-full bg-white/10"></div><div class="h-2 rounded flex-1 bg-white/08"></div></div>
+                  <div class="flex gap-2 items-center"><div class="w-5 h-5 rounded-full bg-white/10"></div><div class="h-2 rounded flex-1 bg-white/08"></div></div>
+                  <div class="flex gap-2 items-center"><div class="w-5 h-5 rounded-full bg-white/10"></div><div class="h-2 rounded flex-1 bg-white/05"></div></div>
+                </div>
+                <svg class="absolute bottom-0 right-0" width="55%" height="70%" viewBox="0 0 110 100" preserveAspectRatio="none" fill="none">
+                  <path d="M0 100 Q60 80 110 0 L110 100 Z" fill="#0a0a0a"/>
+                  <text x="18" y="58" font-family="monospace" font-size="7" fill="#4ecca3" opacity="0.9">&lt;div&gt;</text>
+                  <text x="14" y="68" font-family="monospace" font-size="6" fill="#f5c518" opacity="0.7">  class=</text>
+                  <text x="14" y="76" font-family="monospace" font-size="6" fill="#9090a8" opacity="0.7">  "hero"</text>
+                  <text x="18" y="86" font-family="monospace" font-size="7" fill="#4ecca3" opacity="0.9">&lt;/div&gt;</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /pf-stage desktop -->
+
+  <!-- ══ MOBILE: 2 ticker rows of 4 cards each. Hidden on md+ ══ -->
+  <div class="block md:hidden" style="padding-top:24px;">
+
+    <!-- Ticker row 1 — 4 cards, scrolls left -->
+    <div style="overflow:hidden; padding:16px 0 10px;">
+      <div class="pf-mob-row pf-mob-left" id="mobTickerUp">
+        <!-- 4 cards + duplicate for loop -->
+        <div class="pf-tc" style="--bc:rgba(245,197,24,0.25);"><svg width="36" height="36" viewBox="0 0 72 72" fill="none"><rect x="8" y="14" width="56" height="44" rx="6" fill="#1a1600" stroke="#f5c518" stroke-width="1.5"/><rect x="14" y="22" width="20" height="12" rx="2" fill="#f5c51822"/><rect x="16" y="25" width="6" height="2" rx="1" fill="#f5c518" opacity="0.9"/></svg><span style="color:#f5c518;">Fintech</span></div>
+        <div class="pf-tc" style="--bc:rgba(78,204,163,0.25);"><svg width="36" height="36" viewBox="0 0 68 68" fill="none"><rect x="6" y="6" width="56" height="56" rx="8" fill="#001a14" stroke="#4ecca3" stroke-width="1.5"/><circle cx="22" cy="18" r="6" fill="none" stroke="#4ecca3" stroke-width="1.5"/><circle cx="44" cy="18" r="6" fill="none" stroke="#4ecca3" stroke-width="1.5"/></svg><span style="color:#4ecca3;">E-Commerce</span></div>
+        <div class="pf-tc" style="--bc:rgba(92,158,224,0.25);"><svg width="36" height="36" viewBox="0 0 72 72" fill="none"><rect x="6" y="10" width="60" height="52" rx="6" fill="#001428" stroke="#5c9ee0" stroke-width="1.5"/><polygon points="26,22 26,40 46,31" fill="#5c9ee0" opacity="0.7"/></svg><span style="color:#5c9ee0;">EdTech</span></div>
+        <div class="pf-tc" style="--bc:rgba(144,144,168,0.25);"><svg width="36" height="36" viewBox="0 0 68 68" fill="none"><rect x="6" y="6" width="56" height="56" rx="8" fill="#1a0028" stroke="#9090a8" stroke-width="1.5"/><rect x="12" y="14" width="44" height="24" rx="3" fill="#9090a811"/></svg><span style="color:#9090a8;">SaaS</span></div>
+        <!-- duplicate for seamless loop -->
+        <div class="pf-tc" style="--bc:rgba(245,197,24,0.25);"><svg width="36" height="36" viewBox="0 0 72 72" fill="none"><rect x="8" y="14" width="56" height="44" rx="6" fill="#1a1600" stroke="#f5c518" stroke-width="1.5"/><rect x="14" y="22" width="20" height="12" rx="2" fill="#f5c51822"/><rect x="16" y="25" width="6" height="2" rx="1" fill="#f5c518" opacity="0.9"/></svg><span style="color:#f5c518;">Fintech</span></div>
+        <div class="pf-tc" style="--bc:rgba(78,204,163,0.25);"><svg width="36" height="36" viewBox="0 0 68 68" fill="none"><rect x="6" y="6" width="56" height="56" rx="8" fill="#001a14" stroke="#4ecca3" stroke-width="1.5"/><circle cx="22" cy="18" r="6" fill="none" stroke="#4ecca3" stroke-width="1.5"/><circle cx="44" cy="18" r="6" fill="none" stroke="#4ecca3" stroke-width="1.5"/></svg><span style="color:#4ecca3;">E-Commerce</span></div>
+        <div class="pf-tc" style="--bc:rgba(92,158,224,0.25);"><svg width="36" height="36" viewBox="0 0 72 72" fill="none"><rect x="6" y="10" width="60" height="52" rx="6" fill="#001428" stroke="#5c9ee0" stroke-width="1.5"/><polygon points="26,22 26,40 46,31" fill="#5c9ee0" opacity="0.7"/></svg><span style="color:#5c9ee0;">EdTech</span></div>
+        <div class="pf-tc" style="--bc:rgba(144,144,168,0.25);"><svg width="36" height="36" viewBox="0 0 68 68" fill="none"><rect x="6" y="6" width="56" height="56" rx="8" fill="#1a0028" stroke="#9090a8" stroke-width="1.5"/><rect x="12" y="14" width="44" height="24" rx="3" fill="#9090a811"/></svg><span style="color:#9090a8;">SaaS</span></div>
+      </div>
+    </div>
+
+    <!-- Ticker row 2 — 4 cards, scrolls right -->
+    <div style="overflow:hidden; padding:10px 0 16px;">
+      <div class="pf-mob-row pf-mob-right" id="mobTickerDown">
+        <!-- 4 cards + duplicate for loop -->
+        <div class="pf-tc" style="--bc:rgba(224,92,92,0.25);"><svg width="36" height="36" viewBox="0 0 68 68" fill="none"><rect x="6" y="6" width="56" height="56" rx="8" fill="#280014" stroke="#e05c5c" stroke-width="1.5"/><path d="M20 34 h8 v-8 h8 v8 h8 v8 h-8 v8 h-8 v-8 h-8 z" fill="#e05c5c" opacity="0.6"/></svg><span style="color:#e05c5c;">HealthTech</span></div>
+        <div class="pf-tc" style="--bc:rgba(224,122,92,0.25);"><svg width="36" height="36" viewBox="0 0 68 68" fill="none"><rect x="6" y="6" width="56" height="56" rx="8" fill="#281400" stroke="#e07a5c" stroke-width="1.5"/><rect x="22" y="12" width="24" height="44" rx="5" fill="#e07a5c11" stroke="#e07a5c" stroke-width="1.2"/><circle cx="34" cy="50" r="2.5" fill="none" stroke="#e07a5c" stroke-width="1.2"/></svg><span style="color:#e07a5c;">Mobile</span></div>
+        <div class="pf-tc" style="--bc:rgba(224,184,92,0.25);"><svg width="36" height="36" viewBox="0 0 68 68" fill="none"><rect x="6" y="6" width="56" height="56" rx="8" fill="#281e00" stroke="#e0b85c" stroke-width="1.5"/><rect x="10" y="10" width="48" height="28" rx="4" fill="#e0b85c11"/><rect x="16" y="17" width="10" height="2" rx="1" fill="#e0b85c" opacity="0.8"/></svg><span style="color:#e0b85c;">Web Design</span></div>
+        <div class="pf-tc" style="--bc:rgba(92,224,138,0.25);"><svg width="36" height="36" viewBox="0 0 72 72" fill="none"><rect x="6" y="10" width="60" height="52" rx="6" fill="#00280e" stroke="#5ce08a" stroke-width="1.5"/><circle cx="18" cy="48" r="5" fill="none" stroke="#5ce08a" stroke-width="1.5"/><circle cx="42" cy="48" r="5" fill="none" stroke="#5ce08a" stroke-width="1.5"/></svg><span style="color:#5ce08a;">Logistics</span></div>
+        <!-- duplicate for seamless loop -->
+        <div class="pf-tc" style="--bc:rgba(224,92,92,0.25);"><svg width="36" height="36" viewBox="0 0 68 68" fill="none"><rect x="6" y="6" width="56" height="56" rx="8" fill="#280014" stroke="#e05c5c" stroke-width="1.5"/><path d="M20 34 h8 v-8 h8 v8 h8 v8 h-8 v8 h-8 v-8 h-8 z" fill="#e05c5c" opacity="0.6"/></svg><span style="color:#e05c5c;">HealthTech</span></div>
+        <div class="pf-tc" style="--bc:rgba(224,122,92,0.25);"><svg width="36" height="36" viewBox="0 0 68 68" fill="none"><rect x="6" y="6" width="56" height="56" rx="8" fill="#281400" stroke="#e07a5c" stroke-width="1.5"/><rect x="22" y="12" width="24" height="44" rx="5" fill="#e07a5c11" stroke="#e07a5c" stroke-width="1.2"/><circle cx="34" cy="50" r="2.5" fill="none" stroke="#e07a5c" stroke-width="1.2"/></svg><span style="color:#e07a5c;">Mobile</span></div>
+        <div class="pf-tc" style="--bc:rgba(224,184,92,0.25);"><svg width="36" height="36" viewBox="0 0 68 68" fill="none"><rect x="6" y="6" width="56" height="56" rx="8" fill="#281e00" stroke="#e0b85c" stroke-width="1.5"/><rect x="10" y="10" width="48" height="28" rx="4" fill="#e0b85c11"/><rect x="16" y="17" width="10" height="2" rx="1" fill="#e0b85c" opacity="0.8"/></svg><span style="color:#e0b85c;">Web Design</span></div>
+        <div class="pf-tc" style="--bc:rgba(92,224,138,0.25);"><svg width="36" height="36" viewBox="0 0 72 72" fill="none"><rect x="6" y="10" width="60" height="52" rx="6" fill="#00280e" stroke="#5ce08a" stroke-width="1.5"/><circle cx="18" cy="48" r="5" fill="none" stroke="#5ce08a" stroke-width="1.5"/><circle cx="42" cy="48" r="5" fill="none" stroke="#5ce08a" stroke-width="1.5"/></svg><span style="color:#5ce08a;">Logistics</span></div>
+      </div>
+    </div>
+  </div><!-- /mobile -->
+
+  <!-- CTA -->
+  <div class="text-center mt-8 pb-4">
+    <a href="works.html" class="inline-flex items-center gap-3 px-8 py-3 rounded font-semibold text-sm transition-all duration-200 hover:opacity-85"
+       style="background:var(--accent); color:#0d0d0d; font-family:'Space Mono',monospace; letter-spacing:1px;">
+      See our works →
+    </a>
+  </div>
+</section>
+
+<style>
+  /* Portfolio satellite cards — desktop */
+  .pf-card {
+    display:flex; flex-direction:column; align-items:center; gap:5px;
+    padding:12px; border-radius:10px; background:rgba(15,15,15,0.92);
+    border:1px solid color-mix(in srgb,var(--cc) 35%,transparent);
+    backdrop-filter:blur(6px);
+    box-shadow:0 8px 32px rgba(0,0,0,0.55),inset 0 0 20px color-mix(in srgb,var(--cc) 4%,transparent);
+    transition:transform 0.25s,box-shadow 0.25s; cursor:pointer;
+  }
+  .pf-card:hover {
+    transform:scale(1.1) translateY(-4px) !important;
+    box-shadow:0 16px 48px rgba(0,0,0,0.65),0 0 20px color-mix(in srgb,var(--cc) 25%,transparent);
+  }
+  .pf-card span { font-size:0.6rem; letter-spacing:1.5px; text-transform:uppercase; font-family:'Space Mono',monospace; color:var(--cc); }
+  .pf-sat { position:absolute; will-change:transform; }
+  @keyframes pfbounce1 { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-14px);} }
+  @keyframes pfbounce2 { 0%,100%{transform:translateY(-8px);} 50%{transform:translateY(10px);} }
+  @keyframes pfbounce3 { 0%,100%{transform:translateY(6px);} 50%{transform:translateY(-12px);} }
+
+  /* Mobile ticker cards */
+  .pf-mob-row { display:flex; gap:14px; width:max-content; padding:4px 0; }
+  .pf-mob-left  { animation:pfTickLeft 22s linear infinite; }
+  .pf-mob-right { animation:pfTickLeft 28s linear infinite reverse; }
+  @keyframes pfTickLeft { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+  .pf-mob-left:hover, .pf-mob-right:hover { animation-play-state:paused; }
+
+  .pf-tc {
+    flex-shrink:0; background:rgba(14,14,14,0.92); border-radius:10px;
+    padding:14px 16px; display:flex; flex-direction:column; align-items:center; gap:8px;
+    border:1px solid var(--bc,rgba(255,255,255,0.07)); min-width:115px;
+    transition:transform 0.3s;
+  }
+  .pf-tc:hover { transform:translateY(-4px) scale(1.04); }
+  .pf-tc span { font-size:0.58rem; letter-spacing:1.5px; text-transform:uppercase; font-family:'Space Mono',monospace; }
+</style>
+
+<script>
+  // Desktop parallax
+  const pfStage = document.getElementById('pf-stage');
+  const pfCentre = document.getElementById('pf-centre');
+  if (pfStage && pfCentre) {
+    const pfSats = pfStage.querySelectorAll('.pf-sat');
+    pfSats.forEach(s => { s.dataset.baseTransform = s.style.transform || ''; });
+    pfStage.addEventListener('mousemove', e => {
+      const r = pfStage.getBoundingClientRect();
+      const mx = (e.clientX - r.left - r.width/2) / (r.width/2);
+      const my = (e.clientY - r.top - r.height/2) / (r.height/2);
+      pfCentre.style.transform = `translate(calc(-50% + ${mx*10}px), calc(-50% + ${my*6}px))`;
+      pfSats.forEach(s => {
+        const d = parseFloat(s.dataset.depth || 0.5);
+        s.style.animationPlayState = 'paused';
+        const base = s.dataset.baseTransform;
+        const ox = mx * 55 * d, oy = my * 35 * d;
+        if (base.includes('translateX(-50%)')) {
+          s.style.transform = `translateX(calc(-50% + ${ox}px)) translateY(${oy}px)`;
+        } else {
+          s.style.transform = `${base} translate(${ox}px,${oy}px)`;
+        }
+      });
+    });
+    pfStage.addEventListener('mouseleave', () => {
+      pfCentre.style.transform = 'translate(-50%,-50%)';
+      pfSats.forEach(s => { s.style.animationPlayState = ''; s.style.transform = s.dataset.baseTransform || ''; });
+    });
+  }
+</script>
+
+  <!-- ════════════ HOW WE WORK ════════════ -->
+  <section id="talks" class="w-full py-24 px-6 md:px-16 lg:px-20" style="background:#171717;">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-16">
+        <div class="w-16 h-[3px] mb-6" style="background:linear-gradient(90deg,#7b5ce0,#4ecca3);"></div>
+        <p class="about-label mb-2">// What sets us apart</p>
+        <h2 class="about-heading text-5xl font-bold">HOW WE <span>WORK</span></h2>
+      </div>
+      <div class="flex flex-col lg:flex-row gap-12">
+        <div class="lg:w-[48%] flex flex-col">
+          <div class="flex flex-col">
+            <div class="step-row"><div class="step-num">01</div><div class="step-body"><h4 class="step-title">Understanding your vision</h4><p class="step-desc">We start by listening. Before a single line of code, we understand what you're building, who it's for, and what success looks like.</p></div></div>
+            <div class="step-row"><div class="step-num">02</div><div class="step-body"><h4 class="step-title">Research &amp; strategy</h4><p class="step-desc">We look at the market, competition, and users. What we find shapes the product — so you're not building on guesswork.</p></div></div>
+            <div class="step-row"><div class="step-num">03</div><div class="step-body"><h4 class="step-title">Gathering everything we need</h4><p class="step-desc">Content, brand assets, API credentials, integrations — collected early so nothing stalls the build later.</p></div></div>
+            <div class="step-row"><div class="step-num">04</div><div class="step-body"><h4 class="step-title">Building with intention</h4><p class="step-desc">A tight, transparent process. You know what we're working on, when it's due, and how it's going — always.</p></div></div>
+            <div class="step-row"><div class="step-num">05</div><div class="step-body"><h4 class="step-title">Testing, launch &amp; support</h4><p class="step-desc">We test thoroughly before anything goes live. After launch, we stay close — monitoring, fixing, improving.</p></div></div>
+            <div class="step-row" style="border-bottom:none;"><div class="step-num">06</div><div class="step-body"><h4 class="step-title">Built to grow with you</h4><p class="step-desc">We build things that scale. Ten users or ten thousand — the foundation holds.</p></div></div>
+          </div>
+          <div class="flex gap-4 mt-10 flex-wrap">
+            <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 rounded font-semibold text-sm" style="background:var(--accent); color:#0d0d0d; font-family:'Space Mono',monospace;">Start a project →</a>
+            <a href="#join" class="inline-flex items-center gap-2 px-6 py-3 rounded font-semibold text-sm" style="background:rgba(255,255,255,0.06); color:rgba(255,255,255,0.7); border:1px solid rgba(255,255,255,0.1); font-family:'Space Mono',monospace;">Join the network</a>
+          </div>
+        </div>
+        <div class="lg:w-[52%] relative" style="min-height:520px; height:520px;">
+          <div class="hw-hub">
+            <svg width="90" height="70" viewBox="0 0 90 70" fill="none"><rect x="4" y="4" width="82" height="52" rx="5" fill="#0d0d0d" stroke="#4ecca3" stroke-width="1.5"/><rect x="10" y="10" width="70" height="40" rx="3" fill="#111"/><circle cx="45" cy="30" r="12" fill="#4ecca322" stroke="#4ecca3" stroke-width="1"/><polygon points="41,24 41,36 54,30" fill="#4ecca3" opacity="0.8"/><rect x="10" y="52" width="70" height="3" rx="1" fill="#222"/><rect x="10" y="52" width="38" height="3" rx="1" fill="#4ecca3" opacity="0.6"/><rect x="37" y="56" width="16" height="6" rx="1" fill="#222"/><rect x="30" y="62" width="30" height="3" rx="1" fill="#333"/></svg>
+            <span class="hw-hub-label">Our Process</span>
+          </div>
+          <svg class="hw-bus-svg" viewBox="0 0 520 520" preserveAspectRatio="xMidYMid meet">
+            <line x1="260" y1="260" x2="520" y2="260" stroke="rgba(78,204,163,0.3)" stroke-width="3" stroke-dasharray="8 5"/>
+            <line x1="260" y1="260" x2="0" y2="260" stroke="rgba(78,204,163,0.3)" stroke-width="3" stroke-dasharray="8 5"/>
+            <line x1="420" y1="260" x2="420" y2="90" stroke="rgba(78,204,163,0.25)" stroke-width="3" stroke-dasharray="8 5"/>
+            <line x1="490" y1="260" x2="490" y2="200" stroke="rgba(78,204,163,0.25)" stroke-width="3" stroke-dasharray="8 5"/>
+            <line x1="430" y1="260" x2="430" y2="400" stroke="rgba(78,204,163,0.25)" stroke-width="3" stroke-dasharray="8 5"/>
+            <line x1="90" y1="260" x2="90" y2="100" stroke="rgba(78,204,163,0.25)" stroke-width="3" stroke-dasharray="8 5"/>
+            <line x1="150" y1="260" x2="150" y2="60" stroke="rgba(78,204,163,0.25)" stroke-width="3" stroke-dasharray="8 5"/>
+            <line x1="80" y1="260" x2="80" y2="390" stroke="rgba(78,204,163,0.25)" stroke-width="3" stroke-dasharray="8 5"/>
+          </svg>
+          <div class="hw-icon" style="top:8%; left:8%;"><div class="hw-icon-box" style="--ic:#4ecca3;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4ecca3" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><span class="hw-icon-label">Discover</span></div>
+          <div class="hw-icon" style="top:2%; left:20%;"><div class="hw-icon-box" style="--ic:#f5c518;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#f5c518" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg></div><span class="hw-icon-label">Research</span></div>
+          <div class="hw-icon" style="top:5%; right:18%;"><div class="hw-icon-box" style="--ic:#5c9ee0;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#5c9ee0" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10" stroke-width="1.2"/></svg></div><span class="hw-icon-label">Planning</span></div>
+          <div class="hw-icon" style="top:28%; right:4%;"><div class="hw-icon-box" style="--ic:#7b5ce0;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#7b5ce0" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><span class="hw-icon-label">Build</span></div>
+          <div class="hw-icon" style="bottom:14%; right:14%;"><div class="hw-icon-box" style="--ic:#e07a5c;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#e07a5c" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg></div><span class="hw-icon-label">Launch</span></div>
+          <div class="hw-icon" style="bottom:10%; left:6%;"><div class="hw-icon-box" style="--ic:#5ce08a;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#5ce08a" stroke-width="1.5"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg></div><span class="hw-icon-label">Scale</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ JOIN US ════════════ -->
+  <section id="join" class="w-full py-24 px-6 md:px-16 lg:px-20" style="background:#111;">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-14">
+        <div class="w-16 h-[3px] mb-6" style="background:linear-gradient(90deg,#7b5ce0,#4ecca3);"></div>
+        <p class="about-label mb-2">// Grow with us</p>
+        <h2 class="about-heading text-5xl font-bold">JOIN <span>US</span></h2>
+      </div>
+      <div class="flex flex-col lg:flex-row gap-12">
+        <div class="lg:w-1/2">
+          <p class="text-white/55 font-light leading-relaxed mb-8" style="font-size:1.1rem;">We don't hire. We collaborate. If you're a software professional who works well independently, keeps their word, and genuinely enjoys learning from others — there's a place for you here.</p>
+          <div class="flex flex-col gap-4">
+            <div class="flex items-start gap-4 p-4 rounded" style="background:#0d0d0d; border:1px solid rgba(255,255,255,0.06);"><div class="val-dot mt-1"></div><p class="text-white/50 text-sm font-light">You have at least 2 years of solid, shipped work you can point to.</p></div>
+            <div class="flex items-start gap-4 p-4 rounded" style="background:#0d0d0d; border:1px solid rgba(255,255,255,0.06);"><div class="val-dot mt-1" style="border-color:#f5c518;"></div><p class="text-white/50 text-sm font-light">You communicate clearly and manage your own time without hand-holding.</p></div>
+            <div class="flex items-start gap-4 p-4 rounded" style="background:#0d0d0d; border:1px solid rgba(255,255,255,0.06);"><div class="val-dot mt-1" style="border-color:#9090a8;"></div><p class="text-white/50 text-sm font-light">You enjoy sharing knowledge as much as you enjoy gaining it.</p></div>
+          </div>
+        </div>
+        <div class="lg:w-1/2 flex flex-col gap-4">
+          <h3 class="text-lg font-light mb-2" style="font-family:'Space Mono',monospace; color:var(--accent);">Open to collaborators in:</h3>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="p-4 rounded text-sm" style="background:#0d0d0d; border:1px solid rgba(78,204,163,0.15);">⌁ Frontend Engineering</div>
+            <div class="p-4 rounded text-sm" style="background:#0d0d0d; border:1px solid rgba(78,204,163,0.15);">⌁ Backend &amp; APIs</div>
+            <div class="p-4 rounded text-sm" style="background:#0d0d0d; border:1px solid rgba(78,204,163,0.15);">⌁ Mobile Development</div>
+            <div class="p-4 rounded text-sm" style="background:#0d0d0d; border:1px solid rgba(78,204,163,0.15);">⌁ UX Design</div>
+            <div class="p-4 rounded text-sm" style="background:#0d0d0d; border:1px solid rgba(78,204,163,0.15);">⌁ DevOps &amp; Cloud</div>
+            <div class="p-4 rounded text-sm" style="background:#0d0d0d; border:1px solid rgba(78,204,163,0.15);">⌁ Tech Writing</div>
+          </div>
+          <a href="#contact" class="mt-4 inline-flex items-center gap-3 px-6 py-3 rounded font-semibold text-sm self-start" style="background:var(--accent); color:#0d0d0d; font-family:'Space Mono',monospace;">Get in touch <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TECHNOLOGIES & INTEGRATIONS ════════════ -->
+  <section id="technologies" class="w-full py-24 px-6 md:px-16 lg:px-20 overflow-hidden" style="background:#0d0d0d;">
+    <div class="max-w-7xl mx-auto mb-14">
+      <div class="w-16 h-[3px] mb-6" style="background:linear-gradient(90deg,#7b5ce0,#4ecca3);"></div>
+      <p class="about-label mb-2">// Our stack</p>
+      <h2 class="about-heading text-5xl font-bold">TECHNOLOGIES &amp; <span>INTEGRATIONS</span></h2>
+      <p class="text-white/40 font-light mt-4 max-w-xl text-sm leading-relaxed">The tools, frameworks, and platforms we work with to build reliable, scalable products.</p>
+    </div>
+
+    <!-- Scrolling tech strip — masked edges -->
+    <div class="relative" style="overflow:hidden;">
+      <div style="position:absolute; left:0; top:0; bottom:0; width:120px; background:linear-gradient(90deg,#0d0d0d,transparent); z-index:2; pointer-events:none;"></div>
+      <div style="position:absolute; right:0; top:0; bottom:0; width:120px; background:linear-gradient(-90deg,#0d0d0d,transparent); z-index:2; pointer-events:none;"></div>
+
+      <div class="tech-strip" id="techStrip">
+        <!-- Tech logos using simple icons CDN -->
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/react/61DAFB" alt="React"/><span>React</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/nextdotjs/ffffff" alt="Next.js"/><span>Next.js</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/figma/F24E1E" alt="Figma"/><span>Figma</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/adobe/FF0000" alt="Adobe"/><span>Adobe</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/django/092E20" alt="Django"/><span>Django</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/flutter/02569B" alt="Flutter"/><span>Flutter</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker"/><span>Docker</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/amazonaws/FF9900" alt="AWS"/><span>AWS</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/openai/ffffff" alt="OpenAI"/><span>OpenAI</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/anthropic/ffffff" alt="Claude"/><span>Claude AI</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/grafana/F46800" alt="Grafana"/><span>Grafana</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/sentry/362D59" alt="Sentry"/><span>Sentry</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/vercel/ffffff" alt="Vercel"/><span>Vercel</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/postgresql/4169E1" alt="PostgreSQL"/><span>PostgreSQL</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/nodejs/339933" alt="Node.js"/><span>Node.js</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/typescript/3178C6" alt="TypeScript"/><span>TypeScript</span></div>
+        <!-- Duplicate for seamless loop -->
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/react/61DAFB" alt="React"/><span>React</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/nextdotjs/ffffff" alt="Next.js"/><span>Next.js</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/figma/F24E1E" alt="Figma"/><span>Figma</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/adobe/FF0000" alt="Adobe"/><span>Adobe</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/django/092E20" alt="Django"/><span>Django</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/flutter/02569B" alt="Flutter"/><span>Flutter</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker"/><span>Docker</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/amazonaws/FF9900" alt="AWS"/><span>AWS</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/openai/ffffff" alt="OpenAI"/><span>OpenAI</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/anthropic/ffffff" alt="Claude"/><span>Claude AI</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/grafana/F46800" alt="Grafana"/><span>Grafana</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/sentry/362D59" alt="Sentry"/><span>Sentry</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/vercel/ffffff" alt="Vercel"/><span>Vercel</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/postgresql/4169E1" alt="PostgreSQL"/><span>PostgreSQL</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/nodejs/339933" alt="Node.js"/><span>Node.js</span></div>
+        <div class="tech-logo-item"><img src="https://cdn.simpleicons.org/typescript/3178C6" alt="TypeScript"/><span>TypeScript</span></div>
+      </div>
+    </div>
+
+    <!-- Partner-style headline -->
+    <div class="text-center mt-16">
+      <p class="text-white/20 text-xs tracking-[4px] uppercase font-light">We integrate with the tools your team already loves</p>
+    </div>
+  </section>
+
+  <!-- ════════════ CONTACT ════════════ -->
+  <section id="contact" class="w-full relative overflow-hidden" style="background:#4ecca3; padding:60px 20px 80px;">
+    <div style="width:120px; height:3px; background:#1a1a1a; margin:0 auto 48px; border-radius:2px;"></div>
+    <div class="text-center mb-10">
+      <p style="font-size:0.72rem; letter-spacing:3px; color:rgba(0,0,0,0.5); text-transform:uppercase; font-family:'Space Mono',monospace; margin-bottom:10px;">// Ask us a question</p>
+      <h2 style="font-family:'Space Mono',monospace; font-size:clamp(2rem,5vw,3.2rem); font-weight:700; color:#1a1a1a; letter-spacing:-0.5px;">
+        CONTACT <span style="font-weight:300;">US</span>
+      </h2>
+    </div>
+
+    <div style="max-width:780px; margin:0 auto; position:relative; z-index:2;">
+      <div style="display:flex; gap:16px; margin-bottom:16px; flex-wrap:wrap;">
+        <input type="text" placeholder="Name" style="flex:1; min-width:200px; padding:16px 20px; background:rgba(0,0,0,0.08); border:none; border-radius:4px; font-size:0.95rem; color:#000; font-family:'Barlow',sans-serif; outline:none;"/>
+        <input type="email" placeholder="Email" style="flex:1; min-width:200px; padding:16px 20px; background:rgba(0,0,0,0.08); border:none; border-radius:4px; font-size:0.95rem; color:#000; font-family:'Barlow',sans-serif; outline:none;"/>
+      </div>
+      <textarea rows="6" placeholder="Message" style="width:100%; padding:16px 20px; background:rgba(0,0,0,0.08); border:none; border-radius:4px; font-size:0.95rem; color:#000; font-family:'Barlow',sans-serif; outline:none; resize:vertical; display:block;"></textarea>
+      <div style="text-align:center; margin-top:20px;">
+        <button style="background:#1a1a1a; color:#fff; border:none; padding:18px 80px; font-size:1rem; font-weight:600; font-family:'Space Mono',monospace; border-radius:4px; cursor:pointer; letter-spacing:1px; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Send</button>
+      </div>
+      <div style="display:flex; justify-content:center; gap:20px; margin-top:32px;">
+        <a href="#" style="width:44px; height:44px; border-radius:50%; background:#1a1a1a; display:flex; align-items:center; justify-content:center; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'"><svg width="20" height="20" viewBox="0 0 24 24" fill="#4ecca3"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="#" style="width:44px; height:44px; border-radius:50%; background:#1a1a1a; display:flex; align-items:center; justify-content:center; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'"><svg width="18" height="18" viewBox="0 0 24 24" fill="#4ecca3"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="#" style="width:44px; height:44px; border-radius:50%; background:#1a1a1a; display:flex; align-items:center; justify-content:center; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'"><svg width="18" height="18" viewBox="0 0 24 24" fill="#4ecca3"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      </div>
+      <div style="text-align:center; margin-top:24px;">
+        <p style="font-weight:700; font-size:1rem; color:#1a1a1a; margin-bottom:8px;">Brand. Code. Evolve.</p>
+        <p style="font-size:0.88rem; color:rgba(0,0,0,0.6);">hello@devtley.com &nbsp;|&nbsp; devtley.com</p>
+      </div>
+    </div>
+
+    <!-- Robot mascot -->
+    <div style="position:absolute; bottom:0; right:clamp(20px,6vw,100px); z-index:3; pointer-events:none;">
+      <svg width="200" height="240" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="100" cy="232" rx="55" ry="8" fill="rgba(0,0,0,0.15)"/>
+        <rect x="44" y="120" width="112" height="100" rx="18" fill="#1a1a1a"/>
+        <rect x="70" y="148" width="60" height="36" rx="8" fill="#2a2a2a" stroke="#4ecca3" stroke-width="1.5"/>
+        <text x="100" y="173" text-anchor="middle" font-family="Space Mono,monospace" font-size="13" font-weight="700" fill="#4ecca3">&lt;/&gt;</text>
+        <rect x="62" y="210" width="28" height="22" rx="6" fill="#1a1a1a"/>
+        <rect x="110" y="210" width="28" height="22" rx="6" fill="#1a1a1a"/>
+        <rect x="56" y="228" width="36" height="10" rx="5" fill="#111"/>
+        <rect x="108" y="228" width="36" height="10" rx="5" fill="#111"/>
+        <rect x="14" y="100" width="30" height="14" rx="7" fill="#1a1a1a" transform="rotate(-40 14 100)"/>
+        <rect x="4" y="70" width="22" height="36" rx="4" fill="#333" stroke="#4ecca3" stroke-width="1"/>
+        <rect x="8" y="74" width="14" height="24" rx="2" fill="#111"/>
+        <rect x="156" y="130" width="28" height="14" rx="7" fill="#1a1a1a"/>
+        <rect x="88" y="104" width="24" height="18" rx="4" fill="#1a1a1a"/>
+        <rect x="54" y="46" width="92" height="72" rx="16" fill="#f0f0f0"/>
+        <rect x="62" y="54" width="76" height="56" rx="10" fill="#e0e0e0"/>
+        <circle cx="84" cy="78" r="14" fill="#1a1a1a"/><circle cx="116" cy="78" r="14" fill="#1a1a1a"/>
+        <circle cx="84" cy="78" r="9" fill="#fff"/><circle cx="116" cy="78" r="9" fill="#fff"/>
+        <circle cx="86" cy="76" r="4" fill="#1a1a1a"/><circle cx="118" cy="76" r="4" fill="#1a1a1a"/>
+        <circle cx="88" cy="74" r="1.5" fill="#fff"/><circle cx="120" cy="74" r="1.5" fill="#fff"/>
+        <path d="M82 96 Q100 106 118 96" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <rect x="97" y="30" width="6" height="18" rx="3" fill="#1a1a1a"/>
+        <circle cx="100" cy="26" r="7" fill="#4ecca3"/>
+        <circle cx="100" cy="26" r="4" fill="#1a1a1a"/>
+        <circle cx="54" cy="82" r="5" fill="#ccc" stroke="#1a1a1a" stroke-width="1"/>
+        <circle cx="146" cy="82" r="5" fill="#ccc" stroke="#1a1a1a" stroke-width="1"/>
+      </svg>
+    </div>
+  </section>
+
+    <!-- ════════════ FOOTER ════════════ -->
+  <footer class="site-footer">
+    <!-- Airbus carbon-grid texture -->
+    <img class="ft-bg-img"
+      src="https://www.airbus.com/themes/custom/airbus_web_experience_ui/assets/images/airbus-carbon-grid-cropped-lg.png"
+      alt=""/>
+
+    <div class="ft-inner">
+      <div class="ft-main">
+
+        <!-- Brand col -->
+        <div class="ft-brand">
+          <div class="ft-logo">
+            <div class="devtley-brand" style="margin-bottom:32px;">
+              <img src="data:image/png;base64,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" alt="Devtley" style="height:38px;"/>
+              <span class="devtley-brand-text" style="font-size:1.4rem;">Devtley</span>
+            </div>
+          </div>
+          <h2 class="ft-touch">Brand. Code. Evolve.</h2>
+          <div class="ft-social">
+            <a href="#" class="si" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="#" class="si" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="#" class="si sk" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          </div>
+          <a href="#contact" class="ft-contact">Get in touch</a>
+        </div>
+
+        <!-- Platform col -->
+        <div class="ft-col">
+          <h3 class="ft-col-h">Navigate</h3>
+          <ul class="ft-list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#talks">How We Work</a></li>
+            <li><a href="#join">Join Us</a></li>
+            <li><a href="#technologies">Technologies</a></li>
+          </ul>
+          <h3 class="ft-col-h">Services</h3>
+          <ul class="ft-list">
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">Mobile Apps</a></li>
+            <li><a href="#">UI / UX Design</a></li>
+            <li><a href="#">Backend &amp; APIs</a></li>
+          </ul>
+        </div>
+
+        <!-- Company col -->
+        <div class="ft-col">
+          <h3 class="ft-col-h">Work</h3>
+          <ul class="ft-list">
+            <li><a href="works.html">See Our Works</a></li>
+            <li><a href="works.html#web">Web Applications</a></li>
+            <li><a href="works.html#mobile">Mobile Applications</a></li>
+          </ul>
+          <h3 class="ft-col-h">Connect</h3>
+          <ul class="ft-list">
+            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="#join">Join the Network</a></li>
+            <li><a href="mailto:hello@devtley.com">hello@devtley.com</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="ft-closure">
+      <div class="ft-cbar">
+        <nav class="ft-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+          <a href="#">Cookie Policy</a>
+        </nav>
+        <p class="ft-copy">&copy; 2025 Devtley. A network, not a company.</p>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    /* ── AIRBUS-STYLE FOOTER ── */
+    .site-footer {
+      position: relative;
+      background-color: #0a0a0a;
+      color: rgb(210, 220, 255);
+      border-top: 1px solid rgba(123,92,224,0.25);
+      overflow: hidden;
+    }
+    .site-footer::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(123,92,224,0.06) 1px, transparent 1px);
+      background-size: 22px 22px;
+      pointer-events: none; z-index: 0;
+    }
+    .ft-bg-img {
+      position: absolute; left: 0; right: 0;
+      top: 50%; transform: translateY(-50%);
+      width: 100%; display: block; opacity: 0.3;
+      pointer-events: none; z-index: 0; object-fit: cover;
+    }
+    .ft-inner {
+      position: relative; z-index: 1;
+      max-width: 1400px; margin: 0 auto;
+      padding: 72px 56px 48px;
+      display: flex; flex-direction: column;
+    }
+    .ft-main {
+      display: grid;
+      grid-template-columns: 300px 1fr 1fr;
+      gap: 64px;
+    }
+    .ft-brand { padding-top: 4px; }
+    .ft-touch {
+      font-size: 16px; font-weight: 400;
+      color: rgba(210,220,255,0.7);
+      margin-bottom: 22px; font-family: 'Space Mono', monospace;
+      letter-spacing: 1px;
+    }
+    .ft-social { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:32px; }
+    .si {
+      width:44px; height:44px; min-width:44px; max-width:44px;
+      border-radius:50%; border:1.5px solid rgba(123,92,224,0.3);
+      display:flex; align-items:center; justify-content:center;
+      color:white; text-decoration:none;
+      transition:background .2s, border-color .2s; flex-shrink:0;
+    }
+    .si:hover { background:rgba(123,92,224,0.2); border-color:rgba(123,92,224,0.7); }
+    .si svg { width:18px; height:18px; display:block; }
+    .si.sk svg { fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+    .ft-contact {
+      display:inline-block; background:var(--accent);
+      color:#0d0d0d; padding:13px 28px; font-size:14px; font-weight:700;
+      text-decoration:none; transition:opacity .2s; border-radius:3px;
+      font-family:'Space Mono',monospace; letter-spacing:0.5px;
+    }
+    .ft-contact:hover { opacity:0.85; }
+    .ft-col { padding-top:4px; }
+    .ft-col-h {
+      font-size:16px; font-weight:500;
+      color:rgba(255,255,255,0.9); margin-bottom:18px;
+      font-family:'Space Mono',monospace; letter-spacing:1px;
+    }
+    .ft-list { list-style:none; margin-bottom:40px; }
+    .ft-list li { margin-bottom:12px; }
+    .ft-list a {
+      color:rgba(210,220,255,0.55); text-decoration:none;
+      font-size:14px; line-height:1.5;
+      display:inline-flex; align-items:center; gap:6px;
+      transition:color .2s;
+    }
+    .ft-list a:hover { color:var(--accent); }
+    .ft-closure { position:relative; z-index:1; }
+    .ft-cbar {
+      max-width:1400px; margin:0 auto;
+      padding:28px 56px 34px;
+      border-top:1px solid rgba(123,92,224,0.15);
+      display:flex; justify-content:space-between;
+      align-items:center; flex-wrap:wrap; gap:12px;
+    }
+    .ft-legal { display:flex; gap:24px; flex-wrap:wrap; align-items:center; }
+    .ft-legal a {
+      color:rgba(210,220,255,0.35); text-decoration:none;
+      font-size:12px; transition:color .2s;
+    }
+    .ft-legal a:hover { color:var(--accent); }
+    .ft-copy { font-size:12px; color:rgba(210,220,255,0.3); }
+
+    @media (max-width: 900px) {
+      .ft-main { grid-template-columns:1fr; gap:40px; }
+      .ft-inner { padding:48px 24px 32px; }
+      .ft-cbar { padding:20px 24px 28px; flex-direction:column; align-items:flex-start; }
+    }
+  </style>
+
+  <script>
+    // Nav dot colors
+    const dotColors = ['#4ecca3','#7b5ce0','#e07a5c','#5c9ee0','#f5c518','#9090a8','#4ecca3'];
+    document.querySelectorAll('.nav-link').forEach((link) => {
+      const lc = link.dataset.lc;
+      link.style.setProperty('--lc', lc);
+      link.addEventListener('mouseenter', () => { link.style.background = lc + '18'; });
+      link.addEventListener('mouseleave', () => { link.style.background = ''; });
+    });
+
+    // Side strip dots
+    const sideStrip = document.getElementById('side-strip');
+    dotColors.forEach((c, i) => {
+      const d = document.createElement('div');
+      d.className = 'sd';
+      d.style.background = i === 0 ? c : 'rgba(255,255,255,0.18)';
+      sideStrip.appendChild(d);
+    });
+
+    // Sidebar
+    const hamburger = document.getElementById('hamburger');
+    const sidebar   = document.getElementById('sidebar');
+    const overlay   = document.getElementById('overlay');
+    const closeBtn  = document.getElementById('sidebarClose');
+    const b1=document.getElementById('b1'), b2=document.getElementById('b2'), b3=document.getElementById('b3');
+    const navLinks  = document.querySelectorAll('.nav-link');
+
+    function openSidebar() {
+      sidebar.classList.remove('-translate-x-full');
+      overlay.classList.remove('opacity-0','pointer-events-none');
+      overlay.classList.add('opacity-100');
+      sideStrip.style.opacity = '0'; sideStrip.style.pointerEvents = 'none';
+      b1.style.transform='translateY(7px) rotate(45deg)'; b2.style.opacity='0'; b3.style.transform='translateY(-7px) rotate(-45deg)';
+    }
+    function closeSidebar() {
+      sidebar.classList.add('-translate-x-full');
+      overlay.classList.add('opacity-0','pointer-events-none');
+      overlay.classList.remove('opacity-100');
+      sideStrip.style.opacity='1'; sideStrip.style.pointerEvents='';
+      b1.style.transform=''; b2.style.opacity=''; b3.style.transform='';
+    }
+    hamburger.addEventListener('click', () => sidebar.classList.contains('-translate-x-full') ? openSidebar() : closeSidebar());
+    closeBtn.addEventListener('click', closeSidebar);
+    overlay.addEventListener('click', closeSidebar);
+
+    navLinks.forEach((link, i) => {
+      link.addEventListener('click', e => {
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) target.scrollIntoView({ behavior: 'smooth' });
+        }
+        navLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+        sideStrip.querySelectorAll('.sd').forEach((d,j) => { d.style.background = j===i ? dotColors[j] : 'rgba(255,255,255,0.18)'; });
+        setTimeout(closeSidebar, 180);
+      });
+    });
+
+    // Typewriter
+    const words = ['code.','build.','ship.','share.','grow.','create.'];
+    let wi=0,ci=0,del=false;
+    const typedEl=document.getElementById('typedWord');
+    function type(){
+      if(!typedEl) return;
+      const w=words[wi];
+      if(!del){ ci++; typedEl.innerHTML=w.slice(0,ci)+'<span class="cursor"></span>';
+        if(ci===w.length){del=true;setTimeout(type,1600);return;} setTimeout(type,105);
+      } else { ci--; typedEl.innerHTML=w.slice(0,ci)+'<span class="cursor"></span>';
+        if(ci===0){del=false;wi=(wi+1)%words.length;setTimeout(type,300);return;} setTimeout(type,55); }
+    }
+    setTimeout(type,700);
+
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => obs.observe(el));
+
+    // Hero slideshow
+    const slides = [
+      { bgId:'hbg0', slideId:'hsl0', type:'typewriter' },
+      { bgId:'hbg1', slideId:'hsl1', type:'words' },
+      { bgId:'hbg2', slideId:'hsl2', type:'glitch' },
+    ];
+    let curSlide = 0;
+    function goSlide(idx) {
+      document.getElementById(slides[curSlide].slideId).classList.remove('active');
+      document.getElementById(slides[curSlide].bgId).style.opacity = '0';
+      document.querySelectorAll('.hdot')[curSlide].classList.remove('active');
+      curSlide = idx;
+      const sl = slides[curSlide];
+      document.getElementById(sl.bgId).style.opacity = '1';
+      document.getElementById(sl.slideId).classList.add('active');
+      document.querySelectorAll('.hdot')[curSlide].classList.add('active');
+      if (sl.type === 'words') {
+        const el = document.getElementById('hsl1-title');
+        el.classList.remove('go'); void el.offsetWidth; setTimeout(() => el.classList.add('go'), 100);
+      }
+      if (sl.type === 'glitch') {
+        const el = document.getElementById('hsl2-title');
+        el.classList.remove('go'); void el.offsetWidth; setTimeout(() => el.classList.add('go'), 100);
+      }
+    }
+    window.goSlide = goSlide;
+    let slideTimer = setInterval(() => goSlide((curSlide+1) % slides.length), 6000);
+    document.querySelectorAll('.hdot').forEach((btn, i) => {
+      btn.addEventListener('click', () => {
+        clearInterval(slideTimer);
+        goSlide(i);
+        slideTimer = setInterval(() => goSlide((curSlide+1) % slides.length), 6000);
+      });
+    });
+
+    // Pause ticker on hover
+    document.getElementById('tickerUp').addEventListener('mouseenter', () => {
+      document.getElementById('tickerUp').style.animationPlayState = 'paused';
+    });
+    document.getElementById('tickerUp').addEventListener('mouseleave', () => {
+      document.getElementById('tickerUp').style.animationPlayState = 'running';
+    });
+    document.getElementById('tickerDown').addEventListener('mouseenter', () => {
+      document.getElementById('tickerDown').style.animationPlayState = 'paused';
+    });
+    document.getElementById('tickerDown').addEventListener('mouseleave', () => {
+      document.getElementById('tickerDown').style.animationPlayState = 'running';
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+      });
+    });
+  </script>
+</body>
+</html>

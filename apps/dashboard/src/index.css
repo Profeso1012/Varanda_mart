@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+:root {
+  /* Color Variables */
+  --primary: #22925B;
+  --primary-dark: #1B6B38;
+  --primary-light: #D4F5E2;
+  --white: #FFFFFF;
+  --text-heading: #1F2A30;
+  --text-body: #4F507F;
+  --border-light: #F2EAEA;
+  --border-mid: #E0E0E0;
+  --shadow-green: 0 4px 4px rgba(34, 146, 91, 0.15);
+  --gradient-primary: linear-gradient(
+    135deg,
+    #22925B 0%,
+    #1B6B38 100%
+  );
+}
+
+/* Dashboard Sidebar Scrollbar */
+aside nav {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) transparent;
+}
+
+aside nav::-webkit-scrollbar {
+  width: 3px;
+}
+
+aside nav::-webkit-scrollbar-track {
+  background: rgba(34, 146, 91, 0.06);
+  border-radius: 2px;
+}
+
+aside nav::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);
+  border-radius: 2px;
+}
+
+aside nav::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* Products Action Menu Popup */
+.action-menu-popup {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  padding: 8px 13px;
+  z-index: 9999;
+}
+
+.action-menu-popup button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+
+.action-menu-popup button:hover {
+  background: rgba(0, 0, 0, 0.05);
+}

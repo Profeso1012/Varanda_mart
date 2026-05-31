@@ -1,0 +1,90 @@
+/* apps/storefront/src/components/AuthModal.css */
+.auth-modal { text-align: center; }
+
+.auth-modal__header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.auth-modal__logo {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+}
+
+.auth-modal__close {
+  position: absolute;
+  right: -8px;
+  top: -8px;
+  border: none;
+  background: var(--brand-surface);
+  border-radius: 50%;
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: var(--brand-muted);
+  transition: var(--transition);
+}
+.auth-modal__close:hover { background: var(--brand-border); color: var(--brand-text); }
+
+.auth-modal__icon {
+  width: 56px; height: 56px;
+  background: color-mix(in srgb, var(--brand-primary) 12%, transparent);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+  color: var(--brand-primary);
+}
+.auth-modal__icon--otp { font-size: 1.6rem; }
+
+.auth-modal__title {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--brand-text);
+}
+
+.auth-modal__sub {
+  font-size: 0.9rem;
+  color: var(--brand-muted);
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+
+.auth-modal__form { display: flex; flex-direction: column; gap: 16px; }
+
+.auth-modal__otp-grid {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.auth-modal__otp-input {
+  width: 48px; height: 56px;
+  border: 1.5px solid var(--brand-border);
+  border-radius: var(--radius-sm);
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--brand-text);
+  background: #fff;
+  transition: var(--transition);
+  outline: none;
+  font-family: inherit;
+}
+.auth-modal__otp-input:focus {
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand-primary) 15%, transparent);
+}
+
+.auth-modal__footer {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+}

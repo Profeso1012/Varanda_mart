@@ -1,0 +1,111 @@
+.component-type-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.component-type-modal {
+  background: #fff;
+  border-radius: 12px;
+  width: 380px;
+  max-width: 95vw;
+  max-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+
+.component-type-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid #F3F4F6;
+  flex-shrink: 0;
+}
+
+.component-type-modal__title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111;
+  margin: 0;
+}
+
+.component-type-modal__close {
+  background: none;
+  border: none;
+  color: #9CA3AF;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.component-type-modal__close:hover {
+  color: #374151;
+  background: #F3F4F6;
+}
+
+.component-type-modal__list {
+  overflow-y: auto;
+  flex: 1;
+}
+
+.component-type-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 14px 20px;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  border-bottom: 1px solid #F9FAFB;
+  transition: background 0.12s;
+  gap: 12px;
+}
+
+.component-type-row:last-child { border-bottom: none; }
+
+.component-type-row:hover {
+  background: #F9FAFB;
+}
+
+.component-type-row:hover .component-type-row__arrow {
+  color: #22925B;
+}
+
+.component-type-row__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.component-type-row__name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.component-type-row__desc {
+  font-size: 12px;
+  color: #6B7280;
+  line-height: 1.4;
+}
+
+.component-type-row__arrow {
+  color: #D1D5DB;
+  flex-shrink: 0;
+  transition: color 0.12s;
+}
